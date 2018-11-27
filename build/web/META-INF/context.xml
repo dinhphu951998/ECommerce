@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Context path="/ECommerce">
+<Resource 
+    auth="Container"
+    name="MStore"
+    driverClassName="com.microsoft.sqlserver.jdbc.SQLServerDriver"
+    type="javax.sql.DataSource"
+    url="jdbc:sqlserver://localhost:1433;databaseName=MStore"
+    username="sa"
+    password="12345678"
+/>
+
+</Context>

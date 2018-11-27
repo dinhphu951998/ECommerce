@@ -1,0 +1,30 @@
+<!DOCTYPE struts PUBLIC
+"-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+"http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+    <!-- Configuration for the default package. -->
+    <package name="default" extends="struts-default" namespace="/">
+        <action name="">
+            <result type="redirectAction">
+                <param name="actionName">StartUp</param>
+            </result>
+        </action>
+        
+        <action name="Login" class="phund.struts.LoginAction">
+            <result name="admin"></result>
+            <result name="user"></result>
+            <result name="fail"></result>
+        </action>
+        
+        <action name="StartUp" class="phund.struts.StartUpAction">
+            <result name="success" type="redirectAction">
+                <param name="actionName">Login</param>
+                <param name="Id">${Id}</param>
+                <param name="password">${password}</param>
+            </result>
+            <result name="fail" type="redirect">login.jsp</result>
+        </action>
+        
+    </package>
+</struts>
