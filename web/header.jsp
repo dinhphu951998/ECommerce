@@ -35,18 +35,14 @@
 
     <body class="page-preloading">
 
-        <!-- Page Pre-Loader -->
         <div class="page-preloader">
             <div class="preloader">
                 <img src="img/preloader.gif" alt="Preloader">
             </div>
         </div><!-- .page-preloader -->
 
-        <!-- Page Wrapper -->
         <div class="page-wrapper">
 
-            <!-- Navbar -->
-            <!-- Remove ".navbar-sticky" class to make navigation bar scrollable with the page. -->
             <header class="navbar navbar-sticky">
 
                 <!-- Site Logo -->
@@ -57,16 +53,14 @@
                 </a><!-- site-logo.visible-desktop -->
                 <a href="index.html" class="site-logo visible-mobile">
                     <span>[</span> M <span>]</span>
-                </a><!-- site-logo.visible-mobile -->
+                </a>
 
-                <!-- Main Navigation -->
-                <!-- Control the position of navigation via modifier classes: "text-left, text-center, text-right" -->
                 <nav class="main-navigation text-center">
                     <ul class="menu">
-                        <li class="">
+                        <li class="current-menu-item">
                             <a href="index.html">Home</a>
                         </li>
-                        <li class="current-menu-item">
+                        <li class="">
                             <a href="shop-fullwidth-sl.html">Shop</a>
                         </li>
                         <li class="menu-item-has-children">
@@ -77,10 +71,9 @@
                                 <li><a href="faq.html">FAQ</a></li>
                             </ul>
                         </li>
-                    </ul><!-- .menu -->
-                </nav><!-- .main-navigation -->
+                    </ul>
+                </nav>
 
-                <!-- Toolbar -->
                 <div class="toolbar">
                     <div class="inner"> 
                         <a href="#" class="mobile-menu-toggle"><i class="material-icons menu"></i></a>
@@ -92,7 +85,7 @@
                                     <span class="count">2</span>
                                 </i>
                             </a>
-                        </div><!-- .cart-btn -->
-                    </div><!-- .inner -->
-                </div><!-- .toolbar -->
-            </header><!-- .navbar.navbar-sticky -->
+                        </div><
+                    </div>
+                </div>
+            </header>

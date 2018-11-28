@@ -5,11 +5,14 @@
  */
 package phund.struts;
 
+import java.util.List;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import org.apache.struts2.ServletActionContext;
 import phund.accounts.AccountDAO;
-import phund.accounts.AccountDTO;
+import phund.accounts.Accounts;
+import phund.products.Products;
+import phund.products.ProductsDAO;
 
 /**
  *
@@ -30,7 +33,7 @@ public class StartUpAction {
         HttpServletRequest request = ServletActionContext.getRequest();
         Cookie[] cookies = request.getCookies();
         AccountDAO dao = new AccountDAO();
-        AccountDTO dto = null;
+        Accounts dto = null;
         if (cookies != null) {
             for (Cookie cooky : cookies) {
                 String id = cooky.getName();
@@ -44,6 +47,7 @@ public class StartUpAction {
                 }
             }
         }
+       
         return url;
     }
 

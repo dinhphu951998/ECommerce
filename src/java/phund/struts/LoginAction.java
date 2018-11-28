@@ -12,7 +12,7 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
 import org.apache.struts2.ServletActionContext;
 import phund.accounts.AccountDAO;
-import phund.accounts.AccountDTO;
+import phund.accounts.Accounts;
 import phund.enums.RolesEnum;
 import phund.tools.Utils;
 
@@ -35,7 +35,7 @@ public class LoginAction {
     public String execute() throws Exception {
         String url = FAIL;
         AccountDAO dao = new AccountDAO();
-        AccountDTO dto = dao.checkLogin(Id, password);
+        Accounts dto = dao.checkLogin(Id, password);
         if (dto != null) {
             switch (RolesEnum.valueOf(dto.getRoleId())) {
                 case AD:

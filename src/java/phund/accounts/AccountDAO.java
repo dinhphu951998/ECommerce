@@ -35,14 +35,16 @@ public class AccountDAO implements Serializable {
         }
     }
 
-    public AccountDTO checkLogin(String id, String password) throws NamingException, SQLException {
-        AccountDTO account = null;
+    public Accounts checkLogin(String id, String password) throws NamingException, SQLException {
+        Accounts account = null;
         try {
             conn = DBConnection.makeConnection();
             String sql = "select Id, FirstName, LastName, Email, Phone, Address, Image, RoleID "
                     + "from Accounts "
                     + "where Id = ? and password = ?";
             pstm = conn.prepareStatement(sql);
+            pstm.setString(1, id);
+            pstm.setString(2, password);
             rs = pstm.executeQuery();
             if (rs.next()) {
                 String Id = rs.getString("ID");
@@ -53,7 +55,7 @@ public class AccountDAO implements Serializable {
                 String address = rs.getString("Address");
                 String image = rs.getString("Image");
                 String roleId = rs.getString("RoleID");
-                account = new AccountDTO(Id, firstName, lastName, email, phone, address, image, roleId);
+                account = new Accounts(Id, firstName, lastName, email, phone, address, image, roleId);
             }
         } finally {
             closeConnection();

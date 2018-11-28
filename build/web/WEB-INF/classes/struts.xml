@@ -23,7 +23,7 @@
                 <param name="Id">${Id}</param>
                 <param name="password">${password}</param>
             </result>
-            <result name="fail" type="redirect">login.jsp</result>
+            <result name="fail" type="redirect">home-page.jsp</result>
         </action>
         
     </package>
