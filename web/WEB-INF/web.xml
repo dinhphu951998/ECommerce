@@ -4,8 +4,16 @@
         <filter-name>struts2</filter-name>
         <filter-class>org.apache.struts2.dispatcher.FilterDispatcher</filter-class>
     </filter>
+    <filter>
+        <filter-name>AuthorizationFilter</filter-name>
+        <filter-class>ecommerce.filter.AuthorizationFilter</filter-class>
+    </filter>
     <filter-mapping>
         <filter-name>struts2</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>AuthorizationFilter</filter-name>
         <url-pattern>/*</url-pattern>
     </filter-mapping>
     <session-config>
