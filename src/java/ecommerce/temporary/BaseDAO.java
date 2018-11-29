@@ -157,7 +157,7 @@ public abstract class BaseDAO<T> implements Serializable {
         return list;
     }
 
-    public void deletePermanently(T entity) throws SQLException, NamingException, 
+    public void deletePermanently(T entity) throws SQLException, NamingException,
             IllegalArgumentException, IllegalAccessException {
         try {
             String sql = "delete from " + type.getSimpleName() + " where Id = ?";
@@ -171,10 +171,78 @@ public abstract class BaseDAO<T> implements Serializable {
                 }
             }
             pstm.executeUpdate();
-        }  finally {
+        } finally {
             closeConnection();
         }
     }
-    
-    
+    //   public void update(T entity) throws NamingException, SQLException, IllegalArgumentException, IllegalAccessException {
+//        try {
+//            List<Field> updatedField = new ArrayList<>();
+//            Field[] fields = type.getDeclaredFields();
+//            for (Field field : fields) {
+//                field.setAccessible(true);
+//                if (field.get(entity) != null) {
+//                    if(field.getType().isPrimitive()){
+//                        
+//                    }
+//                    updatedField.add(field);
+//                }
+//            }
+//            
+//            if(updatedField.size() < 2){
+//                throw new IllegalArgumentException("Argument must contain at least Id and 1 update field");
+//            }
+//
+//            String sql = "update " + type.getSimpleName() + " set ";
+//            Field idField = null;
+//            for (Field field : updatedField) {
+//                if (!field.getName().toLowerCase().equals("id")) {
+//                    sql += field.getName() + " = ? ";
+//                    if (!field.equals(updatedField.get(updatedField.size() - 1))) {
+//                        sql += ", ";
+//                    }
+//                } else {
+//                    updatedField.remove(field);
+//                    updatedField.add(field);
+//                    idField = field;
+//                }
+//            }
+//            if (idField == null) {
+//                throw new IllegalArgumentException("Lack of id field");
+//            }
+//            sql += " where Id = ? ";
+//
+//            conn = DBConnection.makeConnection();
+//            pstm = conn.prepareStatement(sql);
+//            for (int i = 0; i < updatedField.size(); i++) {
+//                Field field = updatedField.get(i);
+//                field.setAccessible(true);
+//                pstm.setObject(i+ 1, field.get(entity));
+//            }
+//            pstm.executeUpdate();
+//        } finally {
+//            closeConnection();
+//        }
+//    }
+//
+//    private String getUpdateSQL(List<Field> updatedField) {
+//        String sql = "update " + type.getSimpleName() + " set ";
+//        Field idField = null;
+//        for (Field field : updatedField) {
+//            if (!field.getName().toLowerCase().equals("id")) {
+//                sql += field.getName() + " = ? ";
+//                if (!field.equals(updatedField.get(updatedField.size() - 1))) {
+//                    sql += ", ";
+//                }
+//            } else {
+//                idField = field;
+//            }
+//        }
+//        if (idField == null) {
+//            throw new IllegalArgumentException("Lack of id field");
+//        }
+//        sql += " where Id = ? ";
+//        return sql;
+//    }
+
 }

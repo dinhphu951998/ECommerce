@@ -34,6 +34,9 @@ public class Accounts implements Serializable {
         this.RoleID = RoleID;
     }
 
+    public Accounts() {
+    }
+
     
     /**
      * @return the Id

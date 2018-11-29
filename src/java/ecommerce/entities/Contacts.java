@@ -26,6 +26,25 @@ public class Contacts implements Serializable {
     private String Working;
     private String AccountID;
 
+    public Contacts() {
+    }
+
+    public Contacts(int Id, String Address, String LandLine, String CellPhone, String Email, String Skype, String Facebook, String Gmail, String Twitter, String Instagram, String Working, String AccountID) {
+        this.Id = Id;
+        this.Address = Address;
+        this.LandLine = LandLine;
+        this.CellPhone = CellPhone;
+        this.Email = Email;
+        this.Skype = Skype;
+        this.Facebook = Facebook;
+        this.Gmail = Gmail;
+        this.Twitter = Twitter;
+        this.Instagram = Instagram;
+        this.Working = Working;
+        this.AccountID = AccountID;
+    }
+
+    
     /**
      * @return the Id
      */
