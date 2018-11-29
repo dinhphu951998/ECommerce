@@ -47,7 +47,6 @@ public class StartUpAction {
                 }
             }
         }
-       
         return url;
     }
 
