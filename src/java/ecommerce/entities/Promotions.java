@@ -15,7 +15,7 @@ import java.sql.Date;
 public class Promotions implements Serializable {
 
     private String Id;
-    private float Discount;
+    private double Discount;
     private String Description;
     private int Type;
     private String ProductID;
@@ -40,14 +40,14 @@ public class Promotions implements Serializable {
     /**
      * @return the Discount
      */
-    public float getDiscount() {
+    public double getDiscount() {
         return Discount;
     }
 
     /**
      * @param Discount the Discount to set
      */
-    public void setDiscount(float Discount) {
+    public void setDiscount(double Discount) {
         this.Discount = Discount;
     }
 

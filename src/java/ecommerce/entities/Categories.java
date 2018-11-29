@@ -26,6 +26,26 @@ public class Categories implements Serializable {
     private String AttName9;
     private String AttName10;
 
+    public Categories() {
+    }
+
+    public Categories(int Id, String Name, String AttName1, String AttName2, String AttName3, String AttName4, String AttName5, String AttName6, String AttName7, String AttName8, String AttName9, String AttName10) {
+        this.Id = Id;
+        this.Name = Name;
+        this.AttName1 = AttName1;
+        this.AttName2 = AttName2;
+        this.AttName3 = AttName3;
+        this.AttName4 = AttName4;
+        this.AttName5 = AttName5;
+        this.AttName6 = AttName6;
+        this.AttName7 = AttName7;
+        this.AttName8 = AttName8;
+        this.AttName9 = AttName9;
+        this.AttName10 = AttName10;
+    }
+    
+    
+
     /**
      * @return the Id
      */

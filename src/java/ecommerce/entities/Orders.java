@@ -6,7 +6,7 @@
 package ecommerce.entities;
 
 import java.io.Serializable;
-import java.sql.Date;
+import java.sql.Timestamp;
 
 /**
  *
@@ -16,13 +16,30 @@ public class Orders implements Serializable {
 
     private String ID;
     private String AccountID;
-    private Date DatePurchased;
+    private Timestamp DatePurchased;
     private String Status;
-    private float Total;
+    private double Total;
     private String Name;
     private String Phone;
     private String Address;
     private String Email;
+
+    public Orders() {
+    }
+
+    public Orders(String ID, String AccountID, Timestamp DatePurchased, String Status, double Total, String Name, String Phone, String Address, String Email) {
+        this.ID = ID;
+        this.AccountID = AccountID;
+        this.DatePurchased = DatePurchased;
+        this.Status = Status;
+        this.Total = Total;
+        this.Name = Name;
+        this.Phone = Phone;
+        this.Address = Address;
+        this.Email = Email;
+    }
+    
+    
 
     /**
      * @return the ID
@@ -55,14 +72,14 @@ public class Orders implements Serializable {
     /**
      * @return the DatePurchased
      */
-    public Date getDatePurchased() {
+    public Timestamp getDatePurchased() {
         return DatePurchased;
     }
 
     /**
      * @param DatePurchased the DatePurchased to set
      */
-    public void setDatePurchased(Date DatePurchased) {
+    public void setDatePurchased(Timestamp DatePurchased) {
         this.DatePurchased = DatePurchased;
     }
 
@@ -83,14 +100,14 @@ public class Orders implements Serializable {
     /**
      * @return the Total
      */
-    public float getTotal() {
+    public double getTotal() {
         return Total;
     }
 
     /**
      * @param Total the Total to set
      */
-    public void setTotal(float Total) {
+    public void setTotal(double Total) {
         this.Total = Total;
     }
 

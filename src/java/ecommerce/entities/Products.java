@@ -6,7 +6,7 @@
 package ecommerce.entities;
 
 import java.io.Serializable;
-import java.sql.Date;
+import java.sql.Timestamp;
 
 /**
  *
@@ -16,7 +16,7 @@ public class Products implements Serializable {
 
     private String Id;
     private String Name;
-    private float Price;
+    private double Price;
     private int CategoryID;
     private String Image1;
     private String Image2;
@@ -27,8 +27,8 @@ public class Products implements Serializable {
     private String ShortDescription;
     private String OtherInfo;
     private int Stock;
-    private Date DateArrivals;
-    private float SaleOff;
+    private Timestamp DateArrivals;
+    private double SaleOff;
     private String AttVal1;
     private String AttVal2;
     private String AttVal3;
@@ -73,14 +73,14 @@ public class Products implements Serializable {
     /**
      * @return the Price
      */
-    public float getPrice() {
+    public double getPrice() {
         return Price;
     }
 
     /**
      * @param Price the Price to set
      */
-    public void setPrice(float Price) {
+    public void setPrice(double Price) {
         this.Price = Price;
     }
 
@@ -227,28 +227,28 @@ public class Products implements Serializable {
     /**
      * @return the DateArrivals
      */
-    public Date getDateArrivals() {
+    public Timestamp getDateArrivals() {
         return DateArrivals;
     }
 
     /**
      * @param DateArrivals the DateArrivals to set
      */
-    public void setDateArrivals(Date DateArrivals) {
+    public void setDateArrivals(Timestamp DateArrivals) {
         this.DateArrivals = DateArrivals;
     }
 
     /**
      * @return the SaleOff
      */
-    public float getSaleOff() {
+    public double getSaleOff() {
         return SaleOff;
     }
 
     /**
      * @param SaleOff the SaleOff to set
      */
-    public void setSaleOff(float SaleOff) {
+    public void setSaleOff(double SaleOff) {
         this.SaleOff = SaleOff;
     }
 

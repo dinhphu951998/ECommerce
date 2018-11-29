@@ -5,6 +5,7 @@
  */
 package ecommerce.temporary;
 
+import ecommerce.dbutils.DBConnection;
 import java.io.Serializable;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
@@ -17,7 +18,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import javax.naming.NamingException;
-import ecommerce.dbutils.DBConnection;
 
 /**
  *

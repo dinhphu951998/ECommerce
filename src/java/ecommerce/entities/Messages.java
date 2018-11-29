@@ -19,6 +19,18 @@ public class Messages implements Serializable {
     private String Message;
     private String AccountID;
 
+    public Messages() {
+    }
+
+    public Messages(int ID, String Name, String Email, String Message, String AccountID) {
+        this.ID = ID;
+        this.Name = Name;
+        this.Email = Email;
+        this.Message = Message;
+        this.AccountID = AccountID;
+    }
+    
+
     /**
      * @return the ID
      */

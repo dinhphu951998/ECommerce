@@ -6,15 +6,15 @@
 package ecommerce.struts;
 
 import com.opensymphony.xwork2.ActionContext;
+import ecommerce.dao.AccountDAO;
+import ecommerce.entities.Accounts;
+import ecommerce.enums.RolesEnum;
+import ecommerce.tools.Utils;
 import java.security.NoSuchAlgorithmException;
 import java.util.Map;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
 import org.apache.struts2.ServletActionContext;
-import ecommerce.accounts.AccountDAO;
-import ecommerce.accounts.Accounts;
-import ecommerce.enums.RolesEnum;
-import ecommerce.tools.Utils;
 
 /**
  *
@@ -37,7 +37,7 @@ public class LoginAction {
         AccountDAO dao = new AccountDAO();
         Accounts dto = dao.checkLogin(Id, password);
         if (dto != null) {
-            switch (RolesEnum.valueOf(dto.getRoleId())) {
+            switch (RolesEnum.valueOf(dto.getRoleID())) {
                 case AD:
                     url = ADMIN;
                     break;

@@ -5,14 +5,11 @@
  */
 package ecommerce.struts;
 
-import java.util.List;
+import ecommerce.dao.AccountDAO;
+import ecommerce.entities.Accounts;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import org.apache.struts2.ServletActionContext;
-import ecommerce.accounts.AccountDAO;
-import ecommerce.accounts.Accounts;
-import ecommerce.products.Products;
-import ecommerce.products.ProductsDAO;
 
 /**
  *
