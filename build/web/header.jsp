@@ -68,9 +68,24 @@
                             <ul class="sub-menu">
                                 <li><a href="about.html">About</a></li>
                                 <li><a href="contacts.html">Contacts</a></li>
-                                <li><a href="faq.html">FAQ</a></li>
+                                <li><a href="faq.html">FAQ</a></li>          
                             </ul>
                         </li>
+
+                        <s:if test="%{#session.USER == null}">
+                            <li class="">
+                                <s:a href="/ECommerce/LoginForm">Login</s:a>
+                                </li>
+                        </s:if>
+                        <s:if test="%{#session.USER != null}">
+                            <li class="menu-item-has-children">
+                                <s:a href="#" ><s:property value="#session.USER.lastName" /></s:a>
+                                <ul class="sub-menu">
+                                <li><a href="/ECommerce/logout">Log out</a></li>         
+                            </ul>
+                            </li>
+
+                        </s:if>
                     </ul>
                 </nav>
 

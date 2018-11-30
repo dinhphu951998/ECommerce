@@ -6,6 +6,7 @@
 package ecommerce.entities;
 
 import java.io.Serializable;
+import java.sql.Date;
 import java.sql.Timestamp;
 
 /**
@@ -38,9 +39,9 @@ public class Orders implements Serializable {
         this.Address = Address;
         this.Email = Email;
     }
-    
-    
 
+    
+    
     /**
      * @return the ID
      */
@@ -166,4 +167,6 @@ public class Orders implements Serializable {
     public void setEmail(String Email) {
         this.Email = Email;
     }
+
+   
 }

@@ -23,9 +23,9 @@ public class Wishlist implements Serializable {
         this.AccountID = AccountID;
         this.ProductID = ProductID;
     }
-    
-    
 
+    
+    
     /**
      * @return the AccountID
      */

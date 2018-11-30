@@ -29,9 +29,8 @@ public class OrderDetails implements Serializable {
         this.Price = Price;
         this.SaleOff = SaleOff;
     }
-    
-    
 
+    
     /**
      * @return the OrderID
      */
@@ -101,4 +100,6 @@ public class OrderDetails implements Serializable {
     public void setSaleOff(double SaleOff) {
         this.SaleOff = SaleOff;
     }
+
+  
 }

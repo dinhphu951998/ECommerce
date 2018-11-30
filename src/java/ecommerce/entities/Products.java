@@ -6,6 +6,7 @@
 package ecommerce.entities;
 
 import java.io.Serializable;
+import java.sql.Date;
 import java.sql.Timestamp;
 
 /**
@@ -74,9 +75,8 @@ public class Products implements Serializable {
         this.RatingScore = RatingScore;
         this.NumOfRates = NumOfRates;
     }
-    
-    
 
+    
     /**
      * @return the Id
      */
@@ -454,4 +454,6 @@ public class Products implements Serializable {
     public void setNumOfRates(int NumOfRates) {
         this.NumOfRates = NumOfRates;
     }
+
+    
 }

@@ -29,8 +29,8 @@ public class Messages implements Serializable {
         this.Message = Message;
         this.AccountID = AccountID;
     }
-    
 
+    
     /**
      * @return the ID
      */

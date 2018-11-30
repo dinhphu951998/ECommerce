@@ -6,6 +6,7 @@
 package ecommerce.entities;
 
 import java.io.Serializable;
+import java.sql.Date;
 import java.sql.Timestamp;
 
 /**
@@ -36,8 +37,8 @@ public class Promotions implements Serializable {
         this.StartTime = StartTime;
         this.EndTime = EndTime;
     }
-    
 
+    
     /**
      * @return the Id
      */
@@ -149,5 +150,7 @@ public class Promotions implements Serializable {
     public void setEndTime(Timestamp EndTime) {
         this.EndTime = EndTime;
     }
+
+    
 
 }

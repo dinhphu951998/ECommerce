@@ -23,8 +23,8 @@ public class Roles implements Serializable {
         this.ID = ID;
         this.RoleName = RoleName;
     }
-    
 
+    
     /**
      * @return the ID
      */

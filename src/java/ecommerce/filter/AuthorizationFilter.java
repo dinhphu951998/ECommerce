@@ -25,23 +25,23 @@ import javax.servlet.ServletResponse;
 
 /**
  *
- * @author PhuNDSE63159
+ * @author thanh
  */
 public class AuthorizationFilter implements Filter {
 
     private static final boolean debug = true;
 
+    // The filter configuration object we are associated with.  If
+    // this value is null, this filter instance is not currently
+    // configured. 
     //The file saves all pages that role can access
     private final String adminPageFile = "/file/admin.txt";
     private final String authorizedUserFile = "/file/user.txt";
-
     private List<String> adminPages;
     private List<String> authorizedUserPages;
-
     private FilterConfig filterConfig = null;
 
     public AuthorizationFilter() {
-
     }
 
     private void doBeforeProcessing(ServletRequest request, ServletResponse response)
@@ -54,19 +54,14 @@ public class AuthorizationFilter implements Filter {
         authorizedUserPages = (List<String>) sc.getAttribute("AuthorizedUserPages");
 //        String adminPath = sc.getRealPath(adminPageFile);
 //        String userPath = sc.getRealPath(authorizedUserFile);
-
         if (adminPages == null) {
 //            adminPages = getAccessablePage(adminPath);
-
-
             sc.setAttribute("AdminPages", adminPages);
         }
-
         if (authorizedUserPages == null) {
 //            authorizedUserPages = getAccessablePage(userPath);
             sc.setAttribute("AuthorizedUserPages", authorizedUserPages);
         }
-
     }
 
     private void doAfterProcessing(ServletRequest request, ServletResponse response)
@@ -75,8 +70,34 @@ public class AuthorizationFilter implements Filter {
             log("AuthorizationFilter:DoAfterProcessing");
         }
 
+        // Write code here to process the request and/or response after
+        // the rest of the filter chain is invoked.
+        // For example, a logging filter might log the attributes on the
+        // request object after the request has been processed. 
+        /*
+	for (Enumeration en = request.getAttributeNames(); en.hasMoreElements(); ) {
+	    String name = (String)en.nextElement();
+	    Object value = request.getAttribute(name);
+	    log("attribute: " + name + "=" + value.toString());
+
+	}
+         */
+        // For example, a filter might append something to the response.
+        /*
+	PrintWriter respOut = new PrintWriter(response.getWriter());
+	respOut.println("<P><B>This has been appended by an intrusive filter.</B>");
+         */
     }
 
+    /**
+     *
+     * @param request The servlet request we are processing
+     * @param response The servlet response we are creating
+     * @param chain The filter chain we are processing
+     *
+     * @exception IOException if an input/output error occurs
+     * @exception ServletException if a servlet error occurs
+     */
     public void doFilter(ServletRequest request, ServletResponse response,
             FilterChain chain)
             throws IOException, ServletException {
@@ -89,15 +110,19 @@ public class AuthorizationFilter implements Filter {
 
         Throwable problem = null;
         try {
-
             chain.doFilter(request, response);
         } catch (Throwable t) {
+            // If an exception is thrown somewhere down the filter chain,
+            // we still want to execute our after processing, and then
+            // rethrow the problem after that.
             problem = t;
             t.printStackTrace();
         }
 
         doAfterProcessing(request, response);
 
+        // If there was a problem, we want to rethrow it if it is
+        // a known type, otherwise log it.
         if (problem != null) {
             if (problem instanceof ServletException) {
                 throw (ServletException) problem;
@@ -108,8 +133,7 @@ public class AuthorizationFilter implements Filter {
             sendProcessingError(problem, response);
         }
     }
-
-    private List<String> getAccessablePage(String filename) throws FileNotFoundException, IOException {
+     private List<String> getAccessablePage(String filename) throws FileNotFoundException, IOException {
         List<String> pages = new LinkedList<>();
         BufferedReader br = null;
         try {
@@ -134,6 +158,9 @@ public class AuthorizationFilter implements Filter {
         return pages;
     }
 
+    /**
+     * Return the filter configuration object for this filter.
+     */
     public FilterConfig getFilterConfig() {
         return (this.filterConfig);
     }

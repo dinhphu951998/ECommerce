@@ -5,11 +5,14 @@
  */
 package ecommerce.struts;
 
-import ecommerce.dao.AccountDAO;
+import com.opensymphony.xwork2.ActionContext;
+import ecommerce.DAO.AccountDAO;
 import ecommerce.entities.Accounts;
+import java.util.Map;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import org.apache.struts2.ServletActionContext;
+
 
 /**
  *
@@ -20,6 +23,7 @@ public class StartUpAction {
     private String Id;
     private String password;
     private final String SUCCESS = "success";
+    private final String ADMIN = "admin";
     private final String FAIL = "fail";
 
     public StartUpAction() {
@@ -34,16 +38,29 @@ public class StartUpAction {
         if (cookies != null) {
             for (Cookie cooky : cookies) {
                 String id = cooky.getName();
-                String passwordCookie = cooky.getValue();
-                dto = dao.checkLogin(id, passwordCookie);
-                if (dto != null) {
-                    url = SUCCESS;
-                    Id = dto.getId();
-                    password = passwordCookie;
-                    break;
+                if (id.startsWith("account")) {
+                    id = id.substring("account".length());
+                    String passwordCookie = cooky.getValue();
+                    dto = dao.checkLogin(id, passwordCookie);
+                    if (dto != null) {
+                        url = SUCCESS;
+                        Id = dto.getId();
+                        password = passwordCookie;
+                        break;
+                    }
+                }
+
+            }
+        }
+        if (!url.equals(SUCCESS)){
+            Map session = ActionContext.getContext().getSession();
+            if (session.get("USER") != null){
+                if (((Accounts)session.get("USER")).getRoleID().equals("AD")){
+                    url = ADMIN;
                 }
             }
         }
+
         return url;
     }
 

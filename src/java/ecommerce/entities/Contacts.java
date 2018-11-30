@@ -43,8 +43,8 @@ public class Contacts implements Serializable {
         this.Working = Working;
         this.AccountID = AccountID;
     }
-    
 
+    
     /**
      * @return the Id
      */

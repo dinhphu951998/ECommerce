@@ -3,11 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ecommerce.dao;
+package ecommerce.DAO;
 
 import ecommerce.dbutils.DBConnection;
 import ecommerce.entities.Accounts;
-import java.io.Serializable;
+import ecommerce.tools.Utils;
+import java.security.NoSuchAlgorithmException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -16,9 +17,9 @@ import javax.naming.NamingException;
 
 /**
  *
- * @author PhuNDSE63159
+ * @author thanh
  */
-public class AccountDAO implements Serializable {
+public class AccountDAO {
 
     private Connection conn;
     private PreparedStatement pstm;
@@ -36,7 +37,7 @@ public class AccountDAO implements Serializable {
         }
     }
 
-    public Accounts checkLogin(String id, String password) throws NamingException, SQLException {
+    public Accounts checkLogin(String id, String password) throws NamingException, SQLException, NoSuchAlgorithmException {
         Accounts account = null;
         try {
             conn = DBConnection.makeConnection();
@@ -45,10 +46,10 @@ public class AccountDAO implements Serializable {
                     + "where Id = ? and password = ?";
             pstm = conn.prepareStatement(sql);
             pstm.setString(1, id);
-            pstm.setString(2, password);
+            pstm.setString(2, Utils.encryptPassword(password));
             rs = pstm.executeQuery();
             if (rs.next()) {
-                String Id = rs.getString("ID");
+                String Id = rs.getString("Id");
                 String firstName = rs.getString("FirstName");
                 String lastName = rs.getString("LastName");
                 String email = rs.getString("Email");
@@ -56,7 +57,7 @@ public class AccountDAO implements Serializable {
                 String address = rs.getString("Address");
                 String image = rs.getString("Image");
                 String roleId = rs.getString("RoleID");
-                account = new Accounts(Id, firstName, lastName, email, phone, address, image, roleId);
+                account = new Accounts(Id, firstName, lastName, email, phone, password, address, image, roleId);
             }
         } finally {
             closeConnection();

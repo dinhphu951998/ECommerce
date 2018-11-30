@@ -22,9 +22,6 @@ public class Accounts implements Serializable {
     private String Image;
     private String RoleID;
 
-    public Accounts() {
-    }
-
     public Accounts(String Id, String FirstName, String LastName, String Email, String Phone, String Password, String Address, String Image, String RoleID) {
         this.Id = Id;
         this.FirstName = FirstName;
@@ -37,18 +34,9 @@ public class Accounts implements Serializable {
         this.RoleID = RoleID;
     }
 
-    public Accounts(String Id, String FirstName, String LastName, String Email, String Phone, String Address, String Image, String RoleID) {
-        this.Id = Id;
-        this.FirstName = FirstName;
-        this.LastName = LastName;
-        this.Email = Email;
-        this.Phone = Phone;
-        this.Password = Password;
-        this.Address = Address;
-        this.Image = Image;
-        this.RoleID = RoleID;
+    public Accounts() {
     }
-    
+
     
     /**
      * @return the Id

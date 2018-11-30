@@ -43,9 +43,8 @@ public class Categories implements Serializable {
         this.AttName9 = AttName9;
         this.AttName10 = AttName10;
     }
-    
-    
 
+    
     /**
      * @return the Id
      */

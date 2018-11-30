@@ -8,22 +8,23 @@
 <%@taglib uri="/struts-tags" prefix="s"%>
 <s:include value="header.jsp"/>
 
-<div class="featured-image" style="background-image: url(img/featured-image/faq.jpg);"></div>
-
 
 <section class="container padding-top-3x padding-bottom-2x">
     <h1>User Account</h1>
     <div class="row padding-top">
         <div class="col-md-4 padding-bottom">
             <h3>Login</h3>
-
-            <s:form action="" method="POST" cssClass="login-form" >
-                <input type="text" class="form-control" placeholder="Username" required name="Id">
-                <input type="password" class="form-control" placeholder="Password" required name="password">
+            <s:if test="%{error != null}">
+                <h4 style="color: red"><s:property value="error" /></h4>
+            </s:if>
+            <h3 style="color: red"></h3>
+            <s:form action="/Login" method="POST" cssClass="login-form" theme="simple">
+                <s:textfield cssClass="form-control" placeholder="Username" required="required"  name="Id"/>
+                <s:password cssClass="form-control" placeholder="Password" required="required"  name="password"/>
                 <div class="form-footer">
                     <div class="rememberme">
                         <label class="checkbox">
-                            <input type="checkbox" checked name="remember"> Remember me
+                            <s:checkbox name="remember" cssStyle="color:red"/> Remember me
                         </label>
                     </div>
                     <div class="form-submit">
@@ -35,7 +36,7 @@
         <div class="col-md-4 col-md-offset-1">
             <h3>Register</h3>
             <div class="inner">
-                
+
                 <form method="post" class="login-form">
                     <input type="email" class="form-control" placeholder="E-mail" required>
                     <input type="password" class="form-control" placeholder="Password" required>
