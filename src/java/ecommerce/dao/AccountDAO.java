@@ -43,7 +43,7 @@ public class AccountDAO {
             conn = DBConnection.makeConnection();
             String sql = "select Id, FirstName, LastName, Email, Phone, Address, Image, RoleID "
                     + "from Accounts "
-                    + "where Id = ? and password = ?";
+                    + "where id = ? and password = ?";
             pstm = conn.prepareStatement(sql);
             pstm.setString(1, id);
             pstm.setString(2, Utils.encryptPassword(password));
@@ -63,6 +63,29 @@ public class AccountDAO {
             closeConnection();
         }
         return account;
+    }
+
+    public boolean registerAccount(Accounts account) throws SQLException, NamingException, NoSuchAlgorithmException {
+        int result = 0;
+        try {
+            conn = DBConnection.makeConnection();
+            String sql = "insert into Accounts(Id,FirstName,LastName,Email,Password,RoleID)"
+                    + " values(?,?,?,?,?,?)";
+            pstm = conn.prepareStatement(sql);
+            pstm.setString(1, account.getId());
+            pstm.setString(2, account.getFirstName());
+            pstm.setString(3, account.getLastName());
+            pstm.setString(4, account.getEmail());
+            pstm.setString(5, Utils.encryptPassword(account.getPassword()));
+            pstm.setString(6, account.getRoleID());
+            result = pstm.executeUpdate();
+        }
+        catch (Exception ex){
+            return false;
+        } finally {
+            closeConnection();
+        }
+        return result > 0;
     }
 
 }

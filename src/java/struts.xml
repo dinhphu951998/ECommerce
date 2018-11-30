@@ -41,5 +41,13 @@
             <result name="success">product-details.jsp</result>
         </action>
         
+        <action name="registerForm">
+            <result>register.jsp</result>
+        </action>
+        <action name="register" class="ecommerce.struts.RegisterAction">
+            <result name="success" type="chain">Login</result>
+            <result name="fail">register.jsp</result>
+            <result name="input">register.jsp</result>
+        </action>
     </package>
 </struts>

@@ -77,7 +77,7 @@ public class CategoriesDAO extends BaseDAO<Categories>{
         int id;
         String name;
         try {
-            conn = phund.dbutils.DBConnection.makeConnection();
+            conn = DBConnection.makeConnection();
             if(conn != null){
               String sql = "Select Top 4 Id, Name " +
                            "From Categories " +

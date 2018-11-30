@@ -154,7 +154,7 @@ public class ProductsDAO extends BaseDAO<Products> {
         String id, name, img;
         float price, saleOff;
         try {
-            conn = phund.dbutils.DBConnection.makeConnection();
+            conn = DBConnection.makeConnection();
             if(conn != null) {
                 String sql = "Select p.Id, p.Name, p.Price, p.SaleOff, b.Image " +
                              "From Products p JOIN Banners b " +
@@ -188,7 +188,7 @@ public class ProductsDAO extends BaseDAO<Products> {
         String id, name, img;
         double price, saleOff;
         try {
-            conn = phund.dbutils.DBConnection.makeConnection();
+            conn = DBConnection.makeConnection();
             if(conn != null) {
                 String sql = "Select Top 8 Id, Name, Price, SaleOff, Image1 From Products "
                         + "Where SaleOff > 0 "
@@ -222,7 +222,7 @@ public class ProductsDAO extends BaseDAO<Products> {
         String id, name, img;
         double price, saleOff;
         try {
-            conn = phund.dbutils.DBConnection.makeConnection();
+            conn = DBConnection.makeConnection();
             if(conn != null) {
                 String sql = "Select Top 8 Id, Name, Price, SaleOff, Image1 From Products "
                         + "Order by DateArrivals DESC";
@@ -256,7 +256,7 @@ public class ProductsDAO extends BaseDAO<Products> {
         double price, saleOff;
         int rate;
         try {
-            conn = phund.dbutils.DBConnection.makeConnection();
+            conn = DBConnection.makeConnection();
             if(conn != null) {
                 String sql = "Select Top 8 Id, Name, Image1, Price, SaleOff, RatingScore/NumOfRates As Rate " +
                              "From Products " +
@@ -292,7 +292,7 @@ public class ProductsDAO extends BaseDAO<Products> {
         String id, name, img;
         float price, saleOff;
         try {
-            conn = phund.dbutils.DBConnection.makeConnection();
+            conn = DBConnection.makeConnection();
             if(conn != null) {
                 String sql = "Select Top 1 Id, Name, Price, SaleOff, Image1 "
                         + "From Products "
