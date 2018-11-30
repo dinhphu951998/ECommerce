@@ -16,6 +16,15 @@ public class Roles implements Serializable {
     private String ID;
     private String RoleName;
 
+    public Roles() {
+    }
+
+    public Roles(String ID, String RoleName) {
+        this.ID = ID;
+        this.RoleName = RoleName;
+    }
+    
+
     /**
      * @return the ID
      */

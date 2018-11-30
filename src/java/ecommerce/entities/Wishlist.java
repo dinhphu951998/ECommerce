@@ -16,6 +16,16 @@ public class Wishlist implements Serializable {
     private String AccountID;
     private String ProductID;
 
+    public Wishlist() {
+    }
+
+    public Wishlist(String AccountID, String ProductID) {
+        this.AccountID = AccountID;
+        this.ProductID = ProductID;
+    }
+    
+    
+
     /**
      * @return the AccountID
      */

@@ -42,6 +42,41 @@ public class Products implements Serializable {
     private int RatingScore;
     private int NumOfRates;
 
+    public Products() {
+    }
+
+    public Products(String Id, String Name, double Price, int CategoryID, String Image1, String Image2, String Image3, String Image4, String Manufacturer, String Description, String ShortDescription, String OtherInfo, int Stock, Timestamp DateArrivals, double SaleOff, String AttVal1, String AttVal2, String AttVal3, String AttVal4, String AttVal5, String AttVal6, String AttVal7, String AttVal8, String AttVal9, String AttVal10, int RatingScore, int NumOfRates) {
+        this.Id = Id;
+        this.Name = Name;
+        this.Price = Price;
+        this.CategoryID = CategoryID;
+        this.Image1 = Image1;
+        this.Image2 = Image2;
+        this.Image3 = Image3;
+        this.Image4 = Image4;
+        this.Manufacturer = Manufacturer;
+        this.Description = Description;
+        this.ShortDescription = ShortDescription;
+        this.OtherInfo = OtherInfo;
+        this.Stock = Stock;
+        this.DateArrivals = DateArrivals;
+        this.SaleOff = SaleOff;
+        this.AttVal1 = AttVal1;
+        this.AttVal2 = AttVal2;
+        this.AttVal3 = AttVal3;
+        this.AttVal4 = AttVal4;
+        this.AttVal5 = AttVal5;
+        this.AttVal6 = AttVal6;
+        this.AttVal7 = AttVal7;
+        this.AttVal8 = AttVal8;
+        this.AttVal9 = AttVal9;
+        this.AttVal10 = AttVal10;
+        this.RatingScore = RatingScore;
+        this.NumOfRates = NumOfRates;
+    }
+    
+    
+
     /**
      * @return the Id
      */

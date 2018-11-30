@@ -6,7 +6,7 @@
 package ecommerce.entities;
 
 import java.io.Serializable;
-import java.sql.Date;
+import java.sql.Timestamp;
 
 /**
  *
@@ -20,8 +20,23 @@ public class Promotions implements Serializable {
     private int Type;
     private String ProductID;
     private String AccountID;
-    private Date StartTime;
-    private Date EndTime;
+    private Timestamp StartTime;
+    private Timestamp EndTime;
+
+    public Promotions() {
+    }
+
+    public Promotions(String Id, double Discount, String Description, int Type, String ProductID, String AccountID, Timestamp StartTime, Timestamp EndTime) {
+        this.Id = Id;
+        this.Discount = Discount;
+        this.Description = Description;
+        this.Type = Type;
+        this.ProductID = ProductID;
+        this.AccountID = AccountID;
+        this.StartTime = StartTime;
+        this.EndTime = EndTime;
+    }
+    
 
     /**
      * @return the Id
@@ -110,28 +125,28 @@ public class Promotions implements Serializable {
     /**
      * @return the StartTime
      */
-    public Date getStartTime() {
+    public Timestamp getStartTime() {
         return StartTime;
     }
 
     /**
      * @param StartTime the StartTime to set
      */
-    public void setStartTime(Date StartTime) {
+    public void setStartTime(Timestamp StartTime) {
         this.StartTime = StartTime;
     }
 
     /**
      * @return the EndTime
      */
-    public Date getEndTime() {
+    public Timestamp getEndTime() {
         return EndTime;
     }
 
     /**
      * @param EndTime the EndTime to set
      */
-    public void setEndTime(Date EndTime) {
+    public void setEndTime(Timestamp EndTime) {
         this.EndTime = EndTime;
     }
 
