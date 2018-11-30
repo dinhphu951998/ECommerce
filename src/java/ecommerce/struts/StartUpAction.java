@@ -6,7 +6,7 @@
 package ecommerce.struts;
 
 import com.opensymphony.xwork2.ActionContext;
-import ecommerce.DAO.AccountDAO;
+import ecommerce.dao.AccountDAO;
 import ecommerce.entities.Accounts;
 import java.util.Map;
 import javax.servlet.http.Cookie;
