@@ -13,6 +13,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import javax.naming.NamingException;
@@ -148,5 +149,173 @@ public class ProductsDAO extends BaseDAO<Products> {
         return products;
     }
             
-
+    public List<Products> getBanners() throws NamingException, SQLException {
+        List<Products> list = null;
+        String id, name, img;
+        float price, saleOff;
+        try {
+            conn = phund.dbutils.DBConnection.makeConnection();
+            if(conn != null) {
+                String sql = "Select p.Id, p.Name, p.Price, p.SaleOff, b.Image " +
+                             "From Products p JOIN Banners b " +
+                             "ON p.Id = b.ProductID";
+                pstm = conn.prepareStatement(sql);
+                rs = pstm.executeQuery();
+                list = new ArrayList<>();
+                while(rs.next()) {
+                     id = rs.getString("Id");
+                     name = rs.getString("Name");
+                     price = rs.getFloat("Price");
+                     saleOff = rs.getFloat("SaleOff");
+                     img = rs.getString("Image");
+                     Products p = new Products();
+                     p.setId(id);
+                     p.setName(name);
+                     p.setPrice(price);
+                     p.setSaleOff(saleOff);
+                     p.setImage1(img);
+                     list.add(p);
+                }
+            }
+        } finally {
+            closeConnection();
+        }
+        return list;
+    }
+    
+    public List<Products> getTop8NewestSaling() throws NamingException, SQLException {
+        List<Products> list = null;
+        String id, name, img;
+        double price, saleOff;
+        try {
+            conn = phund.dbutils.DBConnection.makeConnection();
+            if(conn != null) {
+                String sql = "Select Top 8 Id, Name, Price, SaleOff, Image1 From Products "
+                        + "Where SaleOff > 0 "
+                        + "Order by DateArrivals DESC";
+                pstm = conn.prepareStatement(sql);
+                rs = pstm.executeQuery();
+                list = new ArrayList<>();
+                while(rs.next()) {
+                     id = rs.getString("Id");
+                     name = rs.getString("Name");
+                     price = rs.getDouble("Price");
+                     saleOff = rs.getDouble("SaleOff");
+                     img = rs.getString("Image1");
+                     Products p = new Products();
+                     p.setId(id);
+                     p.setName(name);
+                     p.setPrice((float) price);
+                     p.setSaleOff((float) saleOff);
+                     p.setImage1(img);
+                     list.add(p);
+                }
+            }
+        } finally {
+            closeConnection();
+        }
+        return list;
+    }
+    
+    public List<Products> getTop8Newest() throws NamingException, SQLException {
+        List<Products> list = null;
+        String id, name, img;
+        double price, saleOff;
+        try {
+            conn = phund.dbutils.DBConnection.makeConnection();
+            if(conn != null) {
+                String sql = "Select Top 8 Id, Name, Price, SaleOff, Image1 From Products "
+                        + "Order by DateArrivals DESC";
+                pstm = conn.prepareStatement(sql);
+                rs = pstm.executeQuery();
+                list = new ArrayList<>();
+                while(rs.next()) {
+                     id = rs.getString("Id");
+                     name = rs.getString("Name");
+                     price = rs.getDouble("Price");
+                     saleOff = rs.getDouble("SaleOff");
+                     img = rs.getString("Image1");
+                     Products p = new Products();
+                     p.setId(id);
+                     p.setName(name);
+                     p.setPrice((float) price);
+                     p.setSaleOff((float) saleOff);
+                     p.setImage1(img);
+                     list.add(p);
+                }
+            }
+        } finally {
+            closeConnection();
+        }
+        return list;
+    }
+    
+    public List<Products> getTop8Rating() throws NamingException, SQLException {
+        List<Products> list = null;
+        String id, name, img;
+        double price, saleOff;
+        int rate;
+        try {
+            conn = phund.dbutils.DBConnection.makeConnection();
+            if(conn != null) {
+                String sql = "Select Top 8 Id, Name, Image1, Price, SaleOff, RatingScore/NumOfRates As Rate " +
+                             "From Products " +
+                             "Order by RatingScore/NumOfRates DESC";
+                pstm = conn.prepareStatement(sql);
+                rs = pstm.executeQuery();
+                list = new ArrayList<>();
+                while(rs.next()) {
+                     id = rs.getString("Id");
+                     name = rs.getString("Name");
+                     price = rs.getDouble("Price");
+                     saleOff = rs.getDouble("SaleOff");
+                     img = rs.getString("Image1");
+                     rate = rs.getInt("Rate");
+                     Products p = new Products();
+                     p.setId(id);
+                     p.setName(name);
+                     p.setPrice((float) price);
+                     p.setSaleOff((float) saleOff);
+                     p.setImage1(img);
+                     p.setRatingScore(rate);
+                     list.add(p);
+                }
+            }
+        } finally {
+            closeConnection();
+        }
+        return list;
+    }
+    
+    public Products getHighestOffer() throws NamingException, SQLException {
+        Products product = null;
+        String id, name, img;
+        float price, saleOff;
+        try {
+            conn = phund.dbutils.DBConnection.makeConnection();
+            if(conn != null) {
+                String sql = "Select Top 1 Id, Name, Price, SaleOff, Image1 "
+                        + "From Products "
+                        + "Order by SaleOff DESC";
+                pstm = conn.prepareStatement(sql);
+                rs = pstm.executeQuery();
+                if(rs.next()) {
+                    id = rs.getString("Id");
+                    name = rs.getString("Name");
+                    price = rs.getFloat("Price");
+                    saleOff = rs.getFloat("SaleOff");
+                    img = rs.getString("Image1");
+                    product = new Products();
+                    product.setId(id);
+                    product.setName(name);
+                    product.setPrice(price);
+                    product.setSaleOff(saleOff);
+                    product.setImage1(img);
+                }
+            }
+        } finally {
+            closeConnection();
+        }
+        return product;
+    }
 }
