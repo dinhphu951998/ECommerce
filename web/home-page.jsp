@@ -11,13 +11,16 @@
 
 <section class="hero-slider" data-loop="true" data-autoplay="true" data-interval="7000">
     <div class="inner">
-        <div class="slide" style="background-image: url(img/hero-slider/01.jpg);">
+        <div class="slide" style="background-image: url(img/<s:property value="%{listBanners.get(0).Image1}"/>);">
             <div class="container">
                 <div class="absolute from-top" style="top: 13%;">
-                    <span class="h1 hidden-xs">New SPA<br>Cosmetics</span>
+                    <span class="h1 hidden-xs"><s:property value="%{listBanners.get(0).Name}"/></span>
                 </div>
                 <div class="absolute text-right from-bottom" style="bottom: 13%; right: 15px;">
-                    <span class="h2"><span class="text-thin">Only</span><br><strong>$127.99</strong></span><br>
+                    <span class="h2">
+                        <span class="text-thin">Only</span><br>
+                        <strong>$<s:property value="%{listBanners.get(0).Price * (1 - listBanners.get(0).SaleOff)}"/></strong>
+                    </span><br>
                     <a href="#" class="btn btn-primary btn-with-icon-right waves-effect waves-light space-top-none">
                         View Offer
                         <i class="material-icons arrow_forward"></i>
@@ -25,20 +28,26 @@
                 </div>
             </div>
         </div><!-- .slide -->
-        <div class="slide" style="background-image: url(img/hero-slider/02.jpg);">
+        <div class="slide" style="background-image: url(img/<s:property value="%{listBanners.get(1).Image1}"/>);">
             <div class="container text-center padding-top-3x">
-                <span class="h1 from-bottom">Stylish Chair</span><br>
-                <span class="h2 from-bottom"><span class="text-thin">Special offer: </span> <strong>-25%</strong></span><br>
+                <span class="h1 from-bottom"><s:property value="%{listBanners.get(1).Name}"/></span><br>
+                <span class="h2 from-bottom">
+                    <span class="text-thin">Special price: 
+                    </span> <strong>$<s:property value="%{listBanners.get(1).Price * (1 - listBanners.get(1).SaleOff)}"/></strong>
+                </span><br>
                 <a href="#" class="btn btn-primary btn-with-icon-right waves-effect waves-light scale-up">
                     View Offer
                     <i class="material-icons arrow_forward"></i>
                 </a>
             </div>
         </div><!-- .slide -->
-        <div class="slide" style="background-image: url(img/hero-slider/03.jpg);">
+        <div class="slide" style="background-image: url(img/<s:property value="%{listBanners.get(2).Image1}"/>);">
             <div class="container padding-top-3x">
-                <span class="h1 space-top from-left">Dior Sunglasses</span><br>
-                <span class="h2 from-right"><span class="text-thin">Only <span class="hidden-xs">today</span></span> <strong>-30%</strong></span><br>
+                <span class="h1 space-top from-left"><s:property value="%{listBanners.get(2).Name}"/></span><br>
+                <span class="h2 from-right"><span class="text-thin">
+                        Only <span class="hidden-xs">today</span>
+                    </span> <strong>$<s:property value="%{listBanners.get(2).Price * (1 - listBanners.get(2).SaleOff)}"/></strong>
+                </span><br>
                 <a href="#" class="btn btn-primary btn-with-icon-right waves-effect waves-light scale-up">
                     View Offer
                     <i class="material-icons arrow_forward"></i>
@@ -53,30 +62,14 @@
     <!-- Featured Categories -->
     <h3 class="text-center padding-top">Categories</h3>
     <div class="row padding-top padding-bottom-3x">
-        <div class="col-sm-3 col-xs-6">
-            <a href="#" class="category-link">
-                <img src="img/categories/cat01.jpg" alt="Category">
-                Clocks
-            </a><!-- .category-link -->
-        </div><!-- .col-sm-4 -->
-        <div class="col-sm-3 col-xs-6">
-            <a href="#" class="category-link">
-                <img src="img/categories/cat02.jpg" alt="Category">
-                Furniture
-            </a><!-- .category-link -->
-        </div><!-- .col-sm-4 -->
-        <div class="col-sm-3 col-xs-6">
-            <a href="#" class="category-link">
-                <img src="img/categories/cat03.jpg" alt="Category">
-                Lightning
-            </a><!-- .category-link -->
-        </div><!-- .col-sm-4 -->
-        <div class="col-sm-3 col-xs-6">
-            <a href="#" class="category-link">
-                <img src="img/categories/cat04.jpg" alt="Category">
-                Bags
-            </a><!-- .category-link -->
-        </div><!-- .col-sm-4 -->
+        <s:iterator value="%{listCategories}">
+            <div class="col-sm-3 col-xs-6">
+                <a href="#" class="category-link">
+                    <img src="img/categories/cat01.jpg" alt="Category">
+                    <s:property value="Name"/>
+                </a><!-- .category-link -->
+            </div><!-- .col-sm-4 -->
+        </s:iterator>
     </div><!-- .row -->
 
     <div class="row padding-top">
@@ -84,13 +77,15 @@
         <!-- Special Offer -->
         <div class="col-lg-3 col-md-4">
             <div class="info-box text-center">
-                <h2>Special Offer<br><span class="text-danger">-30%</span></h2>
-                <a href="shop-single.html" class="inline">
-                    <img src="img/shop/special-offer.jpg" alt="Special Offer">
+                <h2>Special Offer<br><span class="text-danger">-<s:property value="%{highestOffer.SaleOff * 100}"/>%</span></h2>
+                <a href="#" class="inline">
+                    <img src="img/<s:property value="%{highestOffer.Image1}"/>" alt="Special Offer">
                 </a>
-                <h3 class="lead text-normal space-bottom-half"><a href="shop-single.html" class="link-title">FLOS Outdoor Lightning</a></h3>
-                <span class="lead text-normal text-gray text-crossed">$800.00</span>
-                <span class="h4 text-normal text-danger">$560.00</span>
+                <h3 class="lead text-normal space-bottom-half">
+                    <a href="#" class="link-title"><s:property value="%{highestOffer.Name}"/></a>
+                </h3>
+                <span class="lead text-normal text-gray text-crossed">$<s:property value="%{highestOffer.Price}"/></span>
+                <span class="h4 text-normal text-danger">$<s:property value="%{highestOffer.Price * (1 - highestOffer.SaleOff)}"/></span>
 
                 <!-- Countdown -->
                 <!-- Date Format: month/day/year. "date-time" data attribute is required. -->
@@ -131,697 +126,112 @@
                 <!-- #newcomers -->
                 <div role="tabpanel" class="tab-pane transition fade scale in active" id="newcomers">
                     <div class="row space-top-half">
-                        <div class="col-lg-3 col-sm-6">
-                            <div class="shop-item">
-                                <div class="shop-thumbnail">
-                                    <span class="shop-label text-danger">Sale</span>
-                                    <a href="shop-single.html" class="item-link"></a>
-                                    <img src="img/shop/th01.jpg" alt="Shop item">
-                                    <div class="shop-item-tools">
-                                        <a href="#" class="add-to-whishlist" data-toggle="tooltip" data-placement="top" title="Wishlist">
-                                            <i class="material-icons favorite_border"></i>
-                                        </a>
-                                        <a href="#" class="add-to-cart">
-                                            <em>Add to Cart</em>
-                                            <svg x="0px" y="0px" width="32px" height="32px" viewBox="0 0 32 32">
-                                            <path stroke-dasharray="19.79 19.79" stroke-dashoffset="19.79" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="square" stroke-miterlimit="10" d="M9,17l3.9,3.9c0.1,0.1,0.2,0.1,0.3,0L23,11"/>
-                                            </svg>
-                                        </a>
+                        <s:iterator value="%{list8Newest}">
+                            <div class="col-lg-3 col-sm-6">
+                                <div class="shop-item">
+                                    <div class="shop-thumbnail">
+                                        <span class="shop-label text-warning">New</span>
+                                        <a href="#" class="item-link"></a>
+                                        <img src="img/<s:property value="Image1"/>" alt="Shop item">
+                                        <div class="shop-item-tools">
+                                            <a href="#" class="add-to-whishlist" data-toggle="tooltip" data-placement="top" title="Wishlist">
+                                                <i class="material-icons favorite_border"></i>
+                                            </a>
+                                            <a href="#" class="add-to-cart">
+                                                <em>Add to Cart</em>
+                                                <svg x="0px" y="0px" width="32px" height="32px" viewBox="0 0 32 32">
+                                                <path stroke-dasharray="19.79 19.79" stroke-dashoffset="19.79" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="square" stroke-miterlimit="10" d="M9,17l3.9,3.9c0.1,0.1,0.2,0.1,0.3,0L23,11"/>
+                                                </svg>
+                                            </a>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="shop-item-details">
-                                    <h3 class="shop-item-title"><a href="shop-single.html">Storage Box</a></h3>
-                                    <span class="shop-item-price">
-                                        <span class="old-price">$49.00</span>
-                                        $38.00
-                                    </span>
-                                </div>
-                            </div><!-- .shop-item -->
-                        </div><!-- .col-lg-3.col-sm-6 -->
-                        <div class="col-lg-3 col-sm-6">
-                            <div class="shop-item">
-                                <div class="shop-thumbnail">
-                                    <a href="shop-single.html" class="item-link"></a>
-                                    <img src="img/shop/th02.jpg" alt="Shop item">
-                                    <div class="shop-item-tools">
-                                        <a href="#" class="add-to-whishlist" data-toggle="tooltip" data-placement="top" title="Wishlist">
-                                            <i class="material-icons favorite_border"></i>
-                                        </a>
-                                        <a href="#" class="add-to-cart">
-                                            <em>Add to Cart</em>
-                                            <svg x="0px" y="0px" width="32px" height="32px" viewBox="0 0 32 32">
-                                            <path stroke-dasharray="19.79 19.79" stroke-dashoffset="19.79" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="square" stroke-miterlimit="10" d="M9,17l3.9,3.9c0.1,0.1,0.2,0.1,0.3,0L23,11"/>
-                                            </svg>
-                                        </a>
+                                    <div class="shop-item-details">
+                                        <h3 class="shop-item-title"><a href="#"><s:property value="Name"/></a></h3>
+                                        <span class="shop-item-price">
+                                            $<s:property value="Price * (1 - SaleOff)"/>
+                                        </span>
                                     </div>
-                                </div>
-                                <div class="shop-item-details">
-                                    <h3 class="shop-item-title"><a href="shop-single.html">Shoulder Bag</a></h3>
-                                    <span class="shop-item-price">
-                                        $125.00
-                                    </span>
-                                </div>
-                            </div><!-- .shop-item -->
-                        </div><!-- .col-lg-3.col-sm-6 -->
-                        <div class="col-lg-3 col-sm-6">
-                            <div class="shop-item">
-                                <div class="shop-thumbnail">
-                                    <a href="shop-single.html" class="item-link"></a>
-                                    <img src="img/shop/th03.jpg" alt="Shop item">
-                                    <div class="shop-item-tools">
-                                        <a href="#" class="add-to-whishlist" data-toggle="tooltip" data-placement="top" title="Wishlist">
-                                            <i class="material-icons favorite_border"></i>
-                                        </a>
-                                        <a href="#" class="add-to-cart">
-                                            <em>Add to Cart</em>
-                                            <svg x="0px" y="0px" width="32px" height="32px" viewBox="0 0 32 32">
-                                            <path stroke-dasharray="19.79 19.79" stroke-dashoffset="19.79" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="square" stroke-miterlimit="10" d="M9,17l3.9,3.9c0.1,0.1,0.2,0.1,0.3,0L23,11"/>
-                                            </svg>
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class="shop-item-details">
-                                    <h3 class="shop-item-title"><a href="shop-single.html">Glass Vase</a></h3>
-                                    <span class="shop-item-price">
-                                        $62.50
-                                    </span>
-                                </div>
-                            </div><!-- .shop-item -->
-                        </div><!-- .col-lg-3.col-sm-6 -->
-                        <div class="col-lg-3 col-sm-6">
-                            <div class="shop-item">
-                                <div class="shop-thumbnail">
-                                    <a href="shop-single.html" class="item-link"></a>
-                                    <img src="img/shop/th04.jpg" alt="Shop item">
-                                    <div class="shop-item-tools">
-                                        <a href="#" class="add-to-whishlist" data-toggle="tooltip" data-placement="top" title="Wishlist">
-                                            <i class="material-icons favorite_border"></i>
-                                        </a>
-                                        <a href="#" class="add-to-cart">
-                                            <em>Add to Cart</em>
-                                            <svg x="0px" y="0px" width="32px" height="32px" viewBox="0 0 32 32">
-                                            <path stroke-dasharray="19.79 19.79" stroke-dashoffset="19.79" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="square" stroke-miterlimit="10" d="M9,17l3.9,3.9c0.1,0.1,0.2,0.1,0.3,0L23,11"/>
-                                            </svg>
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class="shop-item-details">
-                                    <h3 class="shop-item-title"><a href="shop-single.html">Alarm Clock</a></h3>
-                                    <span class="shop-item-price">
-                                        $178.00
-                                    </span>
-                                </div>
-                            </div><!-- .shop-item -->
-                        </div><!-- .col-lg-3.col-sm-6 -->
-                    </div><!-- .row -->
-                    <div class="row">
-                        <div class="col-lg-3 col-sm-6">
-                            <div class="shop-item">
-                                <div class="shop-thumbnail">
-                                    <a href="shop-single.html" class="item-link"></a>
-                                    <img src="img/shop/th05.jpg" alt="Shop item">
-                                    <div class="shop-item-tools">
-                                        <a href="#" class="add-to-whishlist" data-toggle="tooltip" data-placement="top" title="Wishlist">
-                                            <i class="material-icons favorite_border"></i>
-                                        </a>
-                                        <a href="#" class="add-to-cart">
-                                            <em>Add to Cart</em>
-                                            <svg x="0px" y="0px" width="32px" height="32px" viewBox="0 0 32 32">
-                                            <path stroke-dasharray="19.79 19.79" stroke-dashoffset="19.79" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="square" stroke-miterlimit="10" d="M9,17l3.9,3.9c0.1,0.1,0.2,0.1,0.3,0L23,11"/>
-                                            </svg>
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class="shop-item-details">
-                                    <h3 class="shop-item-title"><a href="shop-single.html">Wall Clock</a></h3>
-                                    <span class="shop-item-price">
-                                        $69.00
-                                    </span>
-                                </div>
-                            </div><!-- .shop-item -->
-                        </div><!-- .col-lg-3.col-sm-6 -->
-                        <div class="col-lg-3 col-sm-6">
-                            <div class="shop-item">
-                                <div class="shop-thumbnail">
-                                    <a href="shop-single.html" class="item-link"></a>
-                                    <img src="img/shop/th06.jpg" alt="Shop item">
-                                    <div class="shop-item-tools">
-                                        <a href="#" class="add-to-whishlist" data-toggle="tooltip" data-placement="top" title="Wishlist">
-                                            <i class="material-icons favorite_border"></i>
-                                        </a>
-                                        <a href="#" class="add-to-cart">
-                                            <em>Add to Cart</em>
-                                            <svg x="0px" y="0px" width="32px" height="32px" viewBox="0 0 32 32">
-                                            <path stroke-dasharray="19.79 19.79" stroke-dashoffset="19.79" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="square" stroke-miterlimit="10" d="M9,17l3.9,3.9c0.1,0.1,0.2,0.1,0.3,0L23,11"/>
-                                            </svg>
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class="shop-item-details">
-                                    <h3 class="shop-item-title"><a href="shop-single.html">LED Lighting</a></h3>
-                                    <span class="shop-item-price">
-                                        $130.00
-                                    </span>
-                                </div>
-                            </div><!-- .shop-item -->
-                        </div><!-- .col-lg-3.col-sm-6 -->
-                        <div class="col-lg-3 col-sm-6">
-                            <div class="shop-item">
-                                <div class="shop-thumbnail">
-                                    <span class="shop-label text-warning">Popular</span>
-                                    <a href="shop-single.html" class="item-link"></a>
-                                    <img src="img/shop/th07.jpg" alt="Shop item">
-                                    <div class="shop-item-tools">
-                                        <a href="#" class="add-to-whishlist" data-toggle="tooltip" data-placement="top" title="Wishlist">
-                                            <i class="material-icons favorite_border"></i>
-                                        </a>
-                                        <a href="#" class="add-to-cart">
-                                            <em>Add to Cart</em>
-                                            <svg x="0px" y="0px" width="32px" height="32px" viewBox="0 0 32 32">
-                                            <path stroke-dasharray="19.79 19.79" stroke-dashoffset="19.79" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="square" stroke-miterlimit="10" d="M9,17l3.9,3.9c0.1,0.1,0.2,0.1,0.3,0L23,11"/>
-                                            </svg>
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class="shop-item-details">
-                                    <h3 class="shop-item-title"><a href="shop-single.html">Sunglasses</a></h3>
-                                    <span class="shop-item-price">
-                                        $99.00
-                                    </span>
-                                </div>
-                            </div><!-- .shop-item -->
-                        </div><!-- .col-lg-3.col-sm-6 -->
-                        <div class="col-lg-3 col-sm-6">
-                            <div class="shop-item">
-                                <div class="shop-thumbnail">
-                                    <a href="shop-single.html" class="item-link"></a>
-                                    <img src="img/shop/th08.jpg" alt="Shop item">
-                                    <div class="shop-item-tools">
-                                        <a href="#" class="add-to-whishlist" data-toggle="tooltip" data-placement="top" title="Wishlist">
-                                            <i class="material-icons favorite_border"></i>
-                                        </a>
-                                        <a href="#" class="add-to-cart">
-                                            <em>Add to Cart</em>
-                                            <svg x="0px" y="0px" width="32px" height="32px" viewBox="0 0 32 32">
-                                            <path stroke-dasharray="19.79 19.79" stroke-dashoffset="19.79" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="square" stroke-miterlimit="10" d="M9,17l3.9,3.9c0.1,0.1,0.2,0.1,0.3,0L23,11"/>
-                                            </svg>
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class="shop-item-details">
-                                    <h3 class="shop-item-title"><a href="shop-single.html">Hook Basket</a></h3>
-                                    <span class="shop-item-price">
-                                        $112.35
-                                    </span>
-                                </div>
-                            </div><!-- .shop-item -->
-                        </div><!-- .col-lg-3.col-sm-6 -->
-                    </div><!-- .row -->
+                                </div><!-- .shop-item -->
+                            </div><!-- .col-lg-3.col-sm-6 -->
+                        </s:iterator>
+                    </div>
                 </div><!-- .tab-pane#newcomers -->
 
                 <!-- #toprated -->
                 <div role="tabpanel" class="tab-pane transition fade scale" id="toprated">
                     <div class="row">
-                        <div class="col-lg-3 col-sm-6">
-                            <div class="shop-item">
-                                <div class="shop-thumbnail">
-                                    <span class="item-rating text-warning">
-                                        <i class="material-icons star"></i>
-                                        <i class="material-icons star"></i>
-                                        <i class="material-icons star"></i>
-                                        <i class="material-icons star"></i>
-                                        <i class="material-icons star"></i>
-                                    </span>
-                                    <a href="shop-single.html" class="item-link"></a>
-                                    <img src="img/shop/th09.jpg" alt="Shop item">
-                                    <div class="shop-item-tools">
-                                        <a href="#" class="add-to-whishlist" data-toggle="tooltip" data-placement="top" title="Wishlist">
-                                            <i class="material-icons favorite_border"></i>
-                                        </a>
-                                        <a href="#" class="add-to-cart">
-                                            <em>Add to Cart</em>
-                                            <svg x="0px" y="0px" width="32px" height="32px" viewBox="0 0 32 32">
-                                            <path stroke-dasharray="19.79 19.79" stroke-dashoffset="19.79" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="square" stroke-miterlimit="10" d="M9,17l3.9,3.9c0.1,0.1,0.2,0.1,0.3,0L23,11"/>
-                                            </svg>
-                                        </a>
+                        <s:iterator value="%{list8Rating}">
+                            <div class="col-lg-3 col-sm-6">
+                                <div class="shop-item">
+                                    <div class="shop-thumbnail">
+                                        <span class="item-rating text-warning">
+                                            <s:iterator begin="0" end="%{RatingScore - 1}">
+                                                <i class="material-icons star"></i>
+                                            </s:iterator>
+                                            <s:if test="%{RatingScore < 5}">
+                                                <s:iterator begin="0" end="%{5 - RatingScore - 1}">
+                                                    <i class="material-icons star_border"></i>
+                                                </s:iterator>
+                                            </s:if>
+                                        </span>
+                                        <a href="#" class="item-link"></a>
+                                        <img src="img/<s:property value="Image1"/>" alt="Shop item">
+                                        <div class="shop-item-tools">
+                                            <a href="#" class="add-to-whishlist" data-toggle="tooltip" data-placement="top" title="Wishlist">
+                                                <i class="material-icons favorite_border"></i>
+                                            </a>
+                                            <a href="#" class="add-to-cart">
+                                                <em>Add to Cart</em>
+                                                <svg x="0px" y="0px" width="32px" height="32px" viewBox="0 0 32 32">
+                                                <path stroke-dasharray="19.79 19.79" stroke-dashoffset="19.79" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="square" stroke-miterlimit="10" d="M9,17l3.9,3.9c0.1,0.1,0.2,0.1,0.3,0L23,11"/>
+                                                </svg>
+                                            </a>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="shop-item-details">
-                                    <h3 class="shop-item-title"><a href="shop-single.html">Leather Case</a></h3>
-                                    <span class="shop-item-price">
-                                        $118.00
-                                    </span>
-                                </div>
-                            </div><!-- .shop-item -->
-                        </div><!-- .col-lg-3.col-sm-6 -->
-                        <div class="col-lg-3 col-sm-6">
-                            <div class="shop-item">
-                                <div class="shop-thumbnail">
-                                    <span class="item-rating text-warning">
-                                        <i class="material-icons star"></i>
-                                        <i class="material-icons star"></i>
-                                        <i class="material-icons star"></i>
-                                        <i class="material-icons star"></i>
-                                        <i class="material-icons star"></i>
-                                    </span>
-                                    <a href="shop-single.html" class="item-link"></a>
-                                    <img src="img/shop/th10.jpg" alt="Shop item">
-                                    <div class="shop-item-tools">
-                                        <a href="#" class="add-to-whishlist" data-toggle="tooltip" data-placement="top" title="Wishlist">
-                                            <i class="material-icons favorite_border"></i>
-                                        </a>
-                                        <a href="#" class="add-to-cart">
-                                            <em>Add to Cart</em>
-                                            <svg x="0px" y="0px" width="32px" height="32px" viewBox="0 0 32 32">
-                                            <path stroke-dasharray="19.79 19.79" stroke-dashoffset="19.79" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="square" stroke-miterlimit="10" d="M9,17l3.9,3.9c0.1,0.1,0.2,0.1,0.3,0L23,11"/>
-                                            </svg>
-                                        </a>
+                                    <div class="shop-item-details">
+                                        <h3 class="shop-item-title"><a href="#"><s:property value="Name"/></a></h3>
+                                        <span class="shop-item-price">
+                                            $<s:property value="Price * (1 - SaleOff)"/>
+                                        </span>
                                     </div>
-                                </div>
-                                <div class="shop-item-details">
-                                    <h3 class="shop-item-title"><a href="shop-single.html">Concrete Lamp</a></h3>
-                                    <span class="shop-item-price">
-                                        $85.90
-                                    </span>
-                                </div>
-                            </div><!-- .shop-item -->
-                        </div><!-- .col-lg-3.col-sm-6 -->
-                        <div class="col-lg-3 col-sm-6">
-                            <div class="shop-item">
-                                <div class="shop-thumbnail">
-                                    <span class="item-rating text-warning">
-                                        <i class="material-icons star"></i>
-                                        <i class="material-icons star"></i>
-                                        <i class="material-icons star"></i>
-                                        <i class="material-icons star"></i>
-                                        <i class="material-icons star_half"></i>
-                                    </span>
-                                    <a href="shop-single.html" class="item-link"></a>
-                                    <img src="img/shop/th11.jpg" alt="Shop item">
-                                    <div class="shop-item-tools">
-                                        <a href="#" class="add-to-whishlist" data-toggle="tooltip" data-placement="top" title="Wishlist">
-                                            <i class="material-icons favorite_border"></i>
-                                        </a>
-                                        <a href="#" class="add-to-cart">
-                                            <em>Add to Cart</em>
-                                            <svg x="0px" y="0px" width="32px" height="32px" viewBox="0 0 32 32">
-                                            <path stroke-dasharray="19.79 19.79" stroke-dashoffset="19.79" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="square" stroke-miterlimit="10" d="M9,17l3.9,3.9c0.1,0.1,0.2,0.1,0.3,0L23,11"/>
-                                            </svg>
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class="shop-item-details">
-                                    <h3 class="shop-item-title"><a href="shop-single.html">Stylish Chair</a></h3>
-                                    <span class="shop-item-price">
-                                        $417.00
-                                    </span>
-                                </div>
-                            </div><!-- .shop-item -->
-                        </div><!-- .col-lg-3.col-sm-6 -->
-                        <div class="col-lg-3 col-sm-6">
-                            <div class="shop-item">
-                                <div class="shop-thumbnail">
-                                    <span class="item-rating text-warning">
-                                        <i class="material-icons star"></i>
-                                        <i class="material-icons star"></i>
-                                        <i class="material-icons star"></i>
-                                        <i class="material-icons star"></i>
-                                        <i class="material-icons star_border"></i>
-                                    </span>
-                                    <a href="shop-single.html" class="item-link"></a>
-                                    <img src="img/shop/th12.jpg" alt="Shop item">
-                                    <div class="shop-item-tools">
-                                        <a href="#" class="add-to-whishlist" data-toggle="tooltip" data-placement="top" title="Wishlist">
-                                            <i class="material-icons favorite_border"></i>
-                                        </a>
-                                        <a href="#" class="add-to-cart">
-                                            <em>Add to Cart</em>
-                                            <svg x="0px" y="0px" width="32px" height="32px" viewBox="0 0 32 32">
-                                            <path stroke-dasharray="19.79 19.79" stroke-dashoffset="19.79" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="square" stroke-miterlimit="10" d="M9,17l3.9,3.9c0.1,0.1,0.2,0.1,0.3,0L23,11"/>
-                                            </svg>
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class="shop-item-details">
-                                    <h3 class="shop-item-title"><a href="shop-single.html">Desktop Light</a></h3>
-                                    <span class="shop-item-price">
-                                        $245.00
-                                    </span>
-                                </div>
-                            </div><!-- .shop-item -->
-                        </div><!-- .col-lg-3.col-sm-6 -->
-                    </div><!-- .row -->
-                    <div class="row">
-                        <div class="col-lg-3 col-sm-6">
-                            <div class="shop-item">
-                                <div class="shop-thumbnail">
-                                    <span class="item-rating text-warning">
-                                        <i class="material-icons star"></i>
-                                        <i class="material-icons star"></i>
-                                        <i class="material-icons star"></i>
-                                        <i class="material-icons star"></i>
-                                        <i class="material-icons star_border"></i>
-                                    </span>
-                                    <a href="shop-single.html" class="item-link"></a>
-                                    <img src="img/shop/th13.jpg" alt="Shop item">
-                                    <div class="shop-item-tools">
-                                        <a href="#" class="add-to-whishlist" data-toggle="tooltip" data-placement="top" title="Wishlist">
-                                            <i class="material-icons favorite_border"></i>
-                                        </a>
-                                        <a href="#" class="add-to-cart">
-                                            <em>Add to Cart</em>
-                                            <svg x="0px" y="0px" width="32px" height="32px" viewBox="0 0 32 32">
-                                            <path stroke-dasharray="19.79 19.79" stroke-dashoffset="19.79" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="square" stroke-miterlimit="10" d="M9,17l3.9,3.9c0.1,0.1,0.2,0.1,0.3,0L23,11"/>
-                                            </svg>
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class="shop-item-details">
-                                    <h3 class="shop-item-title"><a href="shop-single.html">Storage Jar</a></h3>
-                                    <span class="shop-item-price">
-                                        $19.80
-                                    </span>
-                                </div>
-                            </div><!-- .shop-item -->
-                        </div><!-- .col-lg-3.col-sm-6 -->
-                        <div class="col-lg-3 col-sm-6">
-                            <div class="shop-item">
-                                <div class="shop-thumbnail">
-                                    <span class="item-rating text-warning">
-                                        <i class="material-icons star"></i>
-                                        <i class="material-icons star"></i>
-                                        <i class="material-icons star"></i>
-                                        <i class="material-icons star_half"></i>
-                                        <i class="material-icons star_border"></i>
-                                    </span>
-                                    <a href="shop-single.html" class="item-link"></a>
-                                    <img src="img/shop/th14.jpg" alt="Shop item">
-                                    <div class="shop-item-tools">
-                                        <a href="#" class="add-to-whishlist" data-toggle="tooltip" data-placement="top" title="Wishlist">
-                                            <i class="material-icons favorite_border"></i>
-                                        </a>
-                                        <a href="#" class="add-to-cart">
-                                            <em>Add to Cart</em>
-                                            <svg x="0px" y="0px" width="32px" height="32px" viewBox="0 0 32 32">
-                                            <path stroke-dasharray="19.79 19.79" stroke-dashoffset="19.79" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="square" stroke-miterlimit="10" d="M9,17l3.9,3.9c0.1,0.1,0.2,0.1,0.3,0L23,11"/>
-                                            </svg>
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class="shop-item-details">
-                                    <h3 class="shop-item-title"><a href="shop-single.html">Ceramic Watch</a></h3>
-                                    <span class="shop-item-price">
-                                        $299.00
-                                    </span>
-                                </div>
-                            </div><!-- .shop-item -->
-                        </div><!-- .col-lg-3.col-sm-6 -->
-                        <div class="col-lg-3 col-sm-6">
-                            <div class="shop-item">
-                                <div class="shop-thumbnail">
-                                    <span class="item-rating text-warning">
-                                        <i class="material-icons star"></i>
-                                        <i class="material-icons star"></i>
-                                        <i class="material-icons star"></i>
-                                        <i class="material-icons star_half"></i>
-                                        <i class="material-icons star_border"></i>
-                                    </span>
-                                    <a href="shop-single.html" class="item-link"></a>
-                                    <img src="img/shop/th15.jpg" alt="Shop item">
-                                    <div class="shop-item-tools">
-                                        <a href="#" class="add-to-whishlist" data-toggle="tooltip" data-placement="top" title="Wishlist">
-                                            <i class="material-icons favorite_border"></i>
-                                        </a>
-                                        <a href="#" class="add-to-cart">
-                                            <em>Add to Cart</em>
-                                            <svg x="0px" y="0px" width="32px" height="32px" viewBox="0 0 32 32">
-                                            <path stroke-dasharray="19.79 19.79" stroke-dashoffset="19.79" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="square" stroke-miterlimit="10" d="M9,17l3.9,3.9c0.1,0.1,0.2,0.1,0.3,0L23,11"/>
-                                            </svg>
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class="shop-item-details">
-                                    <h3 class="shop-item-title"><a href="shop-single.html">Tissue Holder</a></h3>
-                                    <span class="shop-item-price">
-                                        $76.40
-                                    </span>
-                                </div>
-                            </div><!-- .shop-item -->
-                        </div><!-- .col-lg-3.col-sm-6 -->
-                        <div class="col-lg-3 col-sm-6">
-                            <div class="shop-item">
-                                <div class="shop-thumbnail">
-                                    <span class="item-rating text-warning">
-                                        <i class="material-icons star"></i>
-                                        <i class="material-icons star"></i>
-                                        <i class="material-icons star"></i>
-                                        <i class="material-icons star_border"></i>
-                                        <i class="material-icons star_border"></i>
-                                    </span>
-                                    <a href="shop-single.html" class="item-link"></a>
-                                    <img src="img/shop/th16.jpg" alt="Shop item">
-                                    <div class="shop-item-tools">
-                                        <a href="#" class="add-to-whishlist" data-toggle="tooltip" data-placement="top" title="Wishlist">
-                                            <i class="material-icons favorite_border"></i>
-                                        </a>
-                                        <a href="#" class="add-to-cart">
-                                            <em>Add to Cart</em>
-                                            <svg x="0px" y="0px" width="32px" height="32px" viewBox="0 0 32 32">
-                                            <path stroke-dasharray="19.79 19.79" stroke-dashoffset="19.79" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="square" stroke-miterlimit="10" d="M9,17l3.9,3.9c0.1,0.1,0.2,0.1,0.3,0L23,11"/>
-                                            </svg>
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class="shop-item-details">
-                                    <h3 class="shop-item-title"><a href="shop-single.html">Pendant Lamp</a></h3>
-                                    <span class="shop-item-price">
-                                        $27.00
-                                    </span>
-                                </div>
-                            </div><!-- .shop-item -->
-                        </div><!-- .col-lg-3.col-sm-6 -->
-                    </div><!-- .row -->
+                                </div><!-- .shop-item -->
+                            </div><!-- .col-lg-3.col-sm-6 -->
+                        </s:iterator>
+                    </div>
                 </div><!-- .tab-pane#toprated -->
 
                 <!-- #onsale -->
                 <div role="tabpanel" class="tab-pane transition fade scale" id="onsale">
                     <div class="row">
-                        <div class="col-lg-3 col-sm-6">
-                            <div class="shop-item">
-                                <div class="shop-thumbnail">
-                                    <span class="shop-label text-danger">Sale</span>
-                                    <a href="#" class="item-link"></a>
-                                    <img src="img/shop/th05.jpg" alt="Shop item">
-                                    <div class="shop-item-tools">
-                                        <a href="#" class="add-to-whishlist" data-toggle="tooltip" data-placement="top" title="Wishlist">
-                                            <i class="material-icons favorite_border"></i>
-                                        </a>
-                                        <a href="#" class="add-to-cart">
-                                            <em>Add to Cart</em>
-                                            <svg x="0px" y="0px" width="32px" height="32px" viewBox="0 0 32 32">
-                                            <path stroke-dasharray="19.79 19.79" stroke-dashoffset="19.79" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="square" stroke-miterlimit="10" d="M9,17l3.9,3.9c0.1,0.1,0.2,0.1,0.3,0L23,11"/>
-                                            </svg>
-                                        </a>
+                        <s:iterator value="%{list8Saling}">
+                            <div class="col-lg-3 col-sm-6">
+                                <div class="shop-item">
+                                    <div class="shop-thumbnail">
+                                        <span class="shop-label text-danger">Sale</span>
+                                        <a href="#" class="item-link"></a>
+                                        <img src="img/<s:property value="Image1"/>" alt="Shop item">
+                                        <div class="shop-item-tools">
+                                            <a href="#" class="add-to-whishlist" data-toggle="tooltip" data-placement="top" title="Wishlist">
+                                                <i class="material-icons favorite_border"></i>
+                                            </a>
+                                            <a href="#" class="add-to-cart">
+                                                <em>Add to Cart</em>
+                                                <svg x="0px" y="0px" width="32px" height="32px" viewBox="0 0 32 32">
+                                                <path stroke-dasharray="19.79 19.79" stroke-dashoffset="19.79" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="square" stroke-miterlimit="10" d="M9,17l3.9,3.9c0.1,0.1,0.2,0.1,0.3,0L23,11"/>
+                                                </svg>
+                                            </a>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="shop-item-details">
-                                    <h3 class="shop-item-title"><a href="#">Wall Clock</a></h3>
-                                    <span class="shop-item-price">
-                                        <span class="old-price">$69.00</span>
-                                        $48.00
-                                    </span>
-                                </div>
-                            </div><!-- .shop-item -->
-                        </div><!-- .col-lg-3.col-sm-6 -->
-                        <div class="col-lg-3 col-sm-6">
-                            <div class="shop-item">
-                                <div class="shop-thumbnail">
-                                    <span class="shop-label text-danger">Sale</span>
-                                    <a href="#" class="item-link"></a>
-                                    <img src="img/shop/th06.jpg" alt="Shop item">
-                                    <div class="shop-item-tools">
-                                        <a href="#" class="add-to-whishlist" data-toggle="tooltip" data-placement="top" title="Wishlist">
-                                            <i class="material-icons favorite_border"></i>
-                                        </a>
-                                        <a href="#" class="add-to-cart">
-                                            <em>Add to Cart</em>
-                                            <svg x="0px" y="0px" width="32px" height="32px" viewBox="0 0 32 32">
-                                            <path stroke-dasharray="19.79 19.79" stroke-dashoffset="19.79" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="square" stroke-miterlimit="10" d="M9,17l3.9,3.9c0.1,0.1,0.2,0.1,0.3,0L23,11"/>
-                                            </svg>
-                                        </a>
+                                    <div class="shop-item-details">
+                                        <h3 class="shop-item-title"><a href="#"><s:property value="Name"/></a></h3>
+                                        <span class="shop-item-price">
+                                            <span class="old-price">$<s:property value="Price"/></span>
+                                            $<s:property value="Price * (1 - SaleOff)"/>
+                                        </span>
                                     </div>
-                                </div>
-                                <div class="shop-item-details">
-                                    <h3 class="shop-item-title"><a href="#">LED Lighting</a></h3>
-                                    <span class="shop-item-price">
-                                        <span class="old-price">$155.00</span>
-                                        $130.00
-                                    </span>
-                                </div>
-                            </div><!-- .shop-item -->
-                        </div><!-- .col-lg-3.col-sm-6 -->
-                        <div class="col-lg-3 col-sm-6">
-                            <div class="shop-item">
-                                <div class="shop-thumbnail">
-                                    <span class="shop-label text-danger">Sale</span>
-                                    <a href="#" class="item-link"></a>
-                                    <img src="img/shop/th04.jpg" alt="Shop item">
-                                    <div class="shop-item-tools">
-                                        <a href="#" class="add-to-whishlist" data-toggle="tooltip" data-placement="top" title="Wishlist">
-                                            <i class="material-icons favorite_border"></i>
-                                        </a>
-                                        <a href="#" class="add-to-cart">
-                                            <em>Add to Cart</em>
-                                            <svg x="0px" y="0px" width="32px" height="32px" viewBox="0 0 32 32">
-                                            <path stroke-dasharray="19.79 19.79" stroke-dashoffset="19.79" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="square" stroke-miterlimit="10" d="M9,17l3.9,3.9c0.1,0.1,0.2,0.1,0.3,0L23,11"/>
-                                            </svg>
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class="shop-item-details">
-                                    <h3 class="shop-item-title"><a href="#">Alarm Clock</a></h3>
-                                    <span class="shop-item-price">
-                                        <span class="old-price">$225.00</span>
-                                        $178.00
-                                    </span>
-                                </div>
-                            </div><!-- .shop-item -->
-                        </div><!-- .col-lg-3.col-sm-6 -->
-                        <div class="col-lg-3 col-sm-6">
-                            <div class="shop-item">
-                                <div class="shop-thumbnail">
-                                    <span class="shop-label text-danger">Sale</span>
-                                    <a href="#" class="item-link"></a>
-                                    <img src="img/shop/th08.jpg" alt="Shop item">
-                                    <div class="shop-item-tools">
-                                        <a href="#" class="add-to-whishlist" data-toggle="tooltip" data-placement="top" title="Wishlist">
-                                            <i class="material-icons favorite_border"></i>
-                                        </a>
-                                        <a href="#" class="add-to-cart">
-                                            <em>Add to Cart</em>
-                                            <svg x="0px" y="0px" width="32px" height="32px" viewBox="0 0 32 32">
-                                            <path stroke-dasharray="19.79 19.79" stroke-dashoffset="19.79" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="square" stroke-miterlimit="10" d="M9,17l3.9,3.9c0.1,0.1,0.2,0.1,0.3,0L23,11"/>
-                                            </svg>
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class="shop-item-details">
-                                    <h3 class="shop-item-title"><a href="#">Hook Basket</a></h3>
-                                    <span class="shop-item-price">
-                                        <span class="old-price">$180.00</span>
-                                        $112.35
-                                    </span>
-                                </div>
-                            </div><!-- .shop-item -->
-                        </div><!-- .col-lg-3.col-sm-6 -->
-                        <div class="col-lg-3 col-sm-6">
-                            <div class="shop-item">
-                                <div class="shop-thumbnail">
-                                    <span class="shop-label text-danger">Sale</span>
-                                    <a href="shop-single.html" class="item-link"></a>
-                                    <img src="img/shop/th01.jpg" alt="Shop item">
-                                    <div class="shop-item-tools">
-                                        <a href="#" class="add-to-whishlist" data-toggle="tooltip" data-placement="top" title="Wishlist">
-                                            <i class="material-icons favorite_border"></i>
-                                        </a>
-                                        <a href="#" class="add-to-cart">
-                                            <em>Add to Cart</em>
-                                            <svg x="0px" y="0px" width="32px" height="32px" viewBox="0 0 32 32">
-                                            <path stroke-dasharray="19.79 19.79" stroke-dashoffset="19.79" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="square" stroke-miterlimit="10" d="M9,17l3.9,3.9c0.1,0.1,0.2,0.1,0.3,0L23,11"/>
-                                            </svg>
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class="shop-item-details">
-                                    <h3 class="shop-item-title"><a href="shop-single.html">Storage Box</a></h3>
-                                    <span class="shop-item-price">
-                                        <span class="old-price">$49.00</span>
-                                        $38.00
-                                    </span>
-                                </div>
-                            </div><!-- .shop-item -->
-                        </div><!-- .col-lg-3.col-sm-6 -->
-                        <div class="col-lg-3 col-sm-6">
-                            <div class="shop-item">
-                                <div class="shop-thumbnail">
-                                    <span class="shop-label text-danger">Sale</span>
-                                    <a href="shop-single.html" class="item-link"></a>
-                                    <img src="img/shop/th07.jpg" alt="Shop item">
-                                    <div class="shop-item-tools">
-                                        <a href="#" class="add-to-whishlist" data-toggle="tooltip" data-placement="top" title="Wishlist">
-                                            <i class="material-icons favorite_border"></i>
-                                        </a>
-                                        <a href="#" class="add-to-cart">
-                                            <em>Add to Cart</em>
-                                            <svg x="0px" y="0px" width="32px" height="32px" viewBox="0 0 32 32">
-                                            <path stroke-dasharray="19.79 19.79" stroke-dashoffset="19.79" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="square" stroke-miterlimit="10" d="M9,17l3.9,3.9c0.1,0.1,0.2,0.1,0.3,0L23,11"/>
-                                            </svg>
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class="shop-item-details">
-                                    <h3 class="shop-item-title"><a href="shop-single.html">Sunglasses</a></h3>
-                                    <span class="shop-item-price">
-                                        <span class="old-price">$122.00</span>
-                                        $99.00
-                                    </span>
-                                </div>
-                            </div><!-- .shop-item -->
-                        </div><!-- .col-lg-3.col-sm-6 -->
-                        <div class="col-lg-3 col-sm-6">
-                            <div class="shop-item">
-                                <div class="shop-thumbnail">
-                                    <span class="shop-label text-danger">Sale</span>
-                                    <a href="shop-single.html" class="item-link"></a>
-                                    <img src="img/shop/th09.jpg" alt="Shop item">
-                                    <div class="shop-item-tools">
-                                        <a href="#" class="add-to-whishlist" data-toggle="tooltip" data-placement="top" title="Wishlist">
-                                            <i class="material-icons favorite_border"></i>
-                                        </a>
-                                        <a href="#" class="add-to-cart">
-                                            <em>Add to Cart</em>
-                                            <svg x="0px" y="0px" width="32px" height="32px" viewBox="0 0 32 32">
-                                            <path stroke-dasharray="19.79 19.79" stroke-dashoffset="19.79" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="square" stroke-miterlimit="10" d="M9,17l3.9,3.9c0.1,0.1,0.2,0.1,0.3,0L23,11"/>
-                                            </svg>
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class="shop-item-details">
-                                    <h3 class="shop-item-title"><a href="shop-single.html">Leather Case</a></h3>
-                                    <span class="shop-item-price">
-                                        <span class="old-price">$160.00</span>
-                                        $118.00
-                                    </span>
-                                </div>
-                            </div><!-- .shop-item -->
-                        </div><!-- .col-lg-3.col-sm-6 -->
-                        <div class="col-lg-3 col-sm-6">
-                            <div class="shop-item">
-                                <div class="shop-thumbnail">
-                                    <span class="shop-label text-danger">Sale</span>
-                                    <a href="shop-single.html" class="item-link"></a>
-                                    <img src="img/shop/th02.jpg" alt="Shop item">
-                                    <div class="shop-item-tools">
-                                        <a href="#" class="add-to-whishlist" data-toggle="tooltip" data-placement="top" title="Wishlist">
-                                            <i class="material-icons favorite_border"></i>
-                                        </a>
-                                        <a href="#" class="add-to-cart">
-                                            <em>Add to Cart</em>
-                                            <svg x="0px" y="0px" width="32px" height="32px" viewBox="0 0 32 32">
-                                            <path stroke-dasharray="19.79 19.79" stroke-dashoffset="19.79" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="square" stroke-miterlimit="10" d="M9,17l3.9,3.9c0.1,0.1,0.2,0.1,0.3,0L23,11"/>
-                                            </svg>
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class="shop-item-details">
-                                    <h3 class="shop-item-title"><a href="shop-single.html">Shoulder Bag</a></h3>
-                                    <span class="shop-item-price">
-                                        <span class="old-price">$199.00</span>
-                                        $125.00
-                                    </span>
-                                </div>
-                            </div><!-- .shop-item -->
-                        </div><!-- .col-lg-3.col-sm-6 -->
+                                </div><!-- .shop-item -->
+                            </div><!-- .col-lg-3.col-sm-6 -->
+                        </s:iterator>
                     </div><!-- .row -->
                 </div><!-- .tab-pane#onsale -->
             </div><!-- .tab-content -->

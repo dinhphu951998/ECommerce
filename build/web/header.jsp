@@ -85,7 +85,7 @@
                                     <span class="count">2</span>
                                 </i>
                             </a>
-                        </div><
+                        </div>
                     </div>
                 </div>
             </header>

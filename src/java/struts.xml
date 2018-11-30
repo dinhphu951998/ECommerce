@@ -7,7 +7,7 @@
     <package name="default" extends="struts-default" namespace="/">
         <action name="">
             <result type="redirectAction">
-                <param name="actionName">StartUp</param>
+                <param name="actionName">Home</param>
             </result>
         </action>
         
