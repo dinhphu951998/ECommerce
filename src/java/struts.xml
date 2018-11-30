@@ -12,18 +12,29 @@
         </action>
         
         <action name="Login" class="ecommerce.struts.LoginAction">
-            <result name="admin"></result>
-            <result name="user"></result>
-            <result name="fail"></result>
+            <result name="admin" type="redirect">admin.jsp</result>
+            <result name="user" type="redirect">home-page.jsp</result>
+            <result name="fail">login.jsp</result>
         </action>
-        
+        <action name="LoginForm" class="ecommerce.struts.LoginFormAction">
+            <result type="redirect" name="admin">admin.jsp</result>
+            <result type="redirect" name="user">home-page.jsp</result>
+            <result type="redirect" name="fail">login.jsp</result>
+        </action>
         <action name="StartUp" class="ecommerce.struts.StartUpAction">
-            <result name="success" type="redirectAction">
-                <param name="actionName">Login</param>
-                <param name="Id">${Id}</param>
-                <param name="password">${password}</param>
+            <result name="success" type="chain">
+                Login
+            </result>
+            <result name="admin" type="redirect">
+                admin.jsp
             </result>
             <result name="fail" type="redirect">home-page.jsp</result>
+        </action>
+        <action name="logout" class="ecommerce.struts.LogoutAction">
+            <result name="success" type="redirect">
+                home-page.jsp
+            </result>
+            
         </action>
         
     </package>

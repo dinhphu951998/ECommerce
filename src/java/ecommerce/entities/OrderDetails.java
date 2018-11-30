@@ -16,9 +16,21 @@ public class OrderDetails implements Serializable {
     private String OrderID;
     private String ProductID;
     private int Quantity;
-    private float Price;
-    private float SaleOff;
+    private double Price;
+    private double SaleOff;
 
+    public OrderDetails() {
+    }
+
+    public OrderDetails(String OrderID, String ProductID, int Quantity, double Price, double SaleOff) {
+        this.OrderID = OrderID;
+        this.ProductID = ProductID;
+        this.Quantity = Quantity;
+        this.Price = Price;
+        this.SaleOff = SaleOff;
+    }
+
+    
     /**
      * @return the OrderID
      */
@@ -64,28 +76,30 @@ public class OrderDetails implements Serializable {
     /**
      * @return the Price
      */
-    public float getPrice() {
+    public double getPrice() {
         return Price;
     }
 
     /**
      * @param Price the Price to set
      */
-    public void setPrice(float Price) {
+    public void setPrice(double Price) {
         this.Price = Price;
     }
 
     /**
      * @return the SaleOff
      */
-    public float getSaleOff() {
+    public double getSaleOff() {
         return SaleOff;
     }
 
     /**
      * @param SaleOff the SaleOff to set
      */
-    public void setSaleOff(float SaleOff) {
+    public void setSaleOff(double SaleOff) {
         this.SaleOff = SaleOff;
     }
+
+  
 }

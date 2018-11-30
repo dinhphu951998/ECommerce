@@ -6,15 +6,14 @@
 package ecommerce.struts;
 
 import com.opensymphony.xwork2.ActionContext;
-import java.security.NoSuchAlgorithmException;
+import ecommerce.DAO.AccountDAO;
+import ecommerce.entities.Accounts;
 import java.util.Map;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
 import org.apache.struts2.ServletActionContext;
-import ecommerce.accounts.AccountDAO;
-import ecommerce.accounts.Accounts;
+
 import ecommerce.enums.RolesEnum;
-import ecommerce.tools.Utils;
 
 /**
  *
@@ -22,12 +21,19 @@ import ecommerce.tools.Utils;
  */
 public class LoginAction {
 
-    private String Id;
-    private String password;
-    private boolean remember;
+    // readonly-field
     private final String USER = "user";
     private final String ADMIN = "admin";
     private final String FAIL = "fail";
+    
+    // reveive value
+    private String Id;
+    private String password;
+    private boolean remember;
+    
+    // push value
+    private String error;
+    
 
     public LoginAction() {
     }
@@ -37,7 +43,7 @@ public class LoginAction {
         AccountDAO dao = new AccountDAO();
         Accounts dto = dao.checkLogin(Id, password);
         if (dto != null) {
-            switch (RolesEnum.valueOf(dto.getRoleId())) {
+            switch (RolesEnum.valueOf(dto.getRoleID())) {
                 case AD:
                     url = ADMIN;
                     break;
@@ -49,10 +55,13 @@ public class LoginAction {
             session.put("USER", dto);
             if (remember) {
                 HttpServletResponse response = ServletActionContext.getResponse();
-                Cookie cookie = new Cookie(Id, password);
+                Cookie cookie = new Cookie("account"+Id, password);
                 cookie.setMaxAge(1000 * 60 * 60 * 24 * 7);
                 response.addCookie(cookie);
             }
+        }
+        else{
+            error = "Wrong username or password, please input again";
         }
         return url;
     }
@@ -81,8 +90,8 @@ public class LoginAction {
     /**
      * @param password the password to set
      */
-    public void setPassword(String password) throws NoSuchAlgorithmException {
-        this.password = Utils.encryptPassword(password);
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     /**
@@ -97,6 +106,20 @@ public class LoginAction {
      */
     public void setRemember(boolean remember) {
         this.remember = remember;
+    }
+
+    /**
+     * @return the error
+     */
+    public String getError() {
+        return error;
+    }
+
+    /**
+     * @param error the error to set
+     */
+    public void setError(String error) {
+        this.error = error;
     }
 
 }
