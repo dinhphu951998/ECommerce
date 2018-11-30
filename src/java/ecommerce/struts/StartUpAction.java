@@ -31,6 +31,7 @@ public class StartUpAction {
 
     public String execute() throws Exception {
         String url = FAIL;
+
         HttpServletRequest request = ServletActionContext.getRequest();
         Cookie[] cookies = request.getCookies();
         AccountDAO dao = new AccountDAO();
