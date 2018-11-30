@@ -7,8 +7,7 @@
     <package name="default" extends="struts-default" namespace="/">
         <action name="">
             <result type="redirectAction">
-                <param name="actionName">GetProductDetails</param>
-                <param name="Id">1</param>
+                StartUp
             </result>
         </action>
         

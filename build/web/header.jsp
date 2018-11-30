@@ -63,6 +63,9 @@
                         <li class="">
                             <a href="shop-fullwidth-sl.html">Shop</a>
                         </li>
+                        <li class="">
+                            <a href="/ECommerce/GetProductDetails?Id=1">Detail Test</a>
+                        </li>
                         <li class="menu-item-has-children">
                             <a href="#">Pages</a>
                             <ul class="sub-menu">

@@ -7,8 +7,7 @@
     <package name="default" extends="struts-default" namespace="/">
         <action name="">
             <result type="redirectAction">
-                <param name="actionName">GetProductDetails</param>
-                <param name="Id">1</param>
+                StartUp
             </result>
         </action>
         
@@ -41,7 +40,7 @@
         <action name="GetProductDetails" class="ecommerce.struts.GetProductDetailsAction">
             <result name="success">product-details.jsp</result>
         </action>
-      
+        
         <action name="registerForm">
             <result>register.jsp</result>
         </action>
