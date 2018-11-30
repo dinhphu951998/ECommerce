@@ -32,24 +32,9 @@
                     </div>
                 </div>
             </s:form>
+            <s:a href="/ECommerce/registerForm">Register here</s:a>
         </div><!-- .col-md-4 -->
-        <div class="col-md-4 col-md-offset-1">
-            <h3>Register</h3>
-            <div class="inner">
-
-                <form method="post" class="login-form">
-                    <input type="email" class="form-control" placeholder="E-mail" required>
-                    <input type="password" class="form-control" placeholder="Password" required>
-                    <input type="password" class="form-control" placeholder="Repeat password" required>
-                    <div class="form-footer">
-                        <div class="rememberme"></div>
-                        <div class="form-submit">
-                            <button type="submit" class="btn btn-primary btn-block waves-effect waves-light">Sign up</button>
-                        </div>
-                    </div>
-                </form><!-- .login-form -->
-            </div><!-- .inner -->
-        </div><!-- .col-md-4.col-md-offset-1 -->
+        
         <div class="col-md-3 padding-top-2x">
             <a href="#" class="social-signup-btn ssb-facebook">
                 <i class="socicon-facebook"></i>
