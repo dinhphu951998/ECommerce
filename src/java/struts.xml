@@ -5,6 +5,7 @@
 <struts>
     <!-- Configuration for the default package. -->
     <package name="default" extends="struts-default" namespace="/">
+        
         <action name="">
             <result type="redirectAction">
                 <param name="actionName">GetProductDetails</param>
@@ -17,11 +18,13 @@
             <result name="user" type="redirect">home-page.jsp</result>
             <result name="fail">login.jsp</result>
         </action>
+        
         <action name="LoginForm" class="ecommerce.struts.LoginFormAction">
             <result type="redirect" name="admin">admin.jsp</result>
             <result type="redirect" name="user">home-page.jsp</result>
             <result type="redirect" name="fail">login.jsp</result>
         </action>
+        
         <action name="StartUp" class="ecommerce.struts.StartUpAction">
             <result name="success" type="chain">
                 Login
@@ -31,16 +34,24 @@
             </result>
             <result name="fail" type="redirect">home-page.jsp</result>
         </action>
+        
         <action name="logout" class="ecommerce.struts.LogoutAction">
             <result name="success" type="redirect">
                 home-page.jsp
             </result>
-            
         </action>
         
         <action name="GetProductDetails" class="ecommerce.struts.GetProductDetailsAction">
             <result name="success">product-details.jsp</result>
         </action>
         
+        <action name="AddToCart" class="ecommerce.struts.AddToCartAction">
+            <result name="success" type="redirectAction">
+                <param name="actionName">GetProductDetails</param>
+                <param name="Id">${id}</param>
+            </result>
+        </action>
+        
     </package>
+    
 </struts>

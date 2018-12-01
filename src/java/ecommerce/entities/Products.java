@@ -8,6 +8,7 @@ package ecommerce.entities;
 import java.io.Serializable;
 import java.sql.Date;
 import java.sql.Timestamp;
+import java.util.Objects;
 
 /**
  *
@@ -76,7 +77,22 @@ public class Products implements Serializable {
         this.NumOfRates = NumOfRates;
     }
 
+    @Override
+    public boolean equals(Object obj) {
+        Products p = (Products) obj;
+        if(this.Id.equals(p.Id)){
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(this.Id, this.Image1);
+    }
     
+    
+
     /**
      * @return the Id
      */
