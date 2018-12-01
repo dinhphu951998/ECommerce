@@ -58,7 +58,7 @@
                 <nav class="main-navigation text-center">
                     <ul class="menu">
                         <li class="current-menu-item">
-                            <a href="index.html">Home</a>
+                            <a href="Home">Home</a>
                         </li>
                         <li class="">
                             <a href="shop-fullwidth-sl.html">Shop</a>

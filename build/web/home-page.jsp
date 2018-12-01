@@ -21,7 +21,7 @@
                         <span class="text-thin">Only</span><br>
                         <strong>$<s:property value="%{listBanners.get(0).Price * (1 - listBanners.get(0).SaleOff)}"/></strong>
                     </span><br>
-                    <a href="#" class="btn btn-primary btn-with-icon-right waves-effect waves-light space-top-none">
+                    <a href="GetProductDetails?Id=<s:property value="%{listBanners.get(0).Id}"/>" class="btn btn-primary btn-with-icon-right waves-effect waves-light space-top-none">
                         View Offer
                         <i class="material-icons arrow_forward"></i>
                     </a>
@@ -35,7 +35,7 @@
                     <span class="text-thin">Special price: 
                     </span> <strong>$<s:property value="%{listBanners.get(1).Price * (1 - listBanners.get(1).SaleOff)}"/></strong>
                 </span><br>
-                <a href="#" class="btn btn-primary btn-with-icon-right waves-effect waves-light scale-up">
+                <a href="GetProductDetails?Id=<s:property value="%{listBanners.get(1).Id}"/>" class="btn btn-primary btn-with-icon-right waves-effect waves-light scale-up">
                     View Offer
                     <i class="material-icons arrow_forward"></i>
                 </a>
@@ -48,7 +48,7 @@
                         Only <span class="hidden-xs">today</span>
                     </span> <strong>$<s:property value="%{listBanners.get(2).Price * (1 - listBanners.get(2).SaleOff)}"/></strong>
                 </span><br>
-                <a href="#" class="btn btn-primary btn-with-icon-right waves-effect waves-light scale-up">
+                <a href="GetProductDetails?Id=<s:property value="%{listBanners.get(2).Id}"/>" class="btn btn-primary btn-with-icon-right waves-effect waves-light scale-up">
                     View Offer
                     <i class="material-icons arrow_forward"></i>
                 </a>
@@ -78,7 +78,7 @@
         <div class="col-lg-3 col-md-4">
             <div class="info-box text-center">
                 <h2>Special Offer<br><span class="text-danger">-<s:property value="%{highestOffer.SaleOff * 100}"/>%</span></h2>
-                <a href="#" class="inline">
+                <a href="GetProductDetails?Id=<s:property value="%{highestOffer.Id}"/>" class="inline">
                     <img src="img/<s:property value="%{highestOffer.Image1}"/>" alt="Special Offer">
                 </a>
                 <h3 class="lead text-normal space-bottom-half">
@@ -131,7 +131,7 @@
                                 <div class="shop-item">
                                     <div class="shop-thumbnail">
                                         <span class="shop-label text-warning">New</span>
-                                        <a href="#" class="item-link"></a>
+                                        <a href="GetProductDetails?Id=<s:property value="%{Id}"/>" class="item-link"></a>
                                         <img src="img/<s:property value="Image1"/>" alt="Shop item">
                                         <div class="shop-item-tools">
                                             <a href="#" class="add-to-whishlist" data-toggle="tooltip" data-placement="top" title="Wishlist">
@@ -146,7 +146,7 @@
                                         </div>
                                     </div>
                                     <div class="shop-item-details">
-                                        <h3 class="shop-item-title"><a href="#"><s:property value="Name"/></a></h3>
+                                        <h3 class="shop-item-title"><a href="GetProductDetails?Id=<s:property value="%{Id}"/>"><s:property value="Name"/></a></h3>
                                         <span class="shop-item-price">
                                             $<s:property value="Price * (1 - SaleOff)"/>
                                         </span>
@@ -174,7 +174,7 @@
                                                 </s:iterator>
                                             </s:if>
                                         </span>
-                                        <a href="#" class="item-link"></a>
+                                        <a href="GetProductDetails?Id=<s:property value="%{Id}"/>" class="item-link"></a>
                                         <img src="img/<s:property value="Image1"/>" alt="Shop item">
                                         <div class="shop-item-tools">
                                             <a href="#" class="add-to-whishlist" data-toggle="tooltip" data-placement="top" title="Wishlist">
@@ -189,7 +189,11 @@
                                         </div>
                                     </div>
                                     <div class="shop-item-details">
-                                        <h3 class="shop-item-title"><a href="#"><s:property value="Name"/></a></h3>
+                                        <h3 class="shop-item-title">
+                                            <a href="GetProductDetails?Id=<s:property value="%{Id}"/>">
+                                                <s:property value="Name"/>
+                                            </a>
+                                        </h3>
                                         <span class="shop-item-price">
                                             $<s:property value="Price * (1 - SaleOff)"/>
                                         </span>
@@ -208,7 +212,7 @@
                                 <div class="shop-item">
                                     <div class="shop-thumbnail">
                                         <span class="shop-label text-danger">Sale</span>
-                                        <a href="#" class="item-link"></a>
+                                        <a href="GetProductDetails?Id=<s:property value="%{Id}"/>" class="item-link"></a>
                                         <img src="img/<s:property value="Image1"/>" alt="Shop item">
                                         <div class="shop-item-tools">
                                             <a href="#" class="add-to-whishlist" data-toggle="tooltip" data-placement="top" title="Wishlist">
@@ -223,7 +227,11 @@
                                         </div>
                                     </div>
                                     <div class="shop-item-details">
-                                        <h3 class="shop-item-title"><a href="#"><s:property value="Name"/></a></h3>
+                                        <h3 class="shop-item-title">
+                                            <a href="GetProductDetails?Id=<s:property value="%{Id}"/>">
+                                                <s:property value="Name"/>
+                                            </a>
+                                        </h3>
                                         <span class="shop-item-price">
                                             <span class="old-price">$<s:property value="Price"/></span>
                                             $<s:property value="Price * (1 - SaleOff)"/>
