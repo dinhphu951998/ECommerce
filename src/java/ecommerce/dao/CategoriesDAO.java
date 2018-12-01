@@ -12,6 +12,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import javax.naming.NamingException;
 
 /**
@@ -70,5 +72,38 @@ public class CategoriesDAO extends BaseDAO<Categories>{
         return category;
     }
     
-    
+    public List<Categories> getTop4MostSold() throws NamingException, SQLException {
+        List<Categories> list = null;
+        int id;
+        String name;
+        try {
+            conn = DBConnection.makeConnection();
+            if(conn != null){
+              String sql = "Select Top 4 Id, Name " +
+                           "From Categories " +
+                           "Where Id in (   Select Top 2147483647 p.CategoryID " +
+                                            "From Products p JOIN OrderDetails od " +
+                                                "ON p.Id = od.ProductID " +
+                                            "Where od.OrderID in (  Select ID " +
+                                                                    "From Orders " +
+                                                                    "Where Month(DatePurchased) = Month(CURRENT_TIMESTAMP)) " +
+                                            "Group by p.CategoryID " +
+                                            "Order by sum(od.Quantity) DESC	)";
+              pstm = conn.prepareStatement(sql);
+              rs = pstm.executeQuery();
+              list = new ArrayList<>();
+              while(rs.next()) {
+                  id = rs.getInt("Id");
+                  name = rs.getString("Name");
+                  Categories c = new Categories();
+                  c.setId(id);
+                  c.setName(name);
+                  list.add(c);
+              }
+            }
+        } finally {
+            closeConnection();
+        }
+        return list;
+    }
 }
