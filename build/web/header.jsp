@@ -46,22 +46,22 @@
             <header class="navbar navbar-sticky">
 
                 <!-- Site Logo -->
-                <a href="index.html" class="site-logo visible-desktop">
+                <a href="/ECommerce/Home" class="site-logo visible-desktop">
                     <span>[</span> M
                     <span class="text-gray">/</span>
                     STORE <span>]</span>
                 </a><!-- site-logo.visible-desktop -->
-                <a href="index.html" class="site-logo visible-mobile">
+                <a href="/ECommerce/Home" class="site-logo visible-mobile">
                     <span>[</span> M <span>]</span>
                 </a>
 
                 <nav class="main-navigation text-center">
                     <ul class="menu">
                         <li class="current-menu-item">
-                            <a href="index.html">Home</a>
+                            <a href="/ECommerce/Home">Home</a>
                         </li>
                         <li class="">
-                            <a href="shop-fullwidth-sl.html">Shop</a>
+                            <a href="/ECommerce/shop">Shop</a>
                         </li>
                         <li class="">
                             <a href="/ECommerce/GetProductDetails?Id=1">Detail Test</a>

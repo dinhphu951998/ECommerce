@@ -7,18 +7,18 @@
     <package name="default" extends="struts-default" namespace="/">
         <action name="">
             <result type="redirectAction">
-                <param name="actionName">Home</param>
+                <param name="actionName">StartUp</param>
             </result>
         </action>
         
         <action name="Login" class="ecommerce.struts.LoginAction">
             <result name="admin" type="redirect">admin.jsp</result>
-            <result name="user" type="redirect">home-page.jsp</result>
+            <result name="user" type="redirectAction">Home</result>
             <result name="fail">login.jsp</result>
         </action>
         <action name="LoginForm" class="ecommerce.struts.LoginFormAction">
             <result type="redirect" name="admin">admin.jsp</result>
-            <result type="redirect" name="user">home-page.jsp</result>
+            <result type="redirectAction" name="user">Home</result>
             <result type="redirect" name="fail">login.jsp</result>
         </action>
         <action name="StartUp" class="ecommerce.struts.StartUpAction">
@@ -28,11 +28,11 @@
             <result name="admin" type="redirect">
                 admin.jsp
             </result>
-            <result name="fail" type="redirect">home-page.jsp</result>
+            <result name="fail" type="redirectAction">Home</result>
         </action>
         <action name="logout" class="ecommerce.struts.LogoutAction">
-            <result name="success" type="redirect">
-                home-page.jsp
+            <result name="success" type="redirectAction">
+                Home
             </result>
             
         </action>
@@ -48,6 +48,9 @@
             <result name="success" type="chain">Login</result>
             <result name="fail">register.jsp</result>
             <result name="input">register.jsp</result>
+        </action>
+        <action name="shop" class="ecommerce.struts.ShopAction">
+            <result name="success" >shop.jsp</result>
         </action>
     </package>
 </struts>
