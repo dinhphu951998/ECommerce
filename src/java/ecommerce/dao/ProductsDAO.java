@@ -319,7 +319,6 @@ public class ProductsDAO extends BaseDAO<Products> {
         }
         return product;
     }
-
     public List<Products> searchProductsBySomeConditions(String searchValue, int categoryId, double priceFrom, double priceTo, String manufacture, int numOfPage, String typeSort, int productPerPage) throws SQLException, NamingException {
         List<Products> list = null;
         try {
@@ -457,6 +456,42 @@ public class ProductsDAO extends BaseDAO<Products> {
                     if (rs.getString("Manufacturer") != null) {
                         list.add(rs.getString("Manufacturer"));
                     }
+					 }
+            }
+        } finally {
+            closeConnection();
+        }
+        return list;
+    }    
+    public List<Products> getWishListByAccountID(String accountID) throws NamingException, SQLException {
+        List<Products> list = null;
+        String id, name, img;
+        float price, saleOff;
+        try {
+            conn = DBConnection.makeConnection();
+            if(conn != null) {
+                String sql = "Select Id, Name, Image1, Price, SaleOff "
+                        + "From Products "
+                        + "Where Id in ( Select ProductID "
+                                        + "From WishList "
+                                        + "Where AccountID = ? )";
+                pstm = conn.prepareStatement(sql);
+                pstm.setString(1, accountID);
+                rs = pstm.executeQuery();
+                list = new ArrayList<>();
+                while(rs.next()) {
+                    id = rs.getString("Id");
+                    name = rs.getString("Name");
+                    img = rs.getString("Image1");
+                    price = rs.getFloat("Price");
+                    saleOff = rs.getFloat("SaleOff");
+                    Products p = new Products();
+                    p.setId(id);
+                    p.setName(name);
+                    p.setImage1(img);
+                    p.setPrice(price);
+                    p.setSaleOff(saleOff);
+                    list.add(p);
                 }
             }
         } finally {

@@ -61,6 +61,7 @@
   <script src="js/vendor/velocity.min.js"></script>
   <script src="js/vendor/waves.min.js"></script>
   <script src="js/vendor/icheck.min.js"></script>
+  <script src="js/vendor/nouislider.min.js"></script>
   <script src="js/scripts.js"></script>
 
 </body><!-- <body> -->

@@ -88,4 +88,42 @@ public class AccountDAO {
         return result > 0;
     }
 
+    public boolean updateAccount(Accounts dto) throws NamingException, SQLException {
+        int row = 0;
+        try {
+            conn = DBConnection.makeConnection();
+            if(conn != null) {
+                String sql = "Update Accounts Set FirstName = ?, LastName = ?, Email = ?, "
+                        + "Phone = ?, Address = ? Where Id = ?";
+                pstm = conn.prepareStatement(sql);
+                pstm.setString(1, dto.getFirstName());
+                pstm.setString(2, dto.getLastName());
+                pstm.setString(3, dto.getEmail());
+                pstm.setString(4, dto.getPhone());
+                pstm.setString(5, dto.getAddress());
+                pstm.setString(6, dto.getId());
+                row = pstm.executeUpdate();
+            }
+        } finally {
+            closeConnection();
+        }
+        return row == 1;
+    }
+    
+    public boolean changePassword(Accounts dto) throws NamingException, SQLException, NoSuchAlgorithmException {
+        int row = 0;
+        try {
+            conn = DBConnection.makeConnection();
+            if(conn != null) {
+                String sql = "Update Accounts Set Password = ? Where Id = ?";
+                pstm = conn.prepareStatement(sql);
+                pstm.setString(1, Utils.encryptPassword(dto.getPassword()));
+                pstm.setString(2, dto.getId());
+                row = pstm.executeUpdate();
+            }
+        } finally {
+            closeConnection();
+        }
+        return row == 1;
+    }
 }

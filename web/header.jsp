@@ -95,7 +95,7 @@
                 <div class="toolbar">
                     <div class="inner"> 
                         <a href="#" class="mobile-menu-toggle"><i class="material-icons menu"></i></a>
-                        <a href="account.html"><i class="material-icons person"></i></a>
+                        <a href="Profile"><i class="material-icons person"></i></a>
                         <div class="cart-btn">
                             <a href="shopping-cart.html">
                                 <i>
