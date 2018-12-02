@@ -11,7 +11,7 @@
 
 <section class="hero-slider" data-loop="true" data-autoplay="true" data-interval="7000">
     <div class="inner">
-        <div class="slide" style="background-image: url(img/<s:property value="%{listBanners.get(0).Image1}"/>);">
+        <div class="slide" style="background-image: url(<s:property value="%{listBanners.get(0).Image1}"/>);">
             <div class="container">
                 <div class="absolute from-top" style="top: 13%;">
                     <span class="h1 hidden-xs"><s:property value="%{listBanners.get(0).Name}"/></span>
@@ -19,39 +19,76 @@
                 <div class="absolute text-right from-bottom" style="bottom: 13%; right: 15px;">
                     <span class="h2">
                         <span class="text-thin">Only</span><br>
-                        <strong>$<s:property value="%{listBanners.get(0).Price * (1 - listBanners.get(0).SaleOff)}"/></strong>
+                        <strong>
+                            $
+                            <s:text name="{0,number,#,##0.00}"> 
+                                <s:param name="value" value="listBanners.get(0).Price * (1 - listBanners.get(0).SaleOff)"/> 
+                            </s:text>
+                        </strong>
                     </span><br>
-                    <a href="#" class="btn btn-primary btn-with-icon-right waves-effect waves-light space-top-none">
+                    <s:url action="GetProductDetails" var="banner1">
+                        <s:param name="Id">
+                            <s:property value="listBanners.get(0).Id"/>
+                        </s:param>
+                    </s:url>
+                    <s:a href="%{#banner1}" 
+                         cssClass="btn btn-primary btn-with-icon-right waves-effect waves-light space-top-none">
                         View Offer
                         <i class="material-icons arrow_forward"></i>
-                    </a>
+                    </s:a>
                 </div>
             </div>
         </div><!-- .slide -->
-        <div class="slide" style="background-image: url(img/<s:property value="%{listBanners.get(1).Image1}"/>);">
+        <div class="slide" style="background-image: url(<s:property value="%{listBanners.get(1).Image1}"/>);">
             <div class="container text-center padding-top-3x">
                 <span class="h1 from-bottom"><s:property value="%{listBanners.get(1).Name}"/></span><br>
                 <span class="h2 from-bottom">
                     <span class="text-thin">Special price: 
-                    </span> <strong>$<s:property value="%{listBanners.get(1).Price * (1 - listBanners.get(1).SaleOff)}"/></strong>
+                    </span> <strong>
+                        $
+                        <s:text name="{0,number,#,##0.00}"> 
+                            <s:param name="value" value="listBanners.get(1).Price * (1 - listBanners.get(1).SaleOff)"/> 
+                        </s:text>
+                    </strong>
                 </span><br>
-                <a href="#" class="btn btn-primary btn-with-icon-right waves-effect waves-light scale-up">
+
+                <s:url action="GetProductDetails" var="banner2">
+                    <s:param name="Id">
+                        <s:property value="listBanners.get(1).Id"/>
+                    </s:param>
+                </s:url>
+                <s:a href="%{#banner2}" 
+                     cssClass="btn btn-primary btn-with-icon-right waves-effect waves-light scale-up">
                     View Offer
                     <i class="material-icons arrow_forward"></i>
-                </a>
+                </s:a>
+
             </div>
         </div><!-- .slide -->
-        <div class="slide" style="background-image: url(img/<s:property value="%{listBanners.get(2).Image1}"/>);">
+        <div class="slide" style="background-image: url(<s:property value="%{listBanners.get(2).Image1}"/>);">
             <div class="container padding-top-3x">
                 <span class="h1 space-top from-left"><s:property value="%{listBanners.get(2).Name}"/></span><br>
                 <span class="h2 from-right"><span class="text-thin">
                         Only <span class="hidden-xs">today</span>
-                    </span> <strong>$<s:property value="%{listBanners.get(2).Price * (1 - listBanners.get(2).SaleOff)}"/></strong>
+                    </span> <strong>
+                        $
+                        <s:text name="{0,number,#,##0.00}"> 
+                            <s:param name="value" value="listBanners.get(2).Price * (1 - listBanners.get(2).SaleOff)"/> 
+                        </s:text>
+                    </strong>
                 </span><br>
-                <a href="#" class="btn btn-primary btn-with-icon-right waves-effect waves-light scale-up">
+
+                <s:url action="GetProductDetails" var="banner3">
+                    <s:param name="Id">
+                        <s:property value="listBanners.get(2).Id"/>
+                    </s:param>
+                </s:url>
+                <s:a href="%{#banner3}" 
+                     cssClass="btn btn-primary btn-with-icon-right waves-effect waves-light scale-up">
                     View Offer
                     <i class="material-icons arrow_forward"></i>
-                </a>
+                </s:a>
+
             </div>
         </div><!-- .slide -->
     </div><!-- .inner -->
@@ -78,14 +115,27 @@
         <div class="col-lg-3 col-md-4">
             <div class="info-box text-center">
                 <h2>Special Offer<br><span class="text-danger">-<s:property value="%{highestOffer.SaleOff * 100}"/>%</span></h2>
-                <a href="#" class="inline">
-                    <img src="img/<s:property value="%{highestOffer.Image1}"/>" alt="Special Offer">
-                </a>
+
+                <s:url action="GetProductDetails" var="special">
+                    <s:param name="Id">
+                        <s:property value="highestOffer.Id"/>
+                    </s:param>
+                </s:url>
+                <s:a href="%{#special}" cssClass="inline">
+                    <img src="<s:property value="%{highestOffer.Image1}"/>" alt="Special Offer">
+                </s:a>
+
                 <h3 class="lead text-normal space-bottom-half">
-                    <a href="#" class="link-title"><s:property value="%{highestOffer.Name}"/></a>
+                    <s:a href="%{#special}" cssClass="link-title">
+                        <s:property value="%{highestOffer.Name}"/>
+                    </s:a>
                 </h3>
                 <span class="lead text-normal text-gray text-crossed">$<s:property value="%{highestOffer.Price}"/></span>
-                <span class="h4 text-normal text-danger">$<s:property value="%{highestOffer.Price * (1 - highestOffer.SaleOff)}"/></span>
+                <span class="h4 text-normal text-danger">
+                    $<s:text name="{0,number,#,##0.00}"> 
+                        <s:param name="value" value="highestOffer.Price * (1 - highestOffer.SaleOff)"/> 
+                    </s:text>
+                </span>
 
                 <!-- Countdown -->
                 <!-- Date Format: month/day/year. "date-time" data attribute is required. -->
@@ -131,13 +181,24 @@
                                 <div class="shop-item">
                                     <div class="shop-thumbnail">
                                         <span class="shop-label text-warning">New</span>
-                                        <a href="#" class="item-link"></a>
-                                        <img src="img/<s:property value="Image1"/>" alt="Shop item">
+
+                                        <a href="<s:url action="GetProductDetails">
+                                               <s:param name="Id">
+                                                   <s:property value="Id"/>
+                                               </s:param>
+                                           </s:url>" class="item-link">
+                                        </a>
+                                        <img src="<s:property value="Image1"/>" alt="Shop item">
                                         <div class="shop-item-tools">
                                             <a href="#" class="add-to-whishlist" data-toggle="tooltip" data-placement="top" title="Wishlist">
                                                 <i class="material-icons favorite_border"></i>
                                             </a>
-                                            <a href="#" class="add-to-cart">
+
+                                            <a href="<s:url action="AddToCart">
+                                                   <s:param name="Id">
+                                                       <s:property value="Id"/>
+                                                   </s:param>
+                                               </s:url>" class="add-to-cart">
                                                 <em>Add to Cart</em>
                                                 <svg x="0px" y="0px" width="32px" height="32px" viewBox="0 0 32 32">
                                                 <path stroke-dasharray="19.79 19.79" stroke-dashoffset="19.79" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="square" stroke-miterlimit="10" d="M9,17l3.9,3.9c0.1,0.1,0.2,0.1,0.3,0L23,11"/>
@@ -148,7 +209,10 @@
                                     <div class="shop-item-details">
                                         <h3 class="shop-item-title"><a href="#"><s:property value="Name"/></a></h3>
                                         <span class="shop-item-price">
-                                            $<s:property value="Price * (1 - SaleOff)"/>
+                                            $
+                                            <s:text name="{0,number,#,##0.00}"> 
+                                                <s:param name="value" value="Price * (1 - SaleOff)"/> 
+                                            </s:text>
                                         </span>
                                     </div>
                                 </div><!-- .shop-item -->
@@ -174,13 +238,24 @@
                                                 </s:iterator>
                                             </s:if>
                                         </span>
-                                        <a href="#" class="item-link"></a>
-                                        <img src="img/<s:property value="Image1"/>" alt="Shop item">
+
+                                        <a href="<s:url action="GetProductDetails">
+                                               <s:param name="Id">
+                                                   <s:property value="Id"/>
+                                               </s:param>
+                                           </s:url>" class="item-link">
+                                        </a>
+                                        <img src="<s:property value="Image1"/>" alt="Shop item">
                                         <div class="shop-item-tools">
                                             <a href="#" class="add-to-whishlist" data-toggle="tooltip" data-placement="top" title="Wishlist">
                                                 <i class="material-icons favorite_border"></i>
                                             </a>
-                                            <a href="#" class="add-to-cart">
+
+                                            <a href="<s:url action="AddToCart">
+                                                   <s:param name="Id">
+                                                       <s:property value="Id"/>
+                                                   </s:param>
+                                               </s:url>" class="add-to-cart">
                                                 <em>Add to Cart</em>
                                                 <svg x="0px" y="0px" width="32px" height="32px" viewBox="0 0 32 32">
                                                 <path stroke-dasharray="19.79 19.79" stroke-dashoffset="19.79" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="square" stroke-miterlimit="10" d="M9,17l3.9,3.9c0.1,0.1,0.2,0.1,0.3,0L23,11"/>
@@ -191,7 +266,10 @@
                                     <div class="shop-item-details">
                                         <h3 class="shop-item-title"><a href="#"><s:property value="Name"/></a></h3>
                                         <span class="shop-item-price">
-                                            $<s:property value="Price * (1 - SaleOff)"/>
+                                            $
+                                            <s:text name="{0,number,#,##0.00}"> 
+                                                <s:param name="value" value="Price * (1 - SaleOff)"/> 
+                                            </s:text>
                                         </span>
                                     </div>
                                 </div><!-- .shop-item -->
@@ -208,13 +286,24 @@
                                 <div class="shop-item">
                                     <div class="shop-thumbnail">
                                         <span class="shop-label text-danger">Sale</span>
-                                        <a href="#" class="item-link"></a>
-                                        <img src="img/<s:property value="Image1"/>" alt="Shop item">
+
+                                        <a href="<s:url action="GetProductDetails">
+                                               <s:param name="Id">
+                                                   <s:property value="Id"/>
+                                               </s:param>
+                                           </s:url>" class="item-link">
+                                        </a>
+                                        <img src="<s:property value="Image1"/>" alt="Shop item">
                                         <div class="shop-item-tools">
                                             <a href="#" class="add-to-whishlist" data-toggle="tooltip" data-placement="top" title="Wishlist">
                                                 <i class="material-icons favorite_border"></i>
                                             </a>
-                                            <a href="#" class="add-to-cart">
+
+                                            <a href="<s:url action="AddToCart">
+                                                   <s:param name="Id">
+                                                       <s:property value="Id"/>
+                                                   </s:param>
+                                               </s:url>" class="add-to-cart">
                                                 <em>Add to Cart</em>
                                                 <svg x="0px" y="0px" width="32px" height="32px" viewBox="0 0 32 32">
                                                 <path stroke-dasharray="19.79 19.79" stroke-dashoffset="19.79" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="square" stroke-miterlimit="10" d="M9,17l3.9,3.9c0.1,0.1,0.2,0.1,0.3,0L23,11"/>
@@ -226,7 +315,9 @@
                                         <h3 class="shop-item-title"><a href="#"><s:property value="Name"/></a></h3>
                                         <span class="shop-item-price">
                                             <span class="old-price">$<s:property value="Price"/></span>
-                                            $<s:property value="Price * (1 - SaleOff)"/>
+                                            $<s:text name="{0,number,#,##0.00}"> 
+                                                <s:param name="value" value="Price * (1 - SaleOff)"/> 
+                                            </s:text>
                                         </span>
                                     </div>
                                 </div><!-- .shop-item -->

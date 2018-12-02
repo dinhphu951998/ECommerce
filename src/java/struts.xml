@@ -12,7 +12,7 @@
             </result>
         </action>
         
-        <action name="Login" class="ecommerce.struts.LoginAction">
+        <action name="Login" class="ecommerce.struts.LoginAction" >
             <result name="admin" type="redirect">admin.jsp</result>
             <result name="user" type="redirect">home-page.jsp</result>
             <result name="fail">login.jsp</result>
@@ -61,6 +61,21 @@
             <result name="success" type="chain">Login</result>
             <result name="fail">register.jsp</result>
             <result name="input">register.jsp</result>
+        </action>
+
+        <action name="GetCart" class="ecommerce.struts.GetShoppingCartAction">
+            <result name="success">shopping-cart.jsp</result>
+        </action>
+        
+        <action name="RemoveItem" class="ecommerce.struts.AddToCartAction" method="remove">
+            <result name="success" type="redirectAction">
+                <param name="actionName">GetCart</param>
+            </result>
+        </action>
+        <action name="UpdateCart" class="ecommerce.struts.UpdateCartAction" >
+            <result name="success" type="redirectAction">
+                <param name="actionName">GetCart</param>
+            </result>
         </action>
 
     </package>

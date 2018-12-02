@@ -27,7 +27,9 @@ public class AddToCartAction {
     
     public String execute() throws Exception {
         String url = SUCCESS;
-        
+        if(quantity <= 0){
+            quantity = 1;
+        }
         ProductsDAO dao = new ProductsDAO();
         Products product = dao.getProductsById(Id);
         if(image == null){
@@ -47,6 +49,19 @@ public class AddToCartAction {
         return url;
     }
 
+    
+    public String remove() throws Exception{
+        String url = SUCCESS;
+        Map session = ActionContext.getContext().getSession();
+        MyCart cart = (MyCart) session.get("CART");
+        ProductsDAO dao = new ProductsDAO();
+        Products chosen = dao.getProductsById(Id);
+        chosen.setImage1(image);
+        cart.removeItem(chosen);
+        return url;
+    }
+    
+    
     public String getId() {
         return Id;
     }
@@ -60,9 +75,7 @@ public class AddToCartAction {
     }
 
     public void setQuantity(int quantity) {
-        if(quantity <= 0){
-            quantity = 1;
-        }
+        
         this.quantity = quantity;
     }
 
@@ -81,7 +94,7 @@ public class AddToCartAction {
     public void setImage(String image) {
         this.image = image;
     }
-    
+
     
     
 }

@@ -3,7 +3,9 @@ package ecommerce.entities;
 
 import java.io.Serializable;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Map;
+import java.util.Set;
 
 
 public class MyCart implements Serializable {
@@ -23,17 +25,43 @@ public class MyCart implements Serializable {
             int quan = cart.get(product);
             cart.put(product, quan + quantity);
         }
-        total += product.getPrice();
+        computeTotal();
     }
     
     public void removeItem(Products product){
         if(cart.containsKey(product)){
-            double price = product.getPrice();
-            int quantity = cart.remove(product);
-            total -= price * quantity;
+            cart.remove(product);
+            computeTotal();
         }
     }
-
+    
+    public void update(int hashCode, int quantity){
+        Products p = getProductByHashCodeInCart(hashCode);
+        this.cart.put(p, quantity);
+        computeTotal();
+    }
+    
+    private Products getProductByHashCodeInCart(int hashCode){
+        Set<Products> s = this.cart.keySet();
+        Iterator<Products> it = s.iterator();
+        while(it.hasNext()){
+            Products p = it.next();
+            if(p.hashCode() == hashCode){
+                return p;
+            }
+        }
+        return null;
+    }
+    
+    private void computeTotal(){
+        total = 0;
+        for (Map.Entry<Products, Integer> entry : cart.entrySet()) {
+            Products key = entry.getKey();
+            Integer value = entry.getValue();
+            total += key.getPrice() * value;
+        }
+    }
+    
     public Map<Products, Integer> getCart() {
         return cart;
     }

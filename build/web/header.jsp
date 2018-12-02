@@ -46,34 +46,32 @@
             <header class="navbar navbar-sticky">
 
                 <!-- Site Logo -->
-                <a href="index.html" class="site-logo visible-desktop">
+                <s:a href="Home" cssClass="site-logo visible-desktop">
                     <span>[</span> M
                     <span class="text-gray">/</span>
                     STORE <span>]</span>
-                </a><!-- site-logo.visible-desktop -->
-                <a href="index.html" class="site-logo visible-mobile">
+                </s:a>
+
+                <s:a href="Home" cssClass="site-logo visible-mobile">
                     <span>[</span> M <span>]</span>
-                </a>
+                </s:a>
 
                 <nav class="main-navigation text-center">
                     <ul class="menu">
                         <li class="current-menu-item">
-                            <a href="index.html">Home</a>
-                        </li>
-                        <li class="">
-                            <a href="shop-fullwidth-sl.html">Shop</a>
-                        </li>
-                        <li class="">
-                            <a href="/ECommerce/GetProductDetails?Id=1">Detail Test</a>
-                        </li>
-                        <li class="menu-item-has-children">
-                            <a href="#">Pages</a>
-                            <ul class="sub-menu">
-                                <li><a href="about.html">About</a></li>
-                                <li><a href="contacts.html">Contacts</a></li>
-                                <li><a href="faq.html">FAQ</a></li>          
-                            </ul>
-                        </li>
+                            <s:a action="Home">Home</s:a>
+                            </li>
+                            <li class="">
+                                <a href="shop-fullwidth-sl.html">Shop</a>
+                            </li>
+                            <li class="menu-item-has-children">
+                                <a href="#">Pages</a>
+                                <ul class="sub-menu">
+                                    <li><a href="about.html">About</a></li>
+                                    <li><a href="contacts.html">Contacts</a></li>
+                                    <li><a href="faq.html">FAQ</a></li>          
+                                </ul>
+                            </li>
 
                         <s:if test="%{#session.USER == null}">
                             <li class="">
@@ -83,10 +81,10 @@
                         <s:if test="%{#session.USER != null}">
                             <li class="menu-item-has-children">
                                 <s:a href="#" ><s:property value="#session.USER.lastName" /></s:a>
-                                <ul class="sub-menu">
-                                <li><a href="/ECommerce/logout">Log out</a></li>         
-                            </ul>
-                            </li>
+                                    <ul class="sub-menu">
+                                        <li><a href="/ECommerce/logout">Log out</a></li>         
+                                    </ul>
+                                </li>
 
                         </s:if>
                     </ul>
@@ -97,12 +95,67 @@
                         <a href="#" class="mobile-menu-toggle"><i class="material-icons menu"></i></a>
                         <a href="account.html"><i class="material-icons person"></i></a>
                         <div class="cart-btn">
-                            <a href="shopping-cart.html">
+                            <s:a action="GetCart">
                                 <i>
                                     <span class="material-icons shopping_basket"></span>
-                                    <span class="count">2</span>
+                                    <s:if test="#session.CART != null">
+                                        <span class="count">
+                                            <s:property value="#session.CART.cart.size()"/>
+                                        </span>
+                                    </s:if>
                                 </i>
-                            </a>
+                            </s:a>
+                            <s:if test="#session.CART != null">
+                                <!-- Cart Dropdown -->
+                                <div class="cart-dropdown">
+                                    <s:set var="shoppingCart" value="#session.CART"/>
+                                    <s:iterator value="#session.CART.cart">
+                                        <div class="cart-item">
+                                            <a href="<s:url action="GetProductDetails">
+                                                   <s:param name="Id">
+                                                       <s:property value="key.Id"/>
+                                                   </s:param>
+                                               </s:url>" class="item-thumb">
+                                                <img src="<s:property value="key.image1"/>" alt="Item">
+                                            </a>
+                                            <div class="item-details">
+                                                <h3 class="item-title">
+                                                    <a href="<s:url action="GetProductDetails">
+                                                           <s:param name="Id">
+                                                               <s:property value="key.Id"/>
+                                                           </s:param>
+                                                       </s:url>">
+                                                        <s:property value="key.name"/>
+                                                    </a>
+                                                </h3>
+                                                <h4 class="item-price">
+                                                    <s:property value="value"/> x $<s:property value="key.price"/>
+                                                </h4>
+                                            </div>
+                                            <a href="<s:url action="RemoveItem">
+                                                   <s:param name="Id">
+                                                       <s:property value="key.Id"/>
+                                                   </s:param>
+                                                   <s:param name="image">
+                                                       <s:property value="key.image1"/>
+                                                   </s:param>
+                                               </s:url>" class="close-btn">
+                                                <i class="material-icons close"></i>
+                                            </a>
+                                        </div><!-- .cart-item -->
+                                    </s:iterator>
+                                    <div class="cart-subtotal">
+                                        <div class="column">
+                                            <span>Subtotal:</span>
+                                        </div>
+                                        <div class="column">
+                                            <span class="amount">
+                                                $<s:property value="#session.CART.total"/>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div><!-- .cart-dropdown -->
+                            </s:if>
                         </div>
                     </div>
                 </div>
