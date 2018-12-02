@@ -34,7 +34,6 @@ public class LoadProfileAction {
     private Accounts dto;
     private List<Orders> listOrders;
     private List<Products> listWishes;
-    private String wishlistString;
     private static final String SUCCESS = "success";
     private static final String FAILED = "failed";
 
@@ -50,20 +49,6 @@ public class LoadProfileAction {
             ProductsDAO productDAO = new ProductsDAO();
             listOrders = orderDAO.getOrdersByAcountID(dto.getId());
 
-            //sync wishlist from local storage to database
-            WishlistDAO wishlistDAO = new WishlistDAO();
-            if (wishlistString != null && !wishlistString.trim().isEmpty()) {
-                String[] productIds = wishlistString.split(",");
-                for (String productId : productIds) {
-                    if (productId != null && !productId.trim().isEmpty()) {
-                        try {
-                            wishlistDAO.add(new Wishlist(dto.getId(), productId));
-                        } catch (Exception ex) {
-                        }
-                    }
-                }
-            }
-
             //get wishlist with product
             listWishes = productDAO.getWishListByAccountID(dto.getId());
             url = SUCCESS;
@@ -71,13 +56,6 @@ public class LoadProfileAction {
         return url;
     }
 
-    public String getWishlistString() {
-        return wishlistString;
-    }
-
-    public void setWishlistString(String wishlistString) {
-        this.wishlistString = wishlistString;
-    }
 
     public Accounts getDto() {
         return dto;

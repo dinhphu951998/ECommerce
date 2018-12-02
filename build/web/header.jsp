@@ -40,6 +40,53 @@
                 <img src="img/preloader.gif" alt="Preloader">
             </div>
         </div><!-- .page-preloader -->
+        <s:if test="%{#session.USER == null}">
+            <!-- Large Modal -->
+            <div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog">
+                <div class="modal-dialog" role="document">
+                        <section class="container padding-top-3x padding-bottom-2x">
+                            <div class="row padding-top">
+                                <div class="col-md-4 padding-bottom">
+                                    <h3>Login</h3>
+                                    <h3 style="color: red"></h3>
+                                    <form id="Login" name="Login" action="/ECommerce/Login" method="POST" class="login-form">
+                                        <input type="text" name="Id" value="" id="Login_Id" class="form-control" required="required" placeholder="Username"/>
+                                        <input type="password" name="password" id="Login_password" class="form-control" required="required" placeholder="Password"/>
+                                        <div class="form-footer">
+                                            <div class="rememberme">
+                                                <label class="checkbox">
+                                                    <input type="checkbox" name="remember" value="true" id="Login_remember" style="color:red"/><input type="hidden" id="__checkbox_Login_remember" name="__checkbox_remember" value="true" /> Remember me
+                                                </label>
+                                            </div>
+                                            <div class="form-submit">
+                                                <button type="submit" class="btn btn-primary btn-block waves-effect waves-light">Login</button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                    <a href="/ECommerce/registerForm">Register here</a>
+                                </div><!-- .col-md-4 -->
+
+                                <div class="col-md-3 padding-top-2x">
+                                    <a href="#" class="social-signup-btn ssb-facebook">
+                                        <i class="socicon-facebook"></i>
+                                        <span>Signup with Facebook</span>
+                                    </a>
+                                    <a href="#" class="social-signup-btn ssb-google">
+                                        <i class="socicon-googleplus"></i>
+                                        <span>Signup with Google+</span>
+                                    </a>
+                                    <a href="#" class="social-signup-btn ssb-twitter">
+                                        <i class="socicon-twitter"></i>
+                                        <span>Signup with Twitter</span>
+                                    </a>
+                                </div><!-- .col-md-3 -->
+                            </div><!-- .row -->
+                        </section><!-- .container -->
+
+
+                </div><!-- /.modal-dialog -->
+            </div><!-- /.modal -->
+        </s:if>
 
         <div class="page-wrapper">
 
@@ -62,7 +109,7 @@
                             <s:a action="Home">Home</s:a>
                             </li>
                             <li class="">
-                                <a href="shop-fullwidth-sl.html">Shop</a>
+                            <s:a action="shop">Shop</s:a>
                             </li>
                             <li class="menu-item-has-children">
                                 <a href="#">Pages</a>
@@ -93,9 +140,9 @@
                 <div class="toolbar">
                     <div class="inner"> 
                         <s:form action="Profile" method="post" id="profile-form" theme="simple"></s:form>
-                        <a href="#" class="mobile-menu-toggle"><i class="material-icons menu"></i></a>
-                        <a href="#" id="profile-button"><i class="material-icons person"></i></a>
-                        <div class="cart-btn">
+                            <a href="#" class="mobile-menu-toggle"><i class="material-icons menu"></i></a>
+                            <a href="#" id="profile-button"><i class="material-icons person"></i></a>
+                            <div class="cart-btn">
                             <s:a action="GetCart">
                                 <i>
                                     <span class="material-icons shopping_basket"></span>

@@ -455,6 +455,7 @@
         </div>
     </div><!-- .row -->
 </section><!-- .container -->
+<input type="hidden" id="popup-modal-input" class="btn btn-primary btn-block" data-toggle="modal" data-target=".bs-example-modal-lg"/>
 
 
 <s:include value="footer.jsp"/>

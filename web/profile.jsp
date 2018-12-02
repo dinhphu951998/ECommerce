@@ -174,7 +174,12 @@
                                                    class="item-link"></a>
                                                 <img src="<s:property value="Image1"/>" alt="Shop item">
                                                 <div class="shop-item-tools">
-                                                    <a href="#" class="add-to-whishlist" data-toggle="tooltip" title="Remove from wishlist">
+                                                    <a href="<s:url action="AddToWishlist">
+                                                           <s:param name="productId" >
+                                                               <s:property value="Id"/>
+                                                           </s:param>
+                                                           <s:param name="isRemove" value="true"/>
+                                                    </s:url>" class="add-to-whishlist" data-toggle="tooltip" title="Remove from wishlist">
                                                         <i class="material-icons close"></i>
                                                     </a>
                                                     <a href="#" class="add-to-cart">

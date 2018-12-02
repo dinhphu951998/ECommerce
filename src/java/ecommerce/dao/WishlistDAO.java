@@ -56,4 +56,21 @@ public class WishlistDAO extends BaseDAO<Wishlist> implements Serializable {
         }
     }
 
+    public boolean checkInWishlist(Wishlist entity) throws NamingException, SQLException {
+        try {
+            String sql = "select * from Wishlist where accountId = ? and productId = ? ";
+            conn = DBConnection.makeConnection();
+            pstm = conn.prepareStatement(sql);
+            pstm.setString(1, entity.getAccountID());
+            pstm.setString(2, entity.getProductID());
+            rs = pstm.executeQuery();
+            if (rs.next()) {
+                return true;
+            }
+        } finally {
+            closeConnection();
+        }
+        return false;
+    }
+
 }
