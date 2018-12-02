@@ -78,16 +78,10 @@
                     </strong>
                 </span><br>
 
-                <s:url action="GetProductDetails" var="banner3">
-                    <s:param name="Id">
-                        <s:property value="listBanners.get(2).Id"/>
-                    </s:param>
-                </s:url>
-                <s:a href="%{#banner3}" 
-                     cssClass="btn btn-primary btn-with-icon-right waves-effect waves-light scale-up">
+                <a href="GetProductDetails?Id=<s:property value="%{listBanners.get(2).Id}"/>" class="btn btn-primary btn-with-icon-right waves-effect waves-light scale-up">
                     View Offer
                     <i class="material-icons arrow_forward"></i>
-                </s:a>
+                </a>
 
             </div>
         </div><!-- .slide -->
@@ -190,7 +184,8 @@
                                         </a>
                                         <img src="<s:property value="Image1"/>" alt="Shop item">
                                         <div class="shop-item-tools">
-                                            <a href="#" class="add-to-whishlist" data-toggle="tooltip" data-placement="top" title="Wishlist">
+                                            <a href="#" class="add-to-whishlist" data-id="<s:property value="Id"/>" 
+                                               data-toggle="tooltip" data-placement="top" title="Wishlist">
                                                 <i class="material-icons favorite_border"></i>
                                             </a>
 
@@ -207,7 +202,7 @@
                                         </div>
                                     </div>
                                     <div class="shop-item-details">
-                                        <h3 class="shop-item-title"><a href="#"><s:property value="Name"/></a></h3>
+                                        <h3 class="shop-item-title"><a href="GetProductDetails?Id=<s:property value="%{Id}"/>"><s:property value="Name"/></a></h3>
                                         <span class="shop-item-price">
                                             $
                                             <s:text name="{0,number,#,##0.00}"> 
@@ -247,7 +242,8 @@
                                         </a>
                                         <img src="<s:property value="Image1"/>" alt="Shop item">
                                         <div class="shop-item-tools">
-                                            <a href="#" class="add-to-whishlist" data-toggle="tooltip" data-placement="top" title="Wishlist">
+                                            <a href="#" class="add-to-whishlist" data-id="<s:property value="Id"/>" 
+                                               data-toggle="tooltip" data-placement="top" title="Wishlist">
                                                 <i class="material-icons favorite_border"></i>
                                             </a>
 
@@ -264,7 +260,11 @@
                                         </div>
                                     </div>
                                     <div class="shop-item-details">
-                                        <h3 class="shop-item-title"><a href="#"><s:property value="Name"/></a></h3>
+                                        <h3 class="shop-item-title">
+                                            <a href="GetProductDetails?Id=<s:property value="%{Id}"/>">
+                                                <s:property value="Name"/>
+                                            </a>
+                                        </h3>
                                         <span class="shop-item-price">
                                             $
                                             <s:text name="{0,number,#,##0.00}"> 
@@ -295,7 +295,8 @@
                                         </a>
                                         <img src="<s:property value="Image1"/>" alt="Shop item">
                                         <div class="shop-item-tools">
-                                            <a href="#" class="add-to-whishlist" data-toggle="tooltip" data-placement="top" title="Wishlist">
+                                            <a href="#" class="add-to-whishlist" data-id="<s:property value="Id"/>" 
+                                               data-toggle="tooltip" data-placement="top" title="Wishlist">
                                                 <i class="material-icons favorite_border"></i>
                                             </a>
 
@@ -312,7 +313,11 @@
                                         </div>
                                     </div>
                                     <div class="shop-item-details">
-                                        <h3 class="shop-item-title"><a href="#"><s:property value="Name"/></a></h3>
+                                        <h3 class="shop-item-title">
+                                            <a href="GetProductDetails?Id=<s:property value="%{Id}"/>">
+                                                <s:property value="Name"/>
+                                            </a>
+                                        </h3>
                                         <span class="shop-item-price">
                                             <span class="old-price">$<s:property value="Price"/></span>
                                             $<s:text name="{0,number,#,##0.00}"> 

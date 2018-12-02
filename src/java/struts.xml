@@ -77,6 +77,13 @@
                 <param name="actionName">GetCart</param>
             </result>
         </action>
+        
+        <action name="AddToWishlist" class="ecommerce.struts.AddToWishlistAction" >
+            <result name="success" type="stream" >
+                <param name="contentType">text/plain</param>
+                <param name="inputName">stream</param>
+            </result>
+        </action>
 
     </package>
     

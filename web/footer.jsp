@@ -64,7 +64,9 @@
   <script src="js/vendor/owl.carousel.min.js"></script>
   <script src="js/vendor/jquery.downCount.js"></script>
   <script src="js/vendor/magnific-popup.min.js"></script>
+  <script src="js/vendor/nouislider.min.js"></script>
   <script src="js/scripts.js"></script>
+  <script src="js/wishlist.js"></script>
 
 
 </body><!-- <body> -->

@@ -92,8 +92,9 @@
 
                 <div class="toolbar">
                     <div class="inner"> 
+                        <s:form action="Profile" method="post" id="profile-form" theme="simple"></s:form>
                         <a href="#" class="mobile-menu-toggle"><i class="material-icons menu"></i></a>
-                        <a href="account.html"><i class="material-icons person"></i></a>
+                        <a href="#" id="profile-button"><i class="material-icons person"></i></a>
                         <div class="cart-btn">
                             <s:a action="GetCart">
                                 <i>
