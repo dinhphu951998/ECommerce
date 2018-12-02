@@ -183,7 +183,7 @@
                                         <span class="shop-label text-danger">Sale</span>
                                     </s:if>
 
-                                    <a href="shop-single.html" class="item-link"></a>
+                                    <a href="GetProductDetails?id=<s:property value="Id"/>" class="item-link"></a>
                                     <img src="img/<s:property value="Image1" />" alt="Shop item">
                                     <div class="shop-item-tools">
                                         <a href="#" class="add-to-whishlist" data-toggle="tooltip" data-placement="top" title="Wishlist">

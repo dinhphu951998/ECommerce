@@ -9,7 +9,7 @@
 
 <s:include value="header.jsp"/>
 <!-- Featured Image -->
-<div class="featured-image" style="background-image: url(img/<s:property value="%{dto.Image}"/>);"></div>
+<!--<div class="featured-image" style="background-image: url(img/<s:property value="%{dto.Image}"/>);"></div>-->
 
 <!-- Content -->
 <section class="container padding-top-3x">
