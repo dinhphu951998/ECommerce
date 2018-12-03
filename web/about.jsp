@@ -23,7 +23,7 @@
             <div class="quotation padding-top">
                 <s:if test="%{listAccount != null}">
                     <s:iterator value="%{listAccount}">
-                        <s:if test="Id == 'phu'">
+                        <s:if test="Id == 'phund'">
                             <div class="quotation-author">
                                 <div class="quotation-author-ava">
                                     <img src="<s:property value="Image"/>" alt="<s:property value="LastName"/>">
@@ -63,7 +63,7 @@
                         </div>
                         <h4 class="teammate-name"><s:property value="FirstName"/> <s:property value="LastName"/></h4>
                         <span class="teammate-position">
-                            <s:if test="%{Id == 'phu'}">
+                            <s:if test="%{Id == 'phund'}">
                                 Team Leader, Developer
                             </s:if>
                             <s:else>
