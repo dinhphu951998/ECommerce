@@ -55,14 +55,19 @@
 
   </div><!-- .page-wrapper -->
 
-  <script src="js/vendor/jquery-2.1.4.min.js"></script>
+    <script src="js/vendor/jquery-2.1.4.min.js"></script>
   <script src="js/vendor/bootstrap.min.js"></script>
   <script src="js/vendor/smoothscroll.js"></script>
   <script src="js/vendor/velocity.min.js"></script>
   <script src="js/vendor/waves.min.js"></script>
   <script src="js/vendor/icheck.min.js"></script>
+  <script src="js/vendor/owl.carousel.min.js"></script>
+  <script src="js/vendor/jquery.downCount.js"></script>
+  <script src="js/vendor/magnific-popup.min.js"></script>
   <script src="js/vendor/nouislider.min.js"></script>
   <script src="js/scripts.js"></script>
+  <script src="js/wishlist.js"></script>
+
 
 </body><!-- <body> -->
 

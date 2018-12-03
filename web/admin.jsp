@@ -16,6 +16,6 @@
     <body>
         <h1>This is admin</h1>
         <s:a href="/ECommerce/logout">Log out</s:a><br><br>
-        <s:a href="/ECommerce/home-page.jsp">Go to home page</s:a>
+        <s:a href="/ECommerce/Home">Go to home page</s:a>
     </body>
 </html>

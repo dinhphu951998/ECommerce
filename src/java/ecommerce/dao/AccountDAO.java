@@ -4,7 +4,6 @@
  * and open the template in the editor.
  */
 package ecommerce.dao;
-
 import ecommerce.dbutils.DBConnection;
 import ecommerce.entities.Accounts;
 import ecommerce.tools.Utils;
