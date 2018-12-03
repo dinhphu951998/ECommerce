@@ -114,7 +114,7 @@
                             <li class="menu-item-has-children">
                                 <a href="#">Pages</a>
                                 <ul class="sub-menu">
-                                    <li><a href="about.html">About</a></li>
+                                    <li><a href="About">About</a></li>
                                     <li><a href="contacts.html">Contacts</a></li>
                                     <li><a href="faq.html">FAQ</a></li>          
                                 </ul>
