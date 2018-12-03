@@ -12,6 +12,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import javax.naming.NamingException;
 
 /**
@@ -124,5 +126,30 @@ public class AccountDAO {
             closeConnection();
         }
         return row == 1;
+    }
+    
+    public List<Accounts> getTop3Admin() throws NamingException, SQLException {
+        List<Accounts> list = null;
+        String firstName, lastName, img, id;
+        try {
+            conn = DBConnection.makeConnection();
+            if(conn != null) {
+                String sql = "Select Top 3 Id, FirstName, LastName, Image "
+                        + "From Accounts Where RoleID = 'AD'";
+                pstm = conn.prepareStatement(sql);
+                rs = pstm.executeQuery();
+                list = new ArrayList<>();
+                while(rs.next()) {
+                    id = rs.getString("Id");
+                    firstName = rs.getString("FirstName");
+                    lastName = rs.getString("LastName");
+                    img = rs.getString("Image");
+                    list.add(new Accounts(id, firstName, lastName, null, null, null, null, img, "AD"));
+                }
+            }
+        } finally {
+            closeConnection();
+        }
+        return list;
     }
 }

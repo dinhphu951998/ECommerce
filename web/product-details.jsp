@@ -86,7 +86,16 @@
     <div class="container">
         <div class="product-info padding-top-2x text-center">
             <h1 class="h2 space-bottom-half"><s:property value="product.name"/></h1>
-            <h2>$<s:property value="product.price"/></h2>
+            <s:if test="%{product.saleOff != 0}">
+                <span class="old-price" style="text-decoration: line-through; color: #999">
+                    $<s:property value="product.price"/>
+                </span>
+            </s:if>
+            <h2>
+                $<s:text name="{0,number,#,##0.00}"> 
+                    <s:param name="value" value="product.price * (1- product.saleOff)"/> 
+                </s:text>
+            </h2>
             <p class="text-sm text-gray">
                 <s:property value="product.shortDescription"/>
             </p>
@@ -118,9 +127,6 @@
                     </div><!-- .count-input -->
                     <div class="form-element">
                         <s:if test="%{colors != null}">
-                            <%--<s:select list="colors" 
-                                      cssClass="form-control form-control-sm color-select" name="color" >
-                            </s:select>--%>
                             <select class="form-control form-control-sm color-select" name="color">
                                 <s:iterator var="color" value="colors" status="stt" >
                                     <option value="<s:property value="color"/>" 
@@ -133,7 +139,7 @@
                     </div><!-- .form-element -->
                     <s:hidden name="Id" value="%{Id}"/>
                     <s:hidden name="image" value="product.image1" id="chosen-image-id"/>
-                    
+
                     <s:a cssClass="add-to-cart" href="#" onclick="submitForm()" id="add-cart-link">
                         <em>Add to Cart</em>
                         <svg x="0px" y="0px" width="32px" height="32px" viewBox="0 0 32 32">
@@ -150,7 +156,8 @@
                     var form = document.getElementById("add-cart-form");
                     var chosenImage = $(".current").get(0);
                     $("#chosen-image-id").attr("value", $(chosenImage).children("img").attr("src"));
-                    form.submit();1
+                    form.submit();
+                    1
                 }
 
             </script>
@@ -209,6 +216,9 @@
             <div class="col-lg-3 col-sm-6">
                 <div class="shop-item">
                     <div class="shop-thumbnail">
+                        <s:if test="%{saleOff != 0}">
+                            <span class="shop-label text-danger">Sale</span>
+                        </s:if>
                         <s:url action="GetProductDetails" var="detailsLink">
                             <s:param name="Id" value="id"/>
                         </s:url>
@@ -216,7 +226,8 @@
                             <!--<a href="#" class="item-link"></a>-->
                             <img src="<s:property value="image1"/>" alt="Shop item">
                         <div class="shop-item-tools">
-                            <a href="#" class="add-to-whishlist" data-toggle="tooltip" data-placement="top" title="Wishlist">
+                            <a href="#" class="add-to-whishlist" data-id="<s:property value="Id"/>" 
+                               data-toggle="tooltip" data-placement="top" title="Wishlist">
                                 <i class="material-icons favorite_border"></i>
                             </a>
 
@@ -236,9 +247,16 @@
                         </div>
                     </div>
                     <div class="shop-item-details">
-                        <h3 class="shop-item-title"><a href="#"><s:property value="name"/></a></h3>
+                        <h3 class="shop-item-title">
+                            <s:a href="%{detailsLink}"><s:property value="name"/></s:a>
+                        </h3>
                         <span class="shop-item-price">
-                            $<s:property value="price"/>
+                            <s:if test="%{saleOff != 0}">
+                                <span class="old-price">$<s:property value="price"/></span>
+                            </s:if>
+                            $<s:text name="{0,number,#,##0.00}"> 
+                                <s:param name="value" value="Price * (1 - SaleOff)"/> 
+                            </s:text>
                         </span>
                     </div>
                 </div><!-- .shop-item -->

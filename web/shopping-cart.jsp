@@ -50,7 +50,9 @@
                                         </h6>
                                     </s:if>
                                     <h4 class="item-price">
-                                        $<s:property value="key.price"/>
+                                        $<s:text name="{0,number,#,##0.00}"> 
+                                            <s:param name="value" value="key.price * (1- key.saleOff)"/> 
+                                        </s:text>
                                     </h4>
 
                                     <div class="count-input">

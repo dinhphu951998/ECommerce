@@ -44,44 +44,44 @@
             <!-- Large Modal -->
             <div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog">
                 <div class="modal-dialog" role="document">
-                        <section class="container padding-top-3x padding-bottom-2x">
-                            <div class="row padding-top">
-                                <div class="col-md-4 padding-bottom">
-                                    <h3>Login</h3>
-                                    <h3 style="color: red"></h3>
-                                    <form id="Login" name="Login" action="/ECommerce/Login" method="POST" class="login-form">
-                                        <input type="text" name="Id" value="" id="Login_Id" class="form-control" required="required" placeholder="Username"/>
-                                        <input type="password" name="password" id="Login_password" class="form-control" required="required" placeholder="Password"/>
-                                        <div class="form-footer">
-                                            <div class="rememberme">
-                                                <label class="checkbox">
-                                                    <input type="checkbox" name="remember" value="true" id="Login_remember" style="color:red"/><input type="hidden" id="__checkbox_Login_remember" name="__checkbox_remember" value="true" /> Remember me
-                                                </label>
-                                            </div>
-                                            <div class="form-submit">
-                                                <button type="submit" class="btn btn-primary btn-block waves-effect waves-light">Login</button>
-                                            </div>
+                    <section class="container padding-top-3x padding-bottom-2x">
+                        <div class="row padding-top">
+                            <div class="col-md-4 padding-bottom">
+                                <h3>Login</h3>
+                                <h3 style="color: red"></h3>
+                                <form id="Login" name="Login" action="/ECommerce/Login" method="POST" class="login-form">
+                                    <input type="text" name="Id" value="" id="Login_Id" class="form-control" required="required" placeholder="Username"/>
+                                    <input type="password" name="password" id="Login_password" class="form-control" required="required" placeholder="Password"/>
+                                    <div class="form-footer">
+                                        <div class="rememberme">
+                                            <label class="checkbox">
+                                                <input type="checkbox" name="remember" value="true" id="Login_remember" style="color:red"/><input type="hidden" id="__checkbox_Login_remember" name="__checkbox_remember" value="true" /> Remember me
+                                            </label>
                                         </div>
-                                    </form>
-                                    <a href="/ECommerce/registerForm">Register here</a>
-                                </div><!-- .col-md-4 -->
+                                        <div class="form-submit">
+                                            <button type="submit" class="btn btn-primary btn-block waves-effect waves-light">Login</button>
+                                        </div>
+                                    </div>
+                                </form>
+                                <a href="/ECommerce/registerForm">Register here</a>
+                            </div><!-- .col-md-4 -->
 
-                                <div class="col-md-3 padding-top-2x">
-                                    <a href="#" class="social-signup-btn ssb-facebook">
-                                        <i class="socicon-facebook"></i>
-                                        <span>Signup with Facebook</span>
-                                    </a>
-                                    <a href="#" class="social-signup-btn ssb-google">
-                                        <i class="socicon-googleplus"></i>
-                                        <span>Signup with Google+</span>
-                                    </a>
-                                    <a href="#" class="social-signup-btn ssb-twitter">
-                                        <i class="socicon-twitter"></i>
-                                        <span>Signup with Twitter</span>
-                                    </a>
-                                </div><!-- .col-md-3 -->
-                            </div><!-- .row -->
-                        </section><!-- .container -->
+                            <div class="col-md-3 padding-top-2x">
+                                <a href="#" class="social-signup-btn ssb-facebook">
+                                    <i class="socicon-facebook"></i>
+                                    <span>Signup with Facebook</span>
+                                </a>
+                                <a href="#" class="social-signup-btn ssb-google">
+                                    <i class="socicon-googleplus"></i>
+                                    <span>Signup with Google+</span>
+                                </a>
+                                <a href="#" class="social-signup-btn ssb-twitter">
+                                    <i class="socicon-twitter"></i>
+                                    <span>Signup with Twitter</span>
+                                </a>
+                            </div><!-- .col-md-3 -->
+                        </div><!-- .row -->
+                    </section><!-- .container -->
 
 
                 </div><!-- /.modal-dialog -->
@@ -114,7 +114,7 @@
                             <li class="menu-item-has-children">
                                 <a href="#">Pages</a>
                                 <ul class="sub-menu">
-                                    <li><a href="about.html">About</a></li>
+                                    <li><a href="About">About</a></li>
                                     <li><a href="contacts.html">Contacts</a></li>
                                     <li><a href="faq.html">FAQ</a></li>          
                                 </ul>
@@ -177,7 +177,10 @@
                                                     </a>
                                                 </h3>
                                                 <h4 class="item-price">
-                                                    <s:property value="value"/> x $<s:property value="key.price"/>
+                                                    <s:property value="value"/> x 
+                                                    $<s:text name="{0,number,#,##0.0}"> 
+                                                        <s:param name="value" value="key.price * (1- key.saleOff)"/> 
+                                                    </s:text>
                                                 </h4>
                                             </div>
                                             <a href="<s:url action="RemoveItem">
