@@ -355,4 +355,41 @@ public class ProductsDAO extends BaseDAO<Products> {
         }
         return list;
     }
+    
+    public List<Products> getProductByOrderID(String orderID) throws NamingException, SQLException {
+        List<Products> list = null;
+        String name, img;
+        int quantity;
+        double price, saleOff;
+        try {
+            conn = DBConnection.makeConnection();
+            if(conn != null) {
+                String sql = "Select p.Name, p.Image1, o.Price, o.Quantity, o.SaleOff " +
+                             "From Products p JOIN OrderDetails o " +
+                             "ON o.ProductID = p.Id " +
+                             "Where o.OrderID = ?";
+                pstm = conn.prepareStatement(sql);
+                pstm.setString(1, orderID);
+                rs = pstm.executeQuery();
+                list = new ArrayList<>();
+                while(rs.next()) {
+                    name = rs.getString("Name");
+                    img = rs.getString("Image1");
+                    quantity = rs.getInt("Quantity");
+                    price = rs.getDouble("Price");
+                    saleOff = rs.getDouble("SaleOff");
+                    Products p = new Products();
+                    p.setName(name);
+                    p.setImage1(img);
+                    p.setStock(quantity);
+                    p.setPrice(price);
+                    p.setSaleOff(saleOff);
+                    list.add(p);
+                }
+            }
+        } finally {
+            closeConnection();
+        }
+        return list;
+    }
 }

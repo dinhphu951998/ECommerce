@@ -139,7 +139,10 @@
                                 <tbody>
                                     <s:iterator value="%{listOrders}">
                                         <tr>
-                                            <td><a href="#"><s:property value="ID"/></a></td>
+                                            <s:url value="OrderDetail" var="Detail">
+                                                <s:param name="id" value="ID"/>
+                                            </s:url>
+                                            <td><s:a href="%{Detail}"><s:property value="ID"/></s:a></td>
                                             <td><s:property value="DatePurchased"/></td>
                                             <td>
                                                 <s:if test="Status == 'Delivered'">

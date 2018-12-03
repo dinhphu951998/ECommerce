@@ -3,14 +3,12 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/DAT/Desktop/Phu_Struts/ECommerce/src/java/ecommerce/struts/LoadProfileAction.java</file>
             <file>file:/C:/Users/DAT/Desktop/Phu_Struts/ECommerce/src/java/ecommerce/entities/Accounts.java</file>
-            <file>file:/C:/Users/DAT/Desktop/Phu_Struts/ECommerce/web/profile.jsp</file>
+            <file>file:/C:/Users/DAT/Desktop/Phu_Struts/ECommerce/src/java/struts.xml</file>
+            <file>file:/C:/Users/DAT/Desktop/Phu_Struts/ECommerce/src/java/ecommerce/entities/OrderDetails.java</file>
             <file>file:/C:/Users/DAT/Desktop/Phu_Struts/ECommerce/src/java/ecommerce/dao/AccountDAO.java</file>
             <file>file:/C:/Users/DAT/Desktop/Phu_Struts/ECommerce/src/java/ecommerce/entities/Orders.java</file>
-            <file>file:/C:/Users/DAT/Desktop/Phu_Struts/ECommerce/src/java/ecommerce/struts/UpdateProfileAction.java</file>
-            <file>file:/C:/Users/DAT/Desktop/Phu_Struts/ECommerce/src/java/ecommerce/dao/OrdersDAO.java</file>
-            <file>file:/C:/Users/DAT/Desktop/Phu_Struts/ECommerce/src/java/ecommerce/struts/LoadHomePageAction.java</file>
+            <file>file:/C:/Users/DAT/Desktop/Phu_Struts/ECommerce/src/java/ecommerce/dao/ProductsDAO.java</file>
         </group>
     </open-files>
 </project-private>

@@ -68,4 +68,34 @@ public class OrdersDAO implements Serializable {
         }
         return list;
     }
+    
+    public Orders getOrdersByID(String orderID) throws NamingException, SQLException {
+        Orders order = null;
+        String id, status, name, phone, address;
+        Timestamp datePurchased;
+        float total;
+        try {
+            conn = DBConnection.makeConnection();
+            if(conn != null) {
+                String sql = "Select ID, DatePurchased, Status, Total, Name, Phone, Address "
+                        + "From Orders Where ID = ?";
+                preStm = conn.prepareStatement(sql);
+                preStm.setString(1, orderID);
+                rs = preStm.executeQuery();
+                while(rs.next()) {
+                    id = rs.getString("ID");
+                    name = rs.getString("Name");
+                    phone = rs.getString("Phone");
+                    address = rs.getString("Address");
+                    datePurchased = rs.getTimestamp("DatePurchased");
+                    status = rs.getString("Status");
+                    total = rs.getFloat("Total");
+                    order = new Orders(id, null, datePurchased, status, total, name, phone, address, null);
+                }
+            }
+        } finally {
+            closeConnection();
+        }
+        return order;
+    }
 }
