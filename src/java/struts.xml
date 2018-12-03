@@ -12,6 +12,10 @@
             </result>
         </action>
         
+        <action name="BackToShop">
+            <result type="redirectAction">Home</result>
+        </action>
+        
         <action name="Login" class="ecommerce.struts.LoginAction" >
             <result name="admin" type="redirect">admin.jsp</result>
             <result name="user" type="redirectAction">Home</result>
@@ -96,6 +100,24 @@
         <action name="shop" class="ecommerce.struts.ShopAction">
             <result name="success" >shop.jsp</result>
         </action>
+        
+        <action name="LoadCheckoutForm" class="ecommerce.struts.ProcessCheckoutAction" method="loadCheckoutForm">
+            <result name="success">checkout.jsp</result>
+        </action>
+        
+        <action name="SubmitCheckout" class="ecommerce.struts.ProcessCheckoutAction" method="checkout">
+            <exception-mapping exception="java.lang.Exception" result="input" name="exception"/>
+            <result name="input">success-order-checkout.jsp</result>
+            <result name="success">success-order-checkout.jsp</result>
+        </action>
+        
+        <action name="GetAddress" class="ecommerce.struts.ProcessCheckoutAction" method="getAddress">
+            <result name="success" type="stream">
+                <param name="contentType">text/plain</param>
+                <param name="inputName">stream</param>
+            </result>
+        </action>
+        
     </package>
     
 </struts>

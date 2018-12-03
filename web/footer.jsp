@@ -67,6 +67,7 @@
   <script src="js/vendor/nouislider.min.js"></script>
   <script src="js/scripts.js"></script>
   <script src="js/wishlist.js"></script>
+  <script src="js/checkout.js"></script>
 
 
 </body><!-- <body> -->

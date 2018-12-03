@@ -168,5 +168,9 @@ public class Orders implements Serializable {
         this.Email = Email;
     }
 
-   
+    @Override
+    public String toString() {
+        String result = String.format("%s - %s - %s - %s", this.Name, this.Phone, this.Address, this.Email);
+        return result;
+    }
 }
