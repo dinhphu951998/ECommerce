@@ -3,21 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/DAT/Desktop/Phu_Struts/ECommerce/src/java/ecommerce/struts/LoadOrderDetailAction.java</file>
             <file>file:/C:/Users/DAT/Desktop/Phu_Struts/ECommerce/web/profile.jsp</file>
-            <file>file:/C:/Users/DAT/Desktop/Phu_Struts/ECommerce/src/java/ecommerce/dao/ProductsDAO.java</file>
-            <file>file:/C:/Users/DAT/Desktop/Phu_Struts/ECommerce/src/java/ecommerce/entities/Orders.java</file>
-            <file>file:/C:/Users/DAT/Desktop/Phu_Struts/ECommerce/src/java/ecommerce/struts/LogoutAction.java</file>
-            <file>file:/C:/Users/DAT/Desktop/Phu_Struts/ECommerce/src/java/ecommerce/struts/LoadHomePageAction.java</file>
-            <file>file:/C:/Users/DAT/Desktop/Phu_Struts/ECommerce/src/java/ecommerce/struts/LoginAction.java</file>
-            <file>file:/C:/Users/DAT/Desktop/Phu_Struts/ECommerce/src/java/ecommerce/struts/LoadProfileAction.java</file>
-            <file>file:/C:/Users/DAT/Desktop/Phu_Struts/ECommerce/src/java/ecommerce/struts/GetProductDetailsAction.java</file>
-            <file>file:/C:/Users/DAT/Desktop/Phu_Struts/ECommerce/src/java/ecommerce/struts/StartUpAction.java</file>
-            <file>file:/C:/Users/DAT/Desktop/Phu_Struts/ECommerce/src/java/ecommerce/dao/OrdersDAO.java</file>
-            <file>file:/C:/Users/DAT/Desktop/Phu_Struts/ECommerce/src/java/ecommerce/struts/UpdateProfileAction.java</file>
-            <file>file:/C:/Users/DAT/Desktop/Phu_Struts/ECommerce/web/home-page.jsp</file>
-            <file>file:/C:/Users/DAT/Desktop/Phu_Struts/ECommerce/src/java/ecommerce/struts/RegisterAction.java</file>
-            <file>file:/C:/Users/DAT/Desktop/Phu_Struts/ECommerce/src/java/ecommerce/struts/LoginFormAction.java</file>
+            <file>file:/C:/Users/DAT/Desktop/Phu_Struts/ECommerce/web/about.jsp</file>
+            <file>file:/C:/Users/DAT/Desktop/Phu_Struts/ECommerce/src/java/ecommerce/dao/AccountDAO.java</file>
+            <file>file:/C:/Users/DAT/Desktop/Phu_Struts/ECommerce/web/header.jsp</file>
         </group>
     </open-files>
 </project-private>
