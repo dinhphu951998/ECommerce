@@ -79,7 +79,7 @@
             <div class="info-box text-center">
                 <h2>Special Offer<br><span class="text-danger">-<s:property value="%{highestOffer.SaleOff * 100}"/>%</span></h2>
                 <a href="GetProductDetails?Id=<s:property value="%{highestOffer.Id}"/>" class="inline">
-                    <img src="img/<s:property value="%{highestOffer.Image1}"/>" alt="Special Offer">
+                    <img src="<s:property value="%{highestOffer.Image1}"/>" alt="Special Offer">
                 </a>
                 <h3 class="lead text-normal space-bottom-half">
                     <a href="#" class="link-title"><s:property value="%{highestOffer.Name}"/></a>
@@ -132,7 +132,7 @@
                                     <div class="shop-thumbnail">
                                         <span class="shop-label text-warning">New</span>
                                         <a href="GetProductDetails?Id=<s:property value="%{Id}"/>" class="item-link"></a>
-                                        <img src="img/<s:property value="Image1"/>" alt="Shop item">
+                                        <img src="<s:property value="Image1"/>" alt="Shop item">
                                         <div class="shop-item-tools">
                                             <a href="#" class="add-to-whishlist" data-toggle="tooltip" data-placement="top" title="Wishlist">
                                                 <i class="material-icons favorite_border"></i>
@@ -175,7 +175,7 @@
                                             </s:if>
                                         </span>
                                         <a href="GetProductDetails?Id=<s:property value="%{Id}"/>" class="item-link"></a>
-                                        <img src="img/<s:property value="Image1"/>" alt="Shop item">
+                                        <img src="<s:property value="Image1"/>" alt="Shop item">
                                         <div class="shop-item-tools">
                                             <a href="#" class="add-to-whishlist" data-toggle="tooltip" data-placement="top" title="Wishlist">
                                                 <i class="material-icons favorite_border"></i>
@@ -213,7 +213,7 @@
                                     <div class="shop-thumbnail">
                                         <span class="shop-label text-danger">Sale</span>
                                         <a href="GetProductDetails?Id=<s:property value="%{Id}"/>" class="item-link"></a>
-                                        <img src="img/<s:property value="Image1"/>" alt="Shop item">
+                                        <img src="<s:property value="Image1"/>" alt="Shop item">
                                         <div class="shop-item-tools">
                                             <a href="#" class="add-to-whishlist" data-toggle="tooltip" data-placement="top" title="Wishlist">
                                                 <i class="material-icons favorite_border"></i>
