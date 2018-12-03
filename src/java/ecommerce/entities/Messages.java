@@ -5,6 +5,7 @@
  */
 package ecommerce.entities;
 
+import ecommerce.enums.StatusMessageEnum;
 import java.io.Serializable;
 
 /**
@@ -17,18 +18,50 @@ public class Messages implements Serializable {
     private String Name;
     private String Email;
     private String Message;
+    private String Answer;
     private String AccountID;
+    private int status;
 
     public Messages() {
     }
 
-    public Messages(int ID, String Name, String Email, String Message, String AccountID) {
+    public Messages(int ID, String Name, String Email, String Message, String Answer, String AccountID, int status) {
         this.ID = ID;
         this.Name = Name;
         this.Email = Email;
         this.Message = Message;
+        this.Answer = Answer;
         this.AccountID = AccountID;
+        this.status = status;
     }
+    
+    public Messages(String Name, String Email, String Message, String Answer, int status) {
+        this.Name = Name;
+        this.Email = Email;
+        this.Message = Message;
+        this.Answer = Answer;
+        this.status = status;
+    }
+
+    public int getStatus() {
+        return status;
+    }
+
+    public void setStatus(int status) {
+        this.status = status;
+    }
+
+    
+
+    public String getAnswer() {
+        return Answer;
+    }
+
+    public void setAnswer(String Answer) {
+        this.Answer = Answer;
+    }
+    
+    
 
     
     /**

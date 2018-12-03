@@ -25,7 +25,7 @@
         <action name="LoginForm" class="ecommerce.struts.LoginFormAction">
             <result type="redirect" name="admin">admin.jsp</result>
             <result type="redirectAction" name="user">Home</result>
-            <result type="redirect" name="fail">login.jsp</result>
+            <result name="fail">login.jsp</result>
         </action>
         
         <action name="StartUp" class="ecommerce.struts.StartUpAction">
@@ -116,6 +116,25 @@
                 <param name="contentType">text/plain</param>
                 <param name="inputName">stream</param>
             </result>
+        </action>
+        
+        <action name="SendMessage" class="ecommerce.struts.SubmitMessageAction" >
+            <result name="success" type="stream">
+                <param name="contentType">text/plain</param>
+                <param name="inputName">stream</param>
+            </result>
+        </action>
+        
+        <action name="Contacts">
+            <result name="success">contact.jsp</result>
+        </action>
+        
+        <action name="FollowOrder">
+            <result>order-tracking.jsp</result>
+        </action>
+        
+        <action name="GetOrder" class="ecommerce.struts.TrackingOrderAction" >
+            <result name="success" >order-tracking.jsp</result>
         </action>
         
     </package>

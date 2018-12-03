@@ -14,7 +14,7 @@
     <h1>User Account</h1>
     <div class="row padding-top">
 
-        <div class="col-md-4 padding-bottom">
+        <div class="col-md-6 padding-bottom">
             <h3>Register</h3>
             <div class="inner">
                 <s:if test="%{errorRegister != null}">
@@ -42,7 +42,7 @@
             <s:a href="/ECommerce/LoginForm">Login</s:a>
             </div><!-- .col-md-4.col-md-offset-1 -->
 
-            <div class="col-md-3 padding-top-2x">
+            <div class="col-md-6 padding-top-2x">
                 <a href="#" class="social-signup-btn ssb-facebook">
                     <i class="socicon-facebook"></i>
                     <span>Signup with Facebook</span>

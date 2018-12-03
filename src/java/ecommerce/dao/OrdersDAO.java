@@ -76,20 +76,19 @@ public class OrdersDAO extends BaseDAO<Orders> implements Serializable {
         return list;
     }
 
-
     public List<Orders> getAddressesInOrder(String accountId) throws NamingException, SQLException {
         List<Orders> addresses = null;
         try {
             conn = DBConnection.makeConnection();
             if (conn != null) {
                 String sql = "select distinct Name, Phone, Address, Email "
-                + "from Orders "
-                + "where AccountID = ?";
+                        + "from Orders "
+                        + "where AccountID = ?";
                 preStm = conn.prepareStatement(sql);
                 preStm.setString(1, accountId);
                 rs = preStm.executeQuery();
                 while (rs.next()) {
-                    if(addresses == null){
+                    if (addresses == null) {
                         addresses = new ArrayList<>();
                     }
                     String name = rs.getString("Name");
@@ -106,9 +105,9 @@ public class OrdersDAO extends BaseDAO<Orders> implements Serializable {
         return addresses;
     }
 
-    public boolean addNewOrderAndDetails(MyCart myShoppingCart, Orders order) throws SQLException, NamingException{
+    public boolean addNewOrderAndDetails(MyCart myShoppingCart, Orders order) throws SQLException, NamingException {
         boolean result = false;
-        try{
+        try {
             conn = DBConnection.makeConnection();
             conn.setAutoCommit(false);
             //add order
@@ -133,29 +132,26 @@ public class OrdersDAO extends BaseDAO<Orders> implements Serializable {
                 orderDetailsDAO.add(new OrderDetails(order.getID(), key.getId(), quantity, key.getPrice(), key.getSaleOff()));
             }
             conn.commit();
-        }finally{
+        } finally {
             closeConnection();
         }
         return result;
     }
-    
 
-
-
-	public Orders getOrdersByID(String orderID) throws NamingException, SQLException {
+    public Orders getOrdersByID(String orderID) throws NamingException, SQLException {
         Orders order = null;
         String id, status, name, phone, address;
         Timestamp datePurchased;
         float total;
         try {
             conn = DBConnection.makeConnection();
-            if(conn != null) {
+            if (conn != null) {
                 String sql = "Select ID, DatePurchased, Status, Total, Name, Phone, Address "
                         + "From Orders Where ID = ?";
                 preStm = conn.prepareStatement(sql);
                 preStm.setString(1, orderID);
                 rs = preStm.executeQuery();
-                while(rs.next()) {
+                while (rs.next()) {
                     id = rs.getString("ID");
                     name = rs.getString("Name");
                     phone = rs.getString("Phone");

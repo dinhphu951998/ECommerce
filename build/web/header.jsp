@@ -47,8 +47,7 @@
                     <section class="container padding-top-3x padding-bottom-2x">
                         <div class="row padding-top">
                             <div class="col-md-4 padding-bottom">
-                                <h3>Login</h3>
-                                <h3 style="color: red"></h3>
+                                <h3 style="color: #ededed">Login</h3>
                                 <form id="Login" name="Login" action="/ECommerce/Login" method="POST" class="login-form">
                                     <input type="text" name="Id" value="" id="Login_Id" class="form-control" required="required" placeholder="Username"/>
                                     <input type="password" name="password" id="Login_password" class="form-control" required="required" placeholder="Password"/>
@@ -63,7 +62,7 @@
                                         </div>
                                     </div>
                                 </form>
-                                <a href="/ECommerce/registerForm">Register here</a>
+                                <a href="/ECommerce/registerForm" style="color: #ededed">Register here</a>
                             </div><!-- .col-md-4 -->
 
                             <div class="col-md-3 padding-top-2x">
@@ -111,11 +110,14 @@
                             <li class="">
                             <s:a action="shop">Shop</s:a>
                             </li>
+                            <li class="">
+                            <s:a action="FollowOrder">Check your order</s:a>
+                            </li>
                             <li class="menu-item-has-children">
                                 <a href="#">Pages</a>
                                 <ul class="sub-menu">
-                                    <li><a href="About">About</a></li>
-                                    <li><a href="contacts.html">Contacts</a></li>
+                                    <li><s:a href="About">About</s:a></li>
+                                <li><s:a href="Contacts">Contacts</s:a></li>
                                     <li><a href="faq.html">FAQ</a></li>          
                                 </ul>
                             </li>
