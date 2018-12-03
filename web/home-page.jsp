@@ -109,12 +109,6 @@
         <div class="col-lg-3 col-md-4">
             <div class="info-box text-center">
                 <h2>Special Offer<br><span class="text-danger">-<s:property value="%{highestOffer.SaleOff * 100}"/>%</span></h2>
-<<<<<<< HEAD
-                <a href="GetProductDetails?Id=<s:property value="%{highestOffer.Id}"/>" class="inline">
-                    <img src="<s:property value="%{highestOffer.Image1}"/>" alt="Special Offer">
-                </a>
-=======
-
                 <s:url action="GetProductDetails" var="special">
                     <s:param name="Id">
                         <s:property value="highestOffer.Id"/>
@@ -123,8 +117,6 @@
                 <s:a href="%{#special}" cssClass="inline">
                     <img src="<s:property value="%{highestOffer.Image1}"/>" alt="Special Offer">
                 </s:a>
-
->>>>>>> d180c080102e70d9ffef4f99d97e753875fc8ca8
                 <h3 class="lead text-normal space-bottom-half">
                     <s:a href="%{#special}" cssClass="link-title">
                         <s:property value="%{highestOffer.Name}"/>
@@ -181,17 +173,12 @@
                                 <div class="shop-item">
                                     <div class="shop-thumbnail">
                                         <span class="shop-label text-warning">New</span>
-<<<<<<< HEAD
-                                        <a href="GetProductDetails?Id=<s:property value="%{Id}"/>" class="item-link"></a>
-=======
-
                                         <a href="<s:url action="GetProductDetails">
                                                <s:param name="Id">
                                                    <s:property value="Id"/>
                                                </s:param>
                                            </s:url>" class="item-link">
                                         </a>
->>>>>>> d180c080102e70d9ffef4f99d97e753875fc8ca8
                                         <img src="<s:property value="Image1"/>" alt="Shop item">
                                         <div class="shop-item-tools">
                                             <a href="#" class="add-to-whishlist" data-id="<s:property value="Id"/>" 
@@ -295,17 +282,12 @@
                                 <div class="shop-item">
                                     <div class="shop-thumbnail">
                                         <span class="shop-label text-danger">Sale</span>
-<<<<<<< HEAD
-                                        <a href="GetProductDetails?Id=<s:property value="%{Id}"/>" class="item-link"></a>
-=======
-
                                         <a href="<s:url action="GetProductDetails">
                                                <s:param name="Id">
                                                    <s:property value="Id"/>
                                                </s:param>
                                            </s:url>" class="item-link">
                                         </a>
->>>>>>> d180c080102e70d9ffef4f99d97e753875fc8ca8
                                         <img src="<s:property value="Image1"/>" alt="Shop item">
                                         <div class="shop-item-tools">
                                             <a href="#" class="add-to-whishlist" data-id="<s:property value="Id"/>" 

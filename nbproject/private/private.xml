@@ -2,17 +2,22 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-<<<<<<< HEAD
         <group>
-            <file>file:/C:/Users/DAT/Desktop/Phu_Struts/ECommerce/src/java/ecommerce/entities/Accounts.java</file>
-            <file>file:/C:/Users/DAT/Desktop/Phu_Struts/ECommerce/src/java/struts.xml</file>
-            <file>file:/C:/Users/DAT/Desktop/Phu_Struts/ECommerce/src/java/ecommerce/entities/OrderDetails.java</file>
-            <file>file:/C:/Users/DAT/Desktop/Phu_Struts/ECommerce/src/java/ecommerce/dao/AccountDAO.java</file>
-            <file>file:/C:/Users/DAT/Desktop/Phu_Struts/ECommerce/src/java/ecommerce/entities/Orders.java</file>
+            <file>file:/C:/Users/DAT/Desktop/Phu_Struts/ECommerce/src/java/ecommerce/struts/LoadOrderDetailAction.java</file>
+            <file>file:/C:/Users/DAT/Desktop/Phu_Struts/ECommerce/web/profile.jsp</file>
             <file>file:/C:/Users/DAT/Desktop/Phu_Struts/ECommerce/src/java/ecommerce/dao/ProductsDAO.java</file>
+            <file>file:/C:/Users/DAT/Desktop/Phu_Struts/ECommerce/src/java/ecommerce/entities/Orders.java</file>
+            <file>file:/C:/Users/DAT/Desktop/Phu_Struts/ECommerce/src/java/ecommerce/struts/LogoutAction.java</file>
+            <file>file:/C:/Users/DAT/Desktop/Phu_Struts/ECommerce/src/java/ecommerce/struts/LoadHomePageAction.java</file>
+            <file>file:/C:/Users/DAT/Desktop/Phu_Struts/ECommerce/src/java/ecommerce/struts/LoginAction.java</file>
+            <file>file:/C:/Users/DAT/Desktop/Phu_Struts/ECommerce/src/java/ecommerce/struts/LoadProfileAction.java</file>
+            <file>file:/C:/Users/DAT/Desktop/Phu_Struts/ECommerce/src/java/ecommerce/struts/GetProductDetailsAction.java</file>
+            <file>file:/C:/Users/DAT/Desktop/Phu_Struts/ECommerce/src/java/ecommerce/struts/StartUpAction.java</file>
+            <file>file:/C:/Users/DAT/Desktop/Phu_Struts/ECommerce/src/java/ecommerce/dao/OrdersDAO.java</file>
+            <file>file:/C:/Users/DAT/Desktop/Phu_Struts/ECommerce/src/java/ecommerce/struts/UpdateProfileAction.java</file>
+            <file>file:/C:/Users/DAT/Desktop/Phu_Struts/ECommerce/web/home-page.jsp</file>
+            <file>file:/C:/Users/DAT/Desktop/Phu_Struts/ECommerce/src/java/ecommerce/struts/RegisterAction.java</file>
+            <file>file:/C:/Users/DAT/Desktop/Phu_Struts/ECommerce/src/java/ecommerce/struts/LoginFormAction.java</file>
         </group>
-=======
-        <group/>
->>>>>>> d180c080102e70d9ffef4f99d97e753875fc8ca8
     </open-files>
 </project-private>
