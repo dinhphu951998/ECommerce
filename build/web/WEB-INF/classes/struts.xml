@@ -52,5 +52,16 @@
         <action name="shop" class="ecommerce.struts.ShopAction">
             <result name="success" >shop.jsp</result>
         </action>
+        <action name="contact" class="ecommerce.struts.ContactAction">
+            <result name="success" >contact.jsp</result>
+        </action>
+        <action name="contactProcess" class="ecommerce.struts.ContactProcessAction">
+            <result name="success" >successSendQuestion.jsp</result>
+            <result name="input">contact.jsp</result>
+            <result name="fail">contact.jsp</result>
+        </action>
+        <action name="faq" class="ecommerce.struts.FaqAction">
+            <result name="success" >faq.jsp</result>
+        </action>
     </package>
 </struts>

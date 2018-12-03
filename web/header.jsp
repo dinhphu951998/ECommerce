@@ -64,7 +64,10 @@
                             <a href="/ECommerce/shop">Shop</a>
                         </li>
                         <li class="">
-                            <a href="/ECommerce/GetProductDetails?Id=1">Detail Test</a>
+                            <a href="contact">Contact</a>
+                        </li>
+                        <li class="">
+                            <a href="faq">FAQ</a>
                         </li>
                         <li class="menu-item-has-children">
                             <a href="#">Pages</a>

@@ -64,7 +64,10 @@
                             <a href="/ECommerce/shop">Shop</a>
                         </li>
                         <li class="">
-                            <a href="/ECommerce/GetProductDetails?Id=1">Detail Test</a>
+                            <a href="contact">Contact</a>
+                        </li>
+                        <li class="">
+                            <a href="faq">FAQ</a>
                         </li>
                         <li class="menu-item-has-children">
                             <a href="#">Pages</a>
@@ -95,7 +98,7 @@
                 <div class="toolbar">
                     <div class="inner"> 
                         <a href="#" class="mobile-menu-toggle"><i class="material-icons menu"></i></a>
-                        <a href="account.html"><i class="material-icons person"></i></a>
+                        <a href="Profile"><i class="material-icons person"></i></a>
                         <div class="cart-btn">
                             <a href="shopping-cart.html">
                                 <i>

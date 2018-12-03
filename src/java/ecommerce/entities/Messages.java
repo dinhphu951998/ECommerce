@@ -18,16 +18,24 @@ public class Messages implements Serializable {
     private String Email;
     private String Message;
     private String AccountID;
+    private boolean IsAnswered;
+    private String AnsweredAccountId;
+    private String Answer;
+    private boolean Status;
 
     public Messages() {
     }
 
-    public Messages(int ID, String Name, String Email, String Message, String AccountID) {
+    public Messages(int ID, String Name, String Email, String Message, String AccountID, boolean IsAnswered, String AnsweredAccountId, String Answer, boolean Status) {
         this.ID = ID;
         this.Name = Name;
         this.Email = Email;
         this.Message = Message;
         this.AccountID = AccountID;
+        this.IsAnswered = IsAnswered;
+        this.AnsweredAccountId = AnsweredAccountId;
+        this.Answer = Answer;
+        this.Status = Status;
     }
 
     
@@ -100,4 +108,63 @@ public class Messages implements Serializable {
     public void setAccountID(String AccountID) {
         this.AccountID = AccountID;
     }
+
+    /**
+     * @return the IsAnswered
+     */
+    public boolean isIsAnswered() {
+        return IsAnswered;
+    }
+
+    /**
+     * @param IsAnswered the IsAnswered to set
+     */
+    public void setIsAnswered(boolean IsAnswered) {
+        this.IsAnswered = IsAnswered;
+    }
+
+    /**
+     * @return the AnsweredAccountId
+     */
+    public String getAnsweredAccountId() {
+        return AnsweredAccountId;
+    }
+
+    /**
+     * @param AnsweredAccountId the AnsweredAccountId to set
+     */
+    public void setAnsweredAccountId(String AnsweredAccountId) {
+        this.AnsweredAccountId = AnsweredAccountId;
+    }
+
+    /**
+     * @return the Answer
+     */
+    public String getAnswer() {
+        return Answer;
+    }
+
+    /**
+     * @param Answer the Answer to set
+     */
+    public void setAnswer(String Answer) {
+        this.Answer = Answer;
+    }
+
+    /**
+     * @return the Status
+     */
+    public boolean isStatus() {
+        return Status;
+    }
+
+    /**
+     * @param Status the Status to set
+     */
+    public void setStatus(boolean Status) {
+        this.Status = Status;
+    }
+
+    
+    
 }
