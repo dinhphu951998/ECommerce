@@ -96,7 +96,7 @@
         <s:iterator value="%{listCategories}">
             <div class="col-sm-3 col-xs-6">
                 <a href="shop?categoryId=<s:property value="Id" />" class="category-link">
-                    <img src="img/categories/cat01.jpg" alt="Category">
+                    <img src="<s:property value="Image" />" alt="Category">
                     <s:property value="Name"/>
                 </a><!-- .category-link -->
             </div><!-- .col-sm-4 -->

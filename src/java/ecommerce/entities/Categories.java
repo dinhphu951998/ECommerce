@@ -25,11 +25,12 @@ public class Categories implements Serializable {
     private String AttName8;
     private String AttName9;
     private String AttName10;
+    private String Image;
 
     public Categories() {
     }
 
-    public Categories(int Id, String Name, String AttName1, String AttName2, String AttName3, String AttName4, String AttName5, String AttName6, String AttName7, String AttName8, String AttName9, String AttName10) {
+    public Categories(int Id, String Name, String AttName1, String AttName2, String AttName3, String AttName4, String AttName5, String AttName6, String AttName7, String AttName8, String AttName9, String AttName10, String Image) {
         this.Id = Id;
         this.Name = Name;
         this.AttName1 = AttName1;
@@ -42,6 +43,7 @@ public class Categories implements Serializable {
         this.AttName8 = AttName8;
         this.AttName9 = AttName9;
         this.AttName10 = AttName10;
+        this.Image = Image;
     }
 
     
@@ -212,4 +214,14 @@ public class Categories implements Serializable {
     public void setAttName10(String AttName10) {
         this.AttName10 = AttName10;
     }
+
+    public String getImage() {
+        return Image;
+    }
+
+    public void setImage(String Image) {
+        this.Image = Image;
+    }
+    
+    
 }
