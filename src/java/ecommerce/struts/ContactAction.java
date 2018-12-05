@@ -6,7 +6,9 @@
 package ecommerce.struts;
 
 import com.opensymphony.xwork2.ActionContext;
+import ecommerce.dao.ContactDAO;
 import ecommerce.entities.Accounts;
+import ecommerce.entities.Contacts;
 import java.util.Map;
 
 /**
@@ -18,6 +20,7 @@ public class ContactAction {
     private final String SUCCESS = "success";
     private String name;
     private String email;
+    private Contacts contact;
 
     public ContactAction() {
     }
@@ -29,6 +32,9 @@ public class ContactAction {
             setName(accounts.getFirstName()+" "+accounts.getLastName());
             setEmail(accounts.getEmail());
         }
+        // get contact
+        ContactDAO contactDAO = new ContactDAO();
+        setContact(contactDAO.getNewestContact());
         return SUCCESS;
     }
 
@@ -59,6 +65,21 @@ public class ContactAction {
     public void setEmail(String email) {
         this.email = email;
     }
+
+    /**
+     * @return the contact
+     */
+    public Contacts getContact() {
+        return contact;
+    }
+
+    /**
+     * @param contact the contact to set
+     */
+    public void setContact(Contacts contact) {
+        this.contact = contact;
+    }
+
 
     /**
      * @return the account
