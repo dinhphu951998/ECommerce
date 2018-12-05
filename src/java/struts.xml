@@ -29,8 +29,11 @@
         </action>
         
         <action name="StartUp" class="ecommerce.struts.StartUpAction">
-            <result name="success" type="chain">
-                Login
+            <result name="success" type="redirectAction">
+                <param name="actionName">Login</param>
+                <param name="Id">${Id}</param>
+                <param name="password">${password}</param>
+                <param name="isEncrypted">true</param>
             </result>
             <result name="admin" type="redirect">
                 admin.jsp
