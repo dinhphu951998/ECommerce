@@ -12,6 +12,10 @@
             </result>
         </action>
         
+        <action name="BackToShop">
+            <result type="redirectAction">Home</result>
+        </action>
+        
         <action name="Login" class="ecommerce.struts.LoginAction" >
             <result name="admin" type="redirect">admin.jsp</result>
             <result name="user" type="redirectAction">Home</result>
@@ -21,7 +25,7 @@
         <action name="LoginForm" class="ecommerce.struts.LoginFormAction">
             <result type="redirect" name="admin">admin.jsp</result>
             <result type="redirectAction" name="user">Home</result>
-            <result type="redirect" name="fail">login.jsp</result>
+            <result name="fail">login.jsp</result>
         </action>
         
         <action name="StartUp" class="ecommerce.struts.StartUpAction">
@@ -96,6 +100,45 @@
         <action name="shop" class="ecommerce.struts.ShopAction">
             <result name="success" >shop.jsp</result>
         </action>
+        <action name="contact" class="ecommerce.struts.ContactAction">
+            <result name="success" >contact.jsp</result>
+        </action>
+        <action name="contactProcess" class="ecommerce.struts.ContactProcessAction">
+            <result name="success" >successSendQuestion.jsp</result>
+            <result name="input">contact.jsp</result>
+            <result name="fail">contact.jsp</result>
+        </action>
+        <action name="faq" class="ecommerce.struts.FaqAction">
+            <result name="success" >faq.jsp</result>
+        </action>
+        
+        <action name="LoadCheckoutForm" class="ecommerce.struts.ProcessCheckoutAction" method="loadCheckoutForm">
+            <result name="success">checkout.jsp</result>
+        </action>
+        
+        <action name="SubmitCheckout" class="ecommerce.struts.ProcessCheckoutAction" method="checkout">
+            <exception-mapping exception="java.lang.Exception" result="input" name="exception"/>
+            <result name="input">success-order-checkout.jsp</result>
+            <result name="success">success-order-checkout.jsp</result>
+        </action>
+        
+        <action name="GetAddress" class="ecommerce.struts.ProcessCheckoutAction" method="getAddress">
+            <result name="success" type="stream">
+                <param name="contentType">text/plain</param>
+                <param name="inputName">stream</param>
+            </result>
+        </action>
+        
+       
+        
+        <action name="FollowOrder">
+            <result>order-tracking.jsp</result>
+        </action>
+        
+        <action name="GetOrder" class="ecommerce.struts.TrackingOrderAction" >
+            <result name="success" >order-tracking.jsp</result>
+        </action>
+        
     </package>
     
 </struts>

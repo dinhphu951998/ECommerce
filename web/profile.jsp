@@ -139,17 +139,25 @@
                                 <tbody>
                                     <s:iterator value="%{listOrders}">
                                         <tr>
+
                                             <s:url value="OrderDetail" var="Detail">
                                                 <s:param name="id" value="ID"/>
                                             </s:url>
                                             <td><s:a href="%{Detail}"><s:property value="ID"/></s:a></td>
-                                            <td><s:property value="DatePurchased"/></td>
+                                            <td>
+                                                <s:text name="{0,date,dd/MM/yyyy HH:mm a}">
+                                                    <s:param name="value" value="DatePurchased"/>
+                                                </s:text>
+                                            </td>
+
                                             <td>
                                                 <s:if test="Status == 'Delivered'">
                                                     <span class="text-success">Delivered</span>
                                                 </s:if>
-                                                <s:if test="Status == 'In Progress'">
-                                                    <span class="text-warning">In Progress</span>
+                                                <s:if test="Status == 'In Progress' || Status == 'Waiting for confirm'">
+                                                    <span class="text-warning">
+                                                        <s:property value="status"/>
+                                                    </span>
                                                 </s:if>
                                                 <s:if test="Status == 'Canceled'">
                                                     <span class="text-danger">Canceled</span>

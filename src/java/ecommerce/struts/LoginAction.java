@@ -14,6 +14,8 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.struts2.ServletActionContext;
 
 import ecommerce.enums.RolesEnum;
+import ecommerce.tools.Utils;
+import java.security.NoSuchAlgorithmException;
 
 /**
  *
@@ -90,8 +92,8 @@ public class LoginAction {
     /**
      * @param password the password to set
      */
-    public void setPassword(String password) {
-        this.password = password;
+    public void setPassword(String password) throws NoSuchAlgorithmException {
+        this.password = Utils.encryptPassword(password);
     }
 
     /**

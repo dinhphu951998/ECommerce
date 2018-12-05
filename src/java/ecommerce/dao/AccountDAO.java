@@ -47,7 +47,7 @@ public class AccountDAO {
                     + "where id = ? and password = ?";
             pstm = conn.prepareStatement(sql);
             pstm.setString(1, id);
-            pstm.setString(2, Utils.encryptPassword(password));
+            pstm.setString(2, password);
             rs = pstm.executeQuery();
             if (rs.next()) {
                 String Id = rs.getString("Id");

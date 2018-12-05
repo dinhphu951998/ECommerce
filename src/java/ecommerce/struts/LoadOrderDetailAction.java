@@ -30,6 +30,7 @@ public class LoadOrderDetailAction {
     private String id;
     private Orders order;
     private List<Products> listProduct;
+    private boolean isAllow;
     private static final String SUCCESS = "success";
     private static final String FAILED = "failed";
     
@@ -40,7 +41,7 @@ public class LoadOrderDetailAction {
         String url = FAILED;
         Map session = ActionContext.getContext().getSession();
         Accounts account = (Accounts) session.get("USER");
-        if(account != null) {
+        if(account != null || isAllow ) {
             OrdersDAO orderDAO = new OrdersDAO();
             ProductsDAO proDAO = new ProductsDAO();
             order = orderDAO.getOrdersByID(id);
@@ -50,6 +51,14 @@ public class LoadOrderDetailAction {
         return url;
     }
 
+    public void setIsAllow(boolean isAllow) {
+        this.isAllow = isAllow;
+    }
+
+    public boolean isIsAllow() {
+        return isAllow;
+    }
+    
     public String getId() {
         return id;
     }

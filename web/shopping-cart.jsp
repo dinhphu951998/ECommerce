@@ -18,7 +18,6 @@
             <h1>Your cart is empty</h1>
         </s:if>
         <s:else>
-
             <!-- Cart -->
             <div class="col-sm-8 padding-bottom-2x">
                 <p class="text-sm">
@@ -51,7 +50,9 @@
                                         </h6>
                                     </s:if>
                                     <h4 class="item-price">
-                                        $<s:property value="key.price"/>
+                                        $<s:text name="{0,number,#,##0.00}"> 
+                                            <s:param name="value" value="key.price * (1- key.saleOff)"/> 
+                                        </s:text>
                                     </h4>
 
                                     <div class="count-input">
@@ -105,17 +106,17 @@
                         <a href="#" onclick="submitUpdateForm()" class="btn btn-default btn-block waves-effect waves-light">
                             Update Cart
                         </a>
-                        <a href="checkout.html" class="btn btn-primary btn-block waves-effect waves-light space-top-none">Checkout</a>
+                        <a href="<s:url action="LoadCheckoutForm"/>" class="btn btn-primary btn-block waves-effect waves-light space-top-none">Checkout</a>
                     </aside>
                 </div><!-- .col-md-3.col-sm-4 -->
             </s:if>
         </s:else>
-                <script>
-                    function submitUpdateForm(){
-                        var form  = document.getElementById("update-form");
-                        form.submit();
-                    }
-                </script>
+        <script>
+            function submitUpdateForm() {
+                var form = document.getElementById("update-form");
+                form.submit();
+            }
+        </script>
     </div><!-- .row -->
 </section><!-- .container -->
 <s:include value="footer.jsp"/>

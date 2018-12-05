@@ -50,8 +50,7 @@
                     <section class="container padding-top-3x padding-bottom-2x">
                         <div class="row padding-top">
                             <div class="col-md-4 padding-bottom">
-                                <h3>Login</h3>
-                                <h3 style="color: red"></h3>
+                                <h3 style="color: #ededed">Login</h3>
                                 <form id="Login" name="Login" action="/ECommerce/Login" method="POST" class="login-form">
                                     <input type="text" name="Id" value="" id="Login_Id" class="form-control" required="required" placeholder="Username"/>
                                     <input type="password" name="password" id="Login_password" class="form-control" required="required" placeholder="Password"/>
@@ -66,7 +65,7 @@
                                         </div>
                                     </div>
                                 </form>
-                                <a href="/ECommerce/registerForm">Register here</a>
+                                <a href="/ECommerce/registerForm" style="color: #ededed">Register here</a>
                             </div><!-- .col-md-4 -->
 
                             <div class="col-md-3 padding-top-2x">
@@ -109,15 +108,22 @@
                 <nav class="main-navigation text-center">
                     <ul class="menu">
                         <li class="current-menu-item">
-                            <s:a action="Home">Home</s:a>
+                            <a href="/ECommerce/Home">Home</a>
+                        </li>
+                        <li class="">
+                            <a href="/ECommerce/shop">Shop</a>
+                        </li>
+                        <li class="">
+                            <a href="contact">Contact</a>
+                        </li>
+                        <li class="">
+                            <a href="faq">FAQ</a>
+                        </li>
+                        <li><a href="About">About</a></li>
+                        <li class="">
+                            <s:a action="FollowOrder">Check your order</s:a>
                             </li>
-                            <li class="">
-                            <s:a action="shop">Shop</s:a>
-                            </li>
-                            <li class=""><a href="About">About</a></li>
-                            <li class=""><a href="contacts.html">Contacts</a></li>
-                            <li class=""><a href="faq.html">FAQ</a></li>
-                            <s:if test="%{#session.USER != null}">
+                        <s:if test="%{#session.USER != null}">
                             <li class="menu-item-has-children">
                                 <s:a href="#" ><s:property value="#session.USER.lastName" /></s:a>
                                     <ul class="sub-menu">
@@ -134,9 +140,7 @@
                         <s:form action="Profile" method="post" id="profile-form" theme="simple"></s:form>
                             <a href="#" class="mobile-menu-toggle"><i class="material-icons menu"></i></a>
                         <s:if test="%{#session.USER == null}">
-                            
-                        <a href="/ECommerce/LoginForm" title="Log in"><i class="fa fa-sign-in"></i></a>
-                                
+                            <a href="/ECommerce/LoginForm" title="Log in"><i class="fa fa-sign-in"></i></a>
                         </s:if>
                         
                         <div class="cart-btn">
@@ -174,7 +178,10 @@
                                                     </a>
                                                 </h3>
                                                 <h4 class="item-price">
-                                                    <s:property value="value"/> x $<s:property value="key.price"/>
+                                                    <s:property value="value"/> x 
+                                                    $<s:text name="{0,number,#,##0.0}"> 
+                                                        <s:param name="value" value="key.price * (1- key.saleOff)"/> 
+                                                    </s:text>
                                                 </h4>
                                             </div>
                                             <a href="<s:url action="RemoveItem">
