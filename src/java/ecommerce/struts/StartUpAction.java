@@ -8,6 +8,8 @@ package ecommerce.struts;
 import com.opensymphony.xwork2.ActionContext;
 import ecommerce.dao.AccountDAO;
 import ecommerce.entities.Accounts;
+import ecommerce.tools.Utils;
+import java.security.NoSuchAlgorithmException;
 import java.util.Map;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;

@@ -19,39 +19,30 @@
             <ul class="list-icon">
                 <li>
                     <i class="material-icons location_on"></i>
-                    45 Park Avenue, Apt. 303<br>New York, NY 10016, USA
+                    <s:property value="contact.Address" />
                 </li>
                 <li>
                     <i class="material-icons phone"></i>
-                    001 (917) 555-4836
+                    <s:property value="contact.CellPhone" />
                 </li>
-                <li>
-                    <i class="material-icons phone_iphone"></i>
-                    001 (800) 333-6578
-                </li>
+
                 <li>
                     <i class="material-icons email"></i>
-                    <a href="mailto:info@m-store.com">info@m-store.com</a>
+                    <a href="mailto:<s:property value="contact.Email" />"><s:property value="contact.Email" /></a>
                 </li>
                 <li>
                     <i class="socicon-skype"></i>
-                    <a href="#">skype_id</a>
+                    <s:property value="contact.Skype" />
                 </li>
             </ul><!-- .list-icon -->
             <p>Working hours: <span class="text-gray">10am - 8pm, Mn - St</span></p>
             <span class="display-inline" style="margin-bottom: 6px;">Social accounts: &nbsp;&nbsp;</span>
             <div class="social-bar display-inline">
-                <a href="#" class="sb-facebook" data-toggle="tooltip" data-placement="top" title="Facebook">
+                <a href="<s:property value="contact.Facebook" />" class="sb-facebook" data-toggle="tooltip" data-placement="top" title="Facebook">
                     <i class="socicon-facebook"></i>
                 </a>
-                <a href="#" class="sb-google-plus" data-toggle="tooltip" data-placement="top" title="" data-original-title="Google+">
-                    <i class="socicon-googleplus"></i>
-                </a>
-                <a href="#" class="sb-twitter" data-toggle="tooltip" data-placement="top" title="Twitter">
-                    <i class="socicon-twitter"></i>
-                </a>
-                <a href="#" class="sb-instagram" data-toggle="tooltip" data-placement="top" title="" data-original-title="Instagram">
-                    <i class="socicon-instagram"></i>
+
+                
                 </a>
             </div><!-- .social-bar -->
         </div><!-- .col-sm-5 -->
