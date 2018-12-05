@@ -29,6 +29,9 @@
         <link href="css/vendor/bootstrap.min.css" rel="stylesheet" media="screen">
 
         <link href="css/theme.min.css" rel="stylesheet" media="screen">
+        
+        
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
         <script src="js/vendor/page-preloading.js"></script>
     </head>
@@ -44,44 +47,44 @@
             <!-- Large Modal -->
             <div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog">
                 <div class="modal-dialog" role="document">
-                        <section class="container padding-top-3x padding-bottom-2x">
-                            <div class="row padding-top">
-                                <div class="col-md-4 padding-bottom">
-                                    <h3>Login</h3>
-                                    <h3 style="color: red"></h3>
-                                    <form id="Login" name="Login" action="/ECommerce/Login" method="POST" class="login-form">
-                                        <input type="text" name="Id" value="" id="Login_Id" class="form-control" required="required" placeholder="Username"/>
-                                        <input type="password" name="password" id="Login_password" class="form-control" required="required" placeholder="Password"/>
-                                        <div class="form-footer">
-                                            <div class="rememberme">
-                                                <label class="checkbox">
-                                                    <input type="checkbox" name="remember" value="true" id="Login_remember" style="color:red"/><input type="hidden" id="__checkbox_Login_remember" name="__checkbox_remember" value="true" /> Remember me
-                                                </label>
-                                            </div>
-                                            <div class="form-submit">
-                                                <button type="submit" class="btn btn-primary btn-block waves-effect waves-light">Login</button>
-                                            </div>
+                    <section class="container padding-top-3x padding-bottom-2x">
+                        <div class="row padding-top">
+                            <div class="col-md-4 padding-bottom">
+                                <h3>Login</h3>
+                                <h3 style="color: red"></h3>
+                                <form id="Login" name="Login" action="/ECommerce/Login" method="POST" class="login-form">
+                                    <input type="text" name="Id" value="" id="Login_Id" class="form-control" required="required" placeholder="Username"/>
+                                    <input type="password" name="password" id="Login_password" class="form-control" required="required" placeholder="Password"/>
+                                    <div class="form-footer">
+                                        <div class="rememberme">
+                                            <label class="checkbox">
+                                                <input type="checkbox" name="remember" value="true" id="Login_remember" style="color:red"/><input type="hidden" id="__checkbox_Login_remember" name="__checkbox_remember" value="true" /> Remember me
+                                            </label>
                                         </div>
-                                    </form>
-                                    <a href="/ECommerce/registerForm">Register here</a>
-                                </div><!-- .col-md-4 -->
+                                        <div class="form-submit">
+                                            <button type="submit" class="btn btn-primary btn-block waves-effect waves-light">Login</button>
+                                        </div>
+                                    </div>
+                                </form>
+                                <a href="/ECommerce/registerForm">Register here</a>
+                            </div><!-- .col-md-4 -->
 
-                                <div class="col-md-3 padding-top-2x">
-                                    <a href="#" class="social-signup-btn ssb-facebook">
-                                        <i class="socicon-facebook"></i>
-                                        <span>Signup with Facebook</span>
-                                    </a>
-                                    <a href="#" class="social-signup-btn ssb-google">
-                                        <i class="socicon-googleplus"></i>
-                                        <span>Signup with Google+</span>
-                                    </a>
-                                    <a href="#" class="social-signup-btn ssb-twitter">
-                                        <i class="socicon-twitter"></i>
-                                        <span>Signup with Twitter</span>
-                                    </a>
-                                </div><!-- .col-md-3 -->
-                            </div><!-- .row -->
-                        </section><!-- .container -->
+                            <div class="col-md-3 padding-top-2x">
+                                <a href="#" class="social-signup-btn ssb-facebook">
+                                    <i class="socicon-facebook"></i>
+                                    <span>Signup with Facebook</span>
+                                </a>
+                                <a href="#" class="social-signup-btn ssb-google">
+                                    <i class="socicon-googleplus"></i>
+                                    <span>Signup with Google+</span>
+                                </a>
+                                <a href="#" class="social-signup-btn ssb-twitter">
+                                    <i class="socicon-twitter"></i>
+                                    <span>Signup with Twitter</span>
+                                </a>
+                            </div><!-- .col-md-3 -->
+                        </div><!-- .row -->
+                    </section><!-- .container -->
 
 
                 </div><!-- /.modal-dialog -->
@@ -111,38 +114,32 @@
                             <li class="">
                             <s:a action="shop">Shop</s:a>
                             </li>
-                            <li class="menu-item-has-children">
-                                <a href="#">Pages</a>
-                                <ul class="sub-menu">
-                                    <li><a href="About">About</a></li>
-                                    <li><a href="contacts.html">Contacts</a></li>
-                                    <li><a href="faq.html">FAQ</a></li>          
-                                </ul>
-                            </li>
-
-                        <s:if test="%{#session.USER == null}">
-                            <li class="">
-                                <s:a href="/ECommerce/LoginForm">Login</s:a>
-                                </li>
-                        </s:if>
-                        <s:if test="%{#session.USER != null}">
+                            <li class=""><a href="About">About</a></li>
+                            <li class=""><a href="contacts.html">Contacts</a></li>
+                            <li class=""><a href="faq.html">FAQ</a></li>
+                            <s:if test="%{#session.USER != null}">
                             <li class="menu-item-has-children">
                                 <s:a href="#" ><s:property value="#session.USER.lastName" /></s:a>
                                     <ul class="sub-menu">
-                                        <li><a href="/ECommerce/logout">Log out</a></li>         
+                                        <li><a href="Profile" id="profile-button">Profile</a></li>
+                                        <li><a href="/ECommerce/logout">Log out</a></li>                                        
                                     </ul>
                                 </li>
-
                         </s:if>
-                    </ul>
-                </nav>
+                        </ul>
+                    </nav>
 
-                <div class="toolbar">
-                    <div class="inner"> 
+                    <div class="toolbar">
+                        <div class="inner"> 
                         <s:form action="Profile" method="post" id="profile-form" theme="simple"></s:form>
                             <a href="#" class="mobile-menu-toggle"><i class="material-icons menu"></i></a>
-                            <a href="#" id="profile-button"><i class="material-icons person"></i></a>
-                            <div class="cart-btn">
+                        <s:if test="%{#session.USER == null}">
+                            
+                        <a href="/ECommerce/LoginForm" title="Log in"><i class="fa fa-sign-in"></i></a>
+                                
+                        </s:if>
+                        
+                        <div class="cart-btn">
                             <s:a action="GetCart">
                                 <i>
                                     <span class="material-icons shopping_basket"></span>
