@@ -9,7 +9,7 @@
 
 <s:include value="header.jsp"/>
 <!-- Featured Image -->
-<!--<div class="featured-image" style="background-image: url(img/<s:property value="%{dto.Image}"/>);"></div>-->
+<div class="featured-image" style="background-image: url(<s:property value="%{dto.Image}"/>);"></div>
 
 <!-- Content -->
 <section class="container padding-top-3x">
@@ -139,14 +139,25 @@
                                 <tbody>
                                     <s:iterator value="%{listOrders}">
                                         <tr>
-                                            <td><a href="#"><s:property value="ID"/></a></td>
-                                            <td><s:property value="DatePurchased"/></td>
+
+                                            <s:url value="OrderDetail" var="Detail">
+                                                <s:param name="id" value="ID"/>
+                                            </s:url>
+                                            <td><s:a href="%{Detail}"><s:property value="ID"/></s:a></td>
+                                            <td>
+                                                <s:text name="{0,date,dd/MM/yyyy HH:mm a}">
+                                                    <s:param name="value" value="DatePurchased"/>
+                                                </s:text>
+                                            </td>
+
                                             <td>
                                                 <s:if test="Status == 'Delivered'">
                                                     <span class="text-success">Delivered</span>
                                                 </s:if>
-                                                <s:if test="Status == 'In Progress'">
-                                                    <span class="text-warning">In Progress</span>
+                                                <s:if test="Status == 'In Progress' || Status == 'Waiting for confirm'">
+                                                    <span class="text-warning">
+                                                        <s:property value="status"/>
+                                                    </span>
                                                 </s:if>
                                                 <s:if test="Status == 'Canceled'">
                                                     <span class="text-danger">Canceled</span>
@@ -172,9 +183,14 @@
                                             <div class="shop-thumbnail">
                                                 <a href="GetProductDetails?Id=<s:property value="Id"/>" 
                                                    class="item-link"></a>
-                                                   <img src="img/<s:property value="Image1"/>" alt="Shop item">
+                                                <img src="<s:property value="Image1"/>" alt="Shop item">
                                                 <div class="shop-item-tools">
-                                                    <a href="#" class="add-to-whishlist" data-toggle="tooltip" title="Remove from wishlist">
+                                                    <a href="<s:url action="AddToWishlist">
+                                                           <s:param name="productId" >
+                                                               <s:property value="Id"/>
+                                                           </s:param>
+                                                           <s:param name="isRemove" value="true"/>
+                                                    </s:url>" class="add-to-whishlist" data-toggle="tooltip" title="Remove from wishlist">
                                                         <i class="material-icons close"></i>
                                                     </a>
                                                     <a href="#" class="add-to-cart">
@@ -188,7 +204,9 @@
                                             <div class="shop-item-details">
                                                 <h3 class="shop-item-title"><a href="GetProductDetails?Id=<s:property value="Id"/>"><s:property value="Name"/></a></h3>
                                                 <span class="shop-item-price">
-                                                    $<s:property value="Price * (1 - SaleOff)"/>
+                                                    $<s:text name="{0,number,#,##0.00}"> 
+                                                        <s:param name="value" value="Price * (1 - SaleOff)"/> 
+                                                    </s:text>
                                                 </span>
                                             </div>
                                         </div><!-- .shop-item -->

@@ -12,7 +12,7 @@
 <section class="container padding-top-3x padding-bottom-2x">
     <h1>User Account</h1>
     <div class="row padding-top">
-        <div class="col-md-4 padding-bottom">
+        <div class="col-md-6 padding-bottom">
             <h3>Login</h3>
             <s:if test="%{error != null}">
                 <h4 style="color: red"><s:property value="error" /></h4>
@@ -35,7 +35,7 @@
             <s:a href="/ECommerce/registerForm">Register here</s:a>
         </div><!-- .col-md-4 -->
         
-        <div class="col-md-3 padding-top-2x">
+        <div class="col-md-6 padding-top-2x">
             <a href="#" class="social-signup-btn ssb-facebook">
                 <i class="socicon-facebook"></i>
                 <span>Signup with Facebook</span>

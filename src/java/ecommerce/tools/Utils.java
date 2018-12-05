@@ -7,6 +7,8 @@ package ecommerce.tools;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.sql.Timestamp;
+import java.util.Date;
 
 /**
  *
@@ -24,8 +26,8 @@ public class Utils {
         }
         return sb.toString();
     }
-    
-    
-    
 
+    public static String getDynamicId() {
+        return System.currentTimeMillis() + "";
+    }
 }

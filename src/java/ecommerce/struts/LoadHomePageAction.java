@@ -5,9 +5,12 @@
  */
 package ecommerce.struts;
 
+import com.opensymphony.xwork2.ActionContext;
 import ecommerce.dao.CategoriesDAO;
+import ecommerce.dao.ContactDAO;
 import ecommerce.dao.ProductsDAO;
 import ecommerce.entities.Categories;
+import ecommerce.entities.Contacts;
 import ecommerce.entities.Products;
 import java.util.List;
 import org.apache.struts2.convention.annotation.Action;
@@ -26,6 +29,8 @@ public class LoadHomePageAction {
     private List<Products> list8Rating;
     private List<Categories> listCategories;
     private Products highestOffer;
+    private Contacts contact;
+    
     private static final String SUCCESS = "success";
     
     public LoadHomePageAction() {
@@ -34,15 +39,29 @@ public class LoadHomePageAction {
     public String execute() throws Exception {
         ProductsDAO proDAO = new ProductsDAO();
         CategoriesDAO cateDAO = new CategoriesDAO();
+        ContactDAO contactDAO = new ContactDAO();
+        
         listBanners = proDAO.getBanners();
         list8Saling = proDAO.getTop8NewestSaling();
         list8Newest = proDAO.getTop8Newest();
         list8Rating = proDAO.getTop8Rating();
         highestOffer = proDAO.getHighestOffer();
         listCategories = cateDAO.getTop4MostSold();
+        contact = contactDAO.getNewestContact();
+        java.util.Map session = ActionContext.getContext().getSession();
+        session.put("CONTACT", contact);
+        
         return SUCCESS;
     }
 
+    public Contacts getContact() {
+        return contact;
+    }
+
+    public void setContact(Contacts contact) {
+        this.contact = contact;
+    }
+    
     public List<Products> getListBanners() {
         return listBanners;
     }

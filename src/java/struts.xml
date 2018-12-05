@@ -5,22 +5,29 @@
 <struts>
     <!-- Configuration for the default package. -->
     <package name="default" extends="struts-default" namespace="/">
+        
         <action name="">
             <result type="redirectAction">
                 <param name="actionName">StartUp</param>
             </result>
         </action>
         
-        <action name="Login" class="ecommerce.struts.LoginAction">
+        <action name="BackToShop">
+            <result type="redirectAction">Home</result>
+        </action>
+        
+        <action name="Login" class="ecommerce.struts.LoginAction" >
             <result name="admin" type="redirect">admin.jsp</result>
             <result name="user" type="redirectAction">Home</result>
             <result name="fail">login.jsp</result>
         </action>
+        
         <action name="LoginForm" class="ecommerce.struts.LoginFormAction">
             <result type="redirect" name="admin">admin.jsp</result>
             <result type="redirectAction" name="user">Home</result>
-            <result type="redirect" name="fail">login.jsp</result>
+            <result name="fail">login.jsp</result>
         </action>
+        
         <action name="StartUp" class="ecommerce.struts.StartUpAction">
             <result name="success" type="chain">
                 Login
@@ -30,25 +37,66 @@
             </result>
             <result name="fail" type="redirectAction">Home</result>
         </action>
+        
         <action name="logout" class="ecommerce.struts.LogoutAction">
             <result name="success" type="redirectAction">
                 Home
             </result>
-            
         </action>
         
         <action name="GetProductDetails" class="ecommerce.struts.GetProductDetailsAction">
             <result name="success">product-details.jsp</result>
         </action>
         
+
+        <action name="AddToCart" class="ecommerce.struts.AddToCartAction">
+            <result name="success" type="redirectAction">
+                <param name="actionName">GetProductDetails</param>
+                <param name="Id">${id}</param>
+            </result>
+        </action>
+        
+
         <action name="registerForm">
             <result>register.jsp</result>
         </action>
+		
         <action name="register" class="ecommerce.struts.RegisterAction">
             <result name="success" type="chain">Login</result>
             <result name="fail">register.jsp</result>
             <result name="input">register.jsp</result>
         </action>
+
+        <action name="GetCart" class="ecommerce.struts.GetShoppingCartAction">
+            <result name="success">shopping-cart.jsp</result>
+        </action>
+        
+        <action name="RemoveItem" class="ecommerce.struts.AddToCartAction" method="remove">
+            <result name="success" type="redirectAction">
+                <param name="actionName">GetCart</param>
+            </result>
+        </action>
+        <action name="UpdateCart" class="ecommerce.struts.UpdateCartAction" >
+            <result name="success" type="redirectAction">
+                <param name="actionName">GetCart</param>
+            </result>
+        </action>
+        
+        <action name="AddToWishlist" class="ecommerce.struts.ProcessWishlistAction" >
+            <result name="success" type="stream" >
+                <param name="contentType">text/plain</param>
+                <param name="inputName">stream</param>
+            </result>
+            <result name="remove" type="redirectAction" >Profile</result>
+        </action>
+        
+        <action name="CheckInWishlist" class="ecommerce.struts.ProcessWishlistAction" method="check">
+            <result name="success" type="stream" >
+                <param name="contentType">text/plain</param>
+                <param name="inputName">stream</param>
+            </result>
+        </action>
+
         <action name="shop" class="ecommerce.struts.ShopAction">
             <result name="success" >shop.jsp</result>
         </action>
@@ -63,5 +111,34 @@
         <action name="faq" class="ecommerce.struts.FaqAction">
             <result name="success" >faq.jsp</result>
         </action>
+        
+        <action name="LoadCheckoutForm" class="ecommerce.struts.ProcessCheckoutAction" method="loadCheckoutForm">
+            <result name="success">checkout.jsp</result>
+        </action>
+        
+        <action name="SubmitCheckout" class="ecommerce.struts.ProcessCheckoutAction" method="checkout">
+            <exception-mapping exception="java.lang.Exception" result="input" name="exception"/>
+            <result name="input">success-order-checkout.jsp</result>
+            <result name="success">success-order-checkout.jsp</result>
+        </action>
+        
+        <action name="GetAddress" class="ecommerce.struts.ProcessCheckoutAction" method="getAddress">
+            <result name="success" type="stream">
+                <param name="contentType">text/plain</param>
+                <param name="inputName">stream</param>
+            </result>
+        </action>
+        
+       
+        
+        <action name="FollowOrder">
+            <result>order-tracking.jsp</result>
+        </action>
+        
+        <action name="GetOrder" class="ecommerce.struts.TrackingOrderAction" >
+            <result name="success" >order-tracking.jsp</result>
+        </action>
+        
     </package>
+    
 </struts>

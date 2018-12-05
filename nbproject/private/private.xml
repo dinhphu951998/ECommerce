@@ -3,11 +3,26 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/thanh/Desktop/ECommerce/src/java/ecommerce/struts/GetProductDetailsAction.java</file>
             <file>file:/C:/Users/thanh/Desktop/ECommerce/web/home-page.jsp</file>
-            <file>file:/C:/Users/thanh/Desktop/ECommerce/src/java/struts.xml</file>
+            <file>file:/C:/Users/thanh/Desktop/ECommerce/web/META-INF/context.xml</file>
+            <file>file:/C:/Users/thanh/Desktop/ECommerce/src/java/ecommerce/dao/OrdersDAO.java</file>
+            <file>file:/C:/Users/thanh/Desktop/ECommerce/src/java/ecommerce/struts/LoadProfileAction.java</file>
+            <file>file:/C:/Users/thanh/Desktop/ECommerce/src/java/ecommerce/entities/Messages.java</file>
+            <file>file:/C:/Users/thanh/Desktop/ECommerce/web/contact.jsp</file>
+            <file>file:/C:/Users/thanh/Desktop/ECommerce/web/success-order-checkout.jsp</file>
             <file>file:/C:/Users/thanh/Desktop/ECommerce/web/header.jsp</file>
+            <file>file:/C:/Users/thanh/Desktop/ECommerce/src/java/struts.xml</file>
+            <file>file:/C:/Users/thanh/Desktop/ECommerce/web/register.jsp</file>
+            <file>file:/C:/Users/thanh/Desktop/ECommerce/web/login.jsp</file>
+            <file>file:/C:/Users/thanh/Desktop/ECommerce/web/admin.jsp</file>
+            <file>file:/C:/Users/thanh/Desktop/ECommerce/src/java/ecommerce/struts/ShopAction.java</file>
+            <file>file:/C:/Users/thanh/Desktop/ECommerce/src/java/ecommerce/dao/OrderDetailsDAO.java</file>
+            <file>file:/C:/Users/thanh/Desktop/ECommerce/src/java/ecommerce/struts/LoadHomePageAction.java</file>
+            <file>file:/C:/Users/thanh/Desktop/ECommerce/web/profile.jsp</file>
+            <file>file:/C:/Users/thanh/Desktop/ECommerce/src/java/ecommerce/struts/LoadOrderDetailAction.java</file>
+            <file>file:/C:/Users/thanh/Desktop/ECommerce/web/product-details.jsp</file>
             <file>file:/C:/Users/thanh/Desktop/ECommerce/src/java/ecommerce/dao/ProductsDAO.java</file>
+            <file>file:/C:/Users/thanh/Desktop/ECommerce/src/java/ecommerce/struts/ProcessCheckoutAction.java</file>
         </group>
     </open-files>
 </project-private>

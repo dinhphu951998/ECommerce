@@ -184,7 +184,7 @@
                                     </s:if>
 
                                     <a href="GetProductDetails?id=<s:property value="Id"/>" class="item-link"></a>
-                                    <img src="img/<s:property value="Image1" />" alt="Shop item">
+                                    <img src="<s:property value="Image1" />" alt="Shop item">
                                     <div class="shop-item-tools">
                                         <a href="#" class="add-to-whishlist" data-toggle="tooltip" data-placement="top" title="Wishlist">
                                             <i class="material-icons favorite_border"></i>
@@ -202,7 +202,10 @@
                                     <span class="shop-item-price">
                                         <s:if test="%{SaleOff != 0}">
                                             <span class="old-price">$<s:property value="Price" /></span>
-                                            $<s:property value="%{Price - Price*SaleOff}" />
+                                            $<s:text name="{0,number,#,##0.00}"> 
+                                                <s:param name="value" value="Price - Price*SaleOff"/> 
+                                            </s:text>
+
                                         </s:if>
                                         <s:if test="%{SaleOff == 0}">
                                             $<s:property value="Price" />
