@@ -141,7 +141,14 @@
         <action name="GetOrder" class="ecommerce.struts.TrackingOrderAction" >
             <result name="success" >order-tracking.jsp</result>
         </action>
-        
+        <action name="writeReviewForm" class="ecommerce.struts.WriteReviewFormAction" >
+            <result name="success" >writeReview.jsp</result>
+        </action>
+        <action name="writeReviewProcess" class="ecommerce.struts.WriteReviewProcessAction" >
+            <result name="success" >successReview.jsp</result>
+            <result name="input" type="chain" >writeReviewForm</result>
+            <result name="fail"  >failReview.jsp</result>
+        </action>
     </package>
     
 </struts>
