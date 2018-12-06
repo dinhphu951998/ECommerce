@@ -9,8 +9,11 @@
 <%@taglib uri="/struts-tags" prefix="s"%>
 
 <s:include value="header.jsp"/>
+
 <!-- Pager + Product Gallery -->
+
 <section class="fw-section bg-gray padding-top-3x">
+
 
     <!-- Page Navigation -->
     <!--    <a href="#" class="page-nav page-prev">
@@ -234,9 +237,10 @@
                                 </span>
                             </div>
                         </div>
-                        <p><s:property value="Content"/></p>
+                        <textarea readonly id="review" style=" background-color: white; border:none; resize: none; overflow: hidden " cols="100px" name="text" onmouseover='this.style.height = "";this.style.height = this.scrollHeight + "px"'><s:property value="Content"/></textarea>
                         <cite><s:property value="AccountName"/></cite>
                     </div>
+
                 </div><!-- .review -->
                 <!-- Review -->
             </s:iterator>
