@@ -8,7 +8,7 @@
 <%@taglib uri="/struts-tags" prefix="s"%>
 
 <s:include value="header.jsp"/>
-
+<s:url value="/writeReviewForm" var="writeReviewFormUrl"/>
 <!-- Content -->
 <section class="container padding-top-3x">
     <h4 class="mobile-center">Order ID: #<s:property value="%{order.ID}"/></h4>
@@ -26,6 +26,9 @@
                     <th>Quantity</th>
                     <th>Sale Off</th>
                     <th>Total</th>
+                        <s:if test="%{order.Status.equals('Delivered')}">
+                        <th></th>
+                        </s:if>
                     </thead>
                     <tbody>
                         <s:iterator value="%{listProduct}">
@@ -48,6 +51,9 @@
                                 <td><s:property value="Stock"/></td>
                                 <td><s:property value="SaleOff * 100"/>%</td>
                                 <td>$<s:property value="Price * (1 - SaleOff)"/></td>
+                                <s:if test="%{order.Status.equals('Delivered')}">
+                                    <td><a href="writeReviewForm?productId=<s:property value="Id" />">Write review</a></td>
+                                </s:if>
                             </tr>
                         </s:iterator>
                         <tr>

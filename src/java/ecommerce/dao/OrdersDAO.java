@@ -27,15 +27,15 @@ import javax.naming.NamingException;
  * @author DAT
  */
 public class OrdersDAO extends BaseDAO<Orders> implements Serializable {
-
+    
     private Connection conn;
     private PreparedStatement preStm;
     private ResultSet rs;
-
+    
     public OrdersDAO() {
         super(Orders.class);
     }
-
+    
     private void closeConnection() throws SQLException {
         if (rs != null) {
             rs.close();
@@ -47,7 +47,7 @@ public class OrdersDAO extends BaseDAO<Orders> implements Serializable {
             conn.close();
         }
     }
-
+    
     public List<Orders> getOrdersByAcountID(String accountID) throws NamingException, SQLException {
         List<Orders> list = null;
         String id, status;
@@ -75,7 +75,7 @@ public class OrdersDAO extends BaseDAO<Orders> implements Serializable {
         }
         return list;
     }
-
+    
     public List<Orders> getAddressesInOrder(String accountId) throws NamingException, SQLException {
         List<Orders> addresses = null;
         try {
@@ -96,7 +96,7 @@ public class OrdersDAO extends BaseDAO<Orders> implements Serializable {
                     String address = rs.getString("Address");
                     String email = rs.getString("Email");
                     addresses.add(new Orders(null, accountId, null, null, 0, name, phone, address, email));
-
+                    
                 }
             }
         } finally {
@@ -104,7 +104,7 @@ public class OrdersDAO extends BaseDAO<Orders> implements Serializable {
         }
         return addresses;
     }
-
+    
     public boolean addNewOrderAndDetails(MyCart myShoppingCart, Orders order) throws SQLException, NamingException {
         boolean result = false;
         try {
@@ -137,7 +137,7 @@ public class OrdersDAO extends BaseDAO<Orders> implements Serializable {
         }
         return result;
     }
-
+    
     public Orders getOrdersByID(String orderID) throws NamingException, SQLException {
         Orders order = null;
         String id, status, name, phone, address;
@@ -160,12 +160,35 @@ public class OrdersDAO extends BaseDAO<Orders> implements Serializable {
                     status = rs.getString("Status");
                     total = rs.getFloat("Total");
                     order = new Orders(id, null, datePurchased, status, total, name, phone, address, null);
-
+                    
                 }
             }
         } finally {
             closeConnection();
         }
         return order;
+    }
+    
+    public boolean checkWasPurchased(String accountId, String productId) throws NamingException, SQLException {
+        try {
+            conn = DBConnection.makeConnection();
+            //add order
+            String sql = "select count(*) as count\n"
+                    + "from OrderDetails\n"
+                    + "where ProductID = ? AND OrderID in(\n"
+                    + "	select ID\n"
+                    + "	from Orders\n"
+                    + "	where AccountID = ?)";
+            preStm = conn.prepareStatement(sql);
+            preStm.setString(1, productId);
+            preStm.setString(2, accountId);
+            rs=preStm.executeQuery();
+            if (rs.next()){
+                return rs.getInt("count") > 0;
+            }
+        } finally {
+            closeConnection();
+        }
+        return false;
     }
 }
