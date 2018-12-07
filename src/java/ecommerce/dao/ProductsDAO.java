@@ -54,7 +54,7 @@ public class ProductsDAO extends BaseDAO<Products> implements Serializable {
                     + "Image3, Image4, Manufacturer, Description, ShortDescription, "
                     + "OtherInfo, Stock, DateArrivals, SaleOff, AttVal1, AttVal2, "
                     + "AttVal3, AttVal4, AttVal5, AttVal6, AttVal7, AttVal8, AttVal9, "
-                    + "AttVal10, RatingScore, NumOfRates from Products where Id = ?";
+                    + "AttVal10, RatingScore, NumOfRates from Products where Id = ? AND IsActive='true'";
             conn = DBConnection.makeConnection();
             pstm = conn.prepareStatement(sql);
             pstm.setString(1, Id);
@@ -104,7 +104,7 @@ public class ProductsDAO extends BaseDAO<Products> implements Serializable {
                     + "Image3, Image4, Manufacturer, Description, ShortDescription, "
                     + "OtherInfo, Stock, DateArrivals, SaleOff, AttVal1, AttVal2, "
                     + "AttVal3, AttVal4, AttVal5, AttVal6, AttVal7, AttVal8, AttVal9, "
-                    + "AttVal10, RatingScore, NumOfRates from Products where CategoryID = ?";
+                    + "AttVal10, RatingScore, NumOfRates from Products where CategoryID = ? AND IsActive = 'true'";
             conn = DBConnection.makeConnection();
             pstm = conn.prepareStatement(sql);
             pstm.setInt(1, categoryId);
@@ -160,7 +160,7 @@ public class ProductsDAO extends BaseDAO<Products> implements Serializable {
             if (conn != null) {
                 String sql = "Select p.Id, p.Name, p.Price, p.SaleOff, b.Image "
                         + "From Products p JOIN Banners b "
-                        + "ON p.Id = b.ProductID";
+                        + "ON p.Id = b.ProductID where p.IsActive = 'true'";
                 pstm = conn.prepareStatement(sql);
                 rs = pstm.executeQuery();
                 list = new ArrayList<>();
@@ -193,7 +193,7 @@ public class ProductsDAO extends BaseDAO<Products> implements Serializable {
             conn = DBConnection.makeConnection();
             if (conn != null) {
                 String sql = "Select Top 8 Id, Name, Price, SaleOff, Image1 From Products "
-                        + "Where SaleOff > 0 "
+                        + "Where SaleOff > 0 AND IsActive = 'true' "
                         + "Order by DateArrivals DESC";
                 pstm = conn.prepareStatement(sql);
                 rs = pstm.executeQuery();
@@ -227,6 +227,7 @@ public class ProductsDAO extends BaseDAO<Products> implements Serializable {
             conn = DBConnection.makeConnection();
             if (conn != null) {
                 String sql = "Select Top 8 Id, Name, Price, SaleOff, Image1 From Products "
+                        + " where IsActive ='true' "
                         + "Order by DateArrivals DESC";
                 pstm = conn.prepareStatement(sql);
                 rs = pstm.executeQuery();
@@ -261,7 +262,7 @@ public class ProductsDAO extends BaseDAO<Products> implements Serializable {
             conn = DBConnection.makeConnection();
             if (conn != null) {
                 String sql = "Select Top 8 Id, Name, Image1, Price, SaleOff, RatingScore/NumOfRates As Rate "
-                        + "From Products "
+                        + "From Products WHERE IsActive='true' "
                         + "Order by RatingScore/NumOfRates DESC";
                 pstm = conn.prepareStatement(sql);
                 rs = pstm.executeQuery();
@@ -297,7 +298,7 @@ public class ProductsDAO extends BaseDAO<Products> implements Serializable {
             conn = DBConnection.makeConnection();
             if (conn != null) {
                 String sql = "Select Top 1 Id, Name, Price, SaleOff, Image1 "
-                        + "From Products "
+                        + "From Products WHERE IsActive='true' "
                         + "Order by SaleOff DESC";
                 pstm = conn.prepareStatement(sql);
                 rs = pstm.executeQuery();
@@ -329,6 +330,7 @@ public class ProductsDAO extends BaseDAO<Products> implements Serializable {
                 String sql = "select Id,Name,Price,SaleOff,Image1,CategoryID,Manufacturer,DateArrivals  \n"
                         + "from Products \n"
                         + "where Name like ? \n"
+                        + "AND IsActive = 'true' \n"
                         + "AND Price >= ? AND Price <= ? \n";
                 if (categoryId != -1) {
                     sql += "AND CategoryID = ? \n";
@@ -407,7 +409,7 @@ public class ProductsDAO extends BaseDAO<Products> implements Serializable {
             if (conn != null) {
                 String sql = "select COUNT(*) as count \n"
                         + "from Products \n"
-                        + "where Name like ? \n"
+                        + "where Name like ? AND IsActive='true' \n"
                         + "AND Price >= ? AND Price <= ? \n";
                 if (categoryId != -1) {
                     sql += "AND CategoryID = ? \n";
@@ -445,7 +447,7 @@ public class ProductsDAO extends BaseDAO<Products> implements Serializable {
             conn = DBConnection.makeConnection();
             if (conn != null) {
                 String sql = "select DISTINCT Manufacturer\n"
-                        + "from Products";
+                        + "from Products WHERE IsActive='true'";
                 pstm = conn.prepareStatement(sql);
                 rs = pstm.executeQuery();
                 while (rs.next()) {
@@ -474,7 +476,7 @@ public class ProductsDAO extends BaseDAO<Products> implements Serializable {
                         + "From Products "
                         + "Where Id in ( Select ProductID "
                         + "From WishList "
-                        + "Where AccountID = ? )";
+                        + "Where AccountID = ? ) AND IsActive='true'";
                 pstm = conn.prepareStatement(sql);
                 pstm.setString(1, accountID);
                 rs = pstm.executeQuery();
@@ -511,7 +513,7 @@ public class ProductsDAO extends BaseDAO<Products> implements Serializable {
                 String sql = "Select p.Id, p.Name, p.Image1, o.Price, o.Quantity, o.SaleOff "
                         + "From Products p JOIN OrderDetails o "
                         + "ON o.ProductID = p.Id "
-                        + "Where o.OrderID = ?";
+                        + "Where o.OrderID = ? AND p.IsActive='true'";
                 pstm = conn.prepareStatement(sql);
                 pstm.setString(1, orderID);
                 rs = pstm.executeQuery();

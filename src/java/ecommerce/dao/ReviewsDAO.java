@@ -93,7 +93,7 @@ public class ReviewsDAO extends BaseDAO<Reviews> implements Serializable {
             if (conn != null) {
                 String sql = "select r.Id,r.Title,r.Content,r.Rating,a.LastName,a.Image\n"
                         + "from Reviews r join Accounts a on r.AccountId=a.Id \n"
-                        + "where r.ProductId =  ?";
+                        + "where r.ProductId =  ? AND IsActive = 'true' ";
                 preStm = conn.prepareStatement(sql);
                 preStm.setString(1, Id);
                 rs = preStm.executeQuery();

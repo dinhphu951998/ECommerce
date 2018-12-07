@@ -48,7 +48,7 @@ public class CategoriesDAO extends BaseDAO<Categories> {
             String sql = "select Id, Name, AttName1, AttName2, AttName3, AttName4, AttName5, AttName6, "
                     + "AttName7, AttName8, AttName9, AttName10 "
                     + "from Categories "
-                    + "where Id = ? ";
+                    + "where Id = ? AND IsActive='true'";
             conn = DBConnection.makeConnection();
             pstm = conn.prepareStatement(sql);
             pstm.setInt(1, Id);
@@ -82,7 +82,7 @@ public class CategoriesDAO extends BaseDAO<Categories> {
             if (conn != null) {
                 String sql = "Select Top 4 Id, Name, Image "
                         + "From Categories "
-                        + "Where Id in (   Select Top 2147483647 p.CategoryID "
+                        + "Where IsActive='true' AND Id in (   Select Top 2147483647 p.CategoryID "
                         + "From Products p JOIN OrderDetails od "
                         + "ON p.Id = od.ProductID "
                         + "Where od.OrderID in (  Select ID "
@@ -116,7 +116,7 @@ public class CategoriesDAO extends BaseDAO<Categories> {
             conn = DBConnection.makeConnection();
             if (conn != null) {
                 String sql = "select Id,Name\n"
-                        + "from Categories";
+                        + "from Categories WHERE IsActive='true'";
                 pstm = conn.prepareStatement(sql);
                 rs = pstm.executeQuery();
                 while (rs.next()) {
