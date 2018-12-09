@@ -70,6 +70,9 @@
         <action name="GetCart" class="ecommerce.struts.GetShoppingCartAction">
             <result name="success">shopping-cart.jsp</result>
         </action>
+        <action name="GetCartTextEmail" class="ecommerce.struts.GetShoppingCartAction" method="getCartTextEmail">
+            <result name="success">order-mail.jsp</result>
+        </action>
         
         <action name="RemoveItem" class="ecommerce.struts.AddToCartAction" method="remove">
             <result name="success" type="redirectAction">
@@ -129,8 +132,6 @@
             </result>
         </action>
         
-       
-        
         <action name="FollowOrder">
             <result>order-tracking.jsp</result>
         </action>
@@ -138,6 +139,12 @@
         <action name="GetOrder" class="ecommerce.struts.TrackingOrderAction" >
             <result name="success" >order-tracking.jsp</result>
         </action>
+        
+        <!--        <action name="SendEmail" class="ecommerce.struts." >
+            <result name="success">order-tracking.jsp</result>
+        </action>-->
+        
+        
         
     </package>
     

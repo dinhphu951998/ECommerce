@@ -12,7 +12,9 @@
 <!-- Content -->
 <section class="container padding-top-3x">
     <h4 class="mobile-center">Order ID: #<s:property value="%{order.ID}"/></h4>
-    <h4 class="mobile-center">Date Purchased: <s:property value="%{order.DatePurchased}"/></h4>
+    <h4 class="mobile-center">Date Purchased: <s:text name="{0,date,dd/MM/yyyy HH:mm a}">
+                                            <s:param value="order.DatePurchased"/>
+                                        </s:text></h4>
     <h4 class="mobile-center">Status: <s:property value="%{order.Status}"/></h4>
     <h4 class="mobile-center">Receiver: <s:property value="%{order.Name}"/></h4>
     <h4 class="mobile-center">Address: <s:property value="%{order.Address}"/></h4>
@@ -47,7 +49,11 @@
                                 </td>
                                 <td><s:property value="Stock"/></td>
                                 <td><s:property value="SaleOff * 100"/>%</td>
-                                <td>$<s:property value="Price * (1 - SaleOff)"/></td>
+                                <td>
+                                    $<s:text name="{0,number,#,##0.00}"> 
+                                        <s:param name="value" value="Price * (1 - SaleOff)"/> 
+                                    </s:text>
+                                </td>
                             </tr>
                         </s:iterator>
                         <tr>

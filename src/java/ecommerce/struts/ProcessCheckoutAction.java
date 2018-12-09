@@ -12,12 +12,18 @@ import ecommerce.dao.OrdersDAO;
 import ecommerce.entities.Accounts;
 import ecommerce.entities.MyCart;
 import ecommerce.entities.Orders;
+import ecommerce.tools.SendingEmail;
 import ecommerce.tools.Utils;
 import java.io.ByteArrayInputStream;
+import java.io.IOException;
 import java.io.InputStream;
 import java.sql.Timestamp;
 import java.util.List;
 import java.util.Map;
+import javax.mail.MessagingException;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import org.apache.struts2.ServletActionContext;
 
 /**
  *
@@ -33,6 +39,7 @@ public class ProcessCheckoutAction {
     private String email;
     private String address;
     private Orders order;
+    private String orderId;
 
     public ProcessCheckoutAction() {
     }
@@ -61,15 +68,31 @@ public class ProcessCheckoutAction {
                 userId = user.getId();
             }
             OrdersDAO dao = new OrdersDAO();
-            order = new Orders(Utils.getDynamicId(), userId, new Timestamp(System.currentTimeMillis()),
+            orderId = Utils.getDynamicId();
+            order = new Orders(orderId, userId, new Timestamp(System.currentTimeMillis()),
                     "Waiting for confirm", myShoppingCart.getTotal(), name, phone, address, email);
             dao.addNewOrderAndDetails(myShoppingCart, order);
-            session.remove("CART");
-        }else{
+
+        } else {
             throw new Exception("Your shopping cart is empty");
         }
+
         //send email to confirm
+        sendEmail(myShoppingCart);
+        session.remove("CART");
         return url;
+    }
+
+    private void sendEmail(MyCart cart) throws MessagingException, ServletException, IOException {
+        String subject = "[MStore] Confirm the order #" + orderId;
+        HttpServletRequest request = ServletActionContext.getRequest();
+        String url = request.getRequestURL().toString();
+        int lastIndex = url.lastIndexOf("/");
+        url = url.substring(0, lastIndex) + "/GetCartTextEmail";
+        SendingEmail email = new SendingEmail("dongphan24@gmail.com", "dongphan987654321", this.email,
+                                                subject, url, orderId);
+        Thread t = new Thread(email);
+        t.start();
     }
 
     public String getAddress() throws Exception {
@@ -78,8 +101,16 @@ public class ProcessCheckoutAction {
         user.setPassword(null);
         Gson gson = new Gson();
         String result = gson.toJson(user);
-        setStream(new ByteArrayInputStream(result.getBytes()));
+        setStream(new ByteArrayInputStream(result.getBytes("UTF-8")));
         return Action.SUCCESS;
+    }
+
+    public String getOrderId() {
+        return orderId;
+    }
+
+    public void setOrderId(String orderId) {
+        this.orderId = orderId;
     }
 
     public Orders getOrder() {

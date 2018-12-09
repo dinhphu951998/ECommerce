@@ -22,9 +22,9 @@
             </font>
         </s:if>
         <s:if test="%{addresses != null}">
-            <div class="col-md-3 col-sm-6">
+            <div class="col-sm-12 padding-bottom" >
                 <div class="form-element form-select">
-                    <s:select cssClass="form-control" list="%{addresses}"></s:select>
+                    <s:select cssClass="form-control" list="%{addresses}" id="select-address"></s:select>
                     </div>
                 </div><!-- .col-md-3.col-sm-6 -->
         </s:if>
@@ -71,3 +71,15 @@
 
 
 <s:include value="footer.jsp"/>
+<script>
+    $("#select-address").on("change", function(){
+        var value = $(this).val();
+        var arr = value.split("-");
+        $("#your-full-name").val(arr[0].trim());
+        $("#your-phone").val(arr[1].trim());
+        $("#your-address").val(arr[2].trim());
+        $("#your-email").val(arr[3].trim());
+    });
+</script>
+    
+    

@@ -68,8 +68,14 @@
                         <div class="modal-body">
                             <p>
                                 Order submit successfully!
-                                Please waiting for us to confirm your order <s:property value="order.Id"/>
-                                Access this <a href="FollowOrder">link</a> to track your order
+                                Please waiting for us to confirm your order 
+                                <br/>
+                                Save your orderId to use in the future: <s:property value="orderId"/>
+                                <br/>
+                                <s:url action="GetOrder" var="follow">
+                                    <s:param name="orderId" value="orderId"/>
+                                </s:url>
+                                Access this <s:a href="%{#follow}">link</s:a> to track your order
                             </p>
                         </div>
                         <div class="modal-footer">

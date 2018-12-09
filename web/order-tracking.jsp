@@ -74,7 +74,7 @@
                                         </s:if>
                                         <s:if test="%{order.Status == 'In Progress' || order.Status == 'Waiting for confirm'}">
                                             <span class="text-warning">
-                                                <s:property value="status"/>
+                                                <s:property value="order.Status"/>
                                             </span>
                                         </s:if>
                                         <s:if test="%{order.Status == 'Canceled'}">

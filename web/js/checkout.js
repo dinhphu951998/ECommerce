@@ -6,10 +6,10 @@ $(document).ready(function () {
                 success: function (response) {
                     console.log(response);
                     var result = JSON.parse(response);
-                    $("#your-full-name").attr("value", result.FirstName + " " + result.LastName);
-                    $("#your-email").attr("value", result.Email);
-                    $("#your-phone").attr("value", result.Phone);
-                    $("#your-address").attr("value", result.Address);
+                    $("#your-full-name").val(result.FirstName + " " + result.LastName);
+                    $("#your-email").val( result.Email);
+                    $("#your-phone").val( result.Phone);
+                    $("#your-address").val( result.Address);
                     
                 },
                 error: function (e) {
