@@ -9,8 +9,11 @@
 <%@taglib uri="/struts-tags" prefix="s"%>
 
 <s:include value="header.jsp"/>
+
 <!-- Pager + Product Gallery -->
+
 <section class="fw-section bg-gray padding-top-3x">
+
 
     <!-- Page Navigation -->
     <!--    <a href="#" class="page-nav page-prev">
@@ -170,6 +173,7 @@
     <!-- Nav Tabs -->
     <ul class="nav-tabs text-center" role="tablist">
         <li class="active"><a href="#description" role="tab" data-toggle="tab">Description</a></li>
+        <li><a href="#review" role="tab" data-toggle="tab">Review</a></li>
         <!--<li><a href="#additional" role="tab" data-toggle="tab">Additional Info</a></li>-->
     </ul><!-- .nav-tabs -->
     <!-- Tab panes -->
@@ -204,6 +208,46 @@
 
             </div>
         </div><!-- .tab-pane --> 
+        <div role="tabpanel" class="tab-pane transition fade" id="review">
+
+            <s:iterator value="reviewDTOs">
+                <!-- Review -->
+                <div class="review">
+                    <div class="review-author-ava">
+                        <s:if test="%{AccountImage == null}">
+                            <img src="img/team/blank-avatar.png" alt="Review Author">
+                        </s:if>
+                        <s:if test="%{AccountImage != null}">
+                            <img src="<s:property value="AccountImage"/>" alt="Review Author">
+                        </s:if>
+                    </div>
+                    <div class="review-body">
+                        <div class="review-meta">
+                            <div class="column">
+                                <h4 class="review-title"><s:property value="Title"/></h4>
+                            </div>
+                            <div class="column">
+                                <span class="product-rating text-warning">
+                                    <s:iterator begin="1" end="%{Rating}">
+                                        <i class="material-icons star"></i>
+                                    </s:iterator>
+                                    <s:iterator begin="1" end="%{5-Rating}">
+                                        <i class="material-icons star_border"></i>
+                                    </s:iterator>
+                                </span>
+                            </div>
+                        </div>
+                        <textarea readonly id="review" style=" background-color: white; border:none; resize: none; overflow: hidden " cols="100px" name="text" onmouseover='this.style.height = "";this.style.height = this.scrollHeight + "px"'><s:property value="Content"/></textarea>
+                        <cite><s:property value="AccountName"/></cite>
+                    </div>
+
+                </div><!-- .review -->
+                <!-- Review -->
+            </s:iterator>
+
+
+
+        </div><!-- .tab-pane -->
     </div><!-- .tab-content -->
 </section><!-- .container -->
 
@@ -249,8 +293,8 @@
                     <div class="shop-item-details">
                         <h3 class="shop-item-title">
                             <s:a href="%{detailsLink}"><s:property value="name"/></s:a>
-                        </h3>
-                        <span class="shop-item-price">
+                            </h3>
+                            <span class="shop-item-price">
                             <s:if test="%{saleOff != 0}">
                                 <span class="old-price">$<s:property value="price"/></span>
                             </s:if>

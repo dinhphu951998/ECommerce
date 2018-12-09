@@ -48,7 +48,7 @@ public class CategoriesDAO extends BaseDAO<Categories> {
             String sql = "select Id, Name, AttName1, AttName2, AttName3, AttName4, AttName5, AttName6, "
                     + "AttName7, AttName8, AttName9, AttName10 "
                     + "from Categories "
-                    + "where Id = ? ";
+                    + "where Id = ? AND IsActive='true'";
             conn = DBConnection.makeConnection();
             pstm = conn.prepareStatement(sql);
             pstm.setInt(1, Id);
@@ -65,7 +65,7 @@ public class CategoriesDAO extends BaseDAO<Categories> {
                 String att8 = rs.getString("AttName8");
                 String att9 = rs.getString("AttName9");
                 String att10 = rs.getString("AttName10");
-                category = new Categories(Id, name, att1, att2, att3, att4, att5, att6, att7, att8, att9, att10);
+                category = new Categories(Id, name, att1, att2, att3, att4, att5, att6, att7, att8, att9, att10, null);
             }
         } finally {
             closeConnection();
@@ -76,13 +76,13 @@ public class CategoriesDAO extends BaseDAO<Categories> {
     public List<Categories> getTop4MostSold() throws NamingException, SQLException {
         List<Categories> list = null;
         int id;
-        String name;
+        String name, img;
         try {
             conn = DBConnection.makeConnection();
             if (conn != null) {
-                String sql = "Select Top 4 Id, Name "
+                String sql = "Select Top 4 Id, Name, Image "
                         + "From Categories "
-                        + "Where Id in (   Select Top 2147483647 p.CategoryID "
+                        + "Where IsActive='true' AND Id in (   Select Top 2147483647 p.CategoryID "
                         + "From Products p JOIN OrderDetails od "
                         + "ON p.Id = od.ProductID "
                         + "Where od.OrderID in (  Select ID "
@@ -96,9 +96,11 @@ public class CategoriesDAO extends BaseDAO<Categories> {
                 while (rs.next()) {
                     id = rs.getInt("Id");
                     name = rs.getString("Name");
+                    img = rs.getString("Image");
                     Categories c = new Categories();
                     c.setId(id);
                     c.setName(name);
+                    c.setImage(img);
                     list.add(c);
                 }
             }
@@ -114,7 +116,7 @@ public class CategoriesDAO extends BaseDAO<Categories> {
             conn = DBConnection.makeConnection();
             if (conn != null) {
                 String sql = "select Id,Name\n"
-                        + "from Categories";
+                        + "from Categories WHERE IsActive='true'";
                 pstm = conn.prepareStatement(sql);
                 rs = pstm.executeQuery();
                 while (rs.next()) {

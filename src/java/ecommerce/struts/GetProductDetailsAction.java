@@ -5,8 +5,10 @@
  */
 package ecommerce.struts;
 
+import ecommerce.customdto.ReviewDTO;
 import ecommerce.dao.CategoriesDAO;
 import ecommerce.dao.ProductsDAO;
+import ecommerce.dao.ReviewsDAO;
 import ecommerce.entities.Categories;
 import ecommerce.entities.Products;
 import java.util.HashMap;
@@ -26,6 +28,7 @@ public class GetProductDetailsAction {
     private Map attribute;
     private List<Products> products;
     private final String SUCCESS = "success";
+    private List<ReviewDTO> reviewDTOs;
 
     public GetProductDetailsAction() {
     }
@@ -42,6 +45,10 @@ public class GetProductDetailsAction {
             createAttributeMap();
             products = dao.getRelatedProductByCategoryId(product.getCategoryID());
         }
+        
+        // get review DTO
+        ReviewsDAO reviewsDAO = new ReviewsDAO();
+        reviewDTOs = reviewsDAO.getAllReviewDTO(Id);
         return url;
     }
 
@@ -159,5 +166,21 @@ public class GetProductDetailsAction {
     public void setProducts(List<Products> products) {
         this.products = products;
     }
+
+    /**
+     * @return the reviewDTOs
+     */
+    public List<ReviewDTO> getReviewDTOs() {
+        return reviewDTOs;
+    }
+
+    /**
+     * @param reviewDTOs the reviewDTOs to set
+     */
+    public void setReviewDTOs(List<ReviewDTO> reviewDTOs) {
+        this.reviewDTOs = reviewDTOs;
+    }
+
+   
 
 }

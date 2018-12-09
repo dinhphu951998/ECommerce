@@ -32,18 +32,20 @@ public class LoginAction {
     private String Id;
     private String password;
     private boolean remember;
+    private boolean isEncrypted;
     
     // push value
     private String error;
     
 
     public LoginAction() {
+        isEncrypted = false;
     }
 
     public String execute() throws Exception {
         String url = FAIL;
         AccountDAO dao = new AccountDAO();
-        Accounts dto = dao.checkLogin(Id, password);
+        Accounts dto = dao.checkLogin(getId(), getPassword());
         if (dto != null) {
             switch (RolesEnum.valueOf(dto.getRoleID())) {
                 case AD:
@@ -57,7 +59,7 @@ public class LoginAction {
             session.put("USER", dto);
             if (remember) {
                 HttpServletResponse response = ServletActionContext.getResponse();
-                Cookie cookie = new Cookie("account"+Id, password);
+                Cookie cookie = new Cookie("account"+getId(), getPassword());
                 cookie.setMaxAge(1000 * 60 * 60 * 24 * 7);
                 response.addCookie(cookie);
             }
@@ -92,8 +94,13 @@ public class LoginAction {
     /**
      * @param password the password to set
      */
-    public void setPassword(String password) throws NoSuchAlgorithmException {
-        this.password = Utils.encryptPassword(password);
+    public void setPassword(String password) throws NoSuchAlgorithmException{
+        if (isEncrypted){
+            this.password = password;
+        }
+        else{
+            this.password = Utils.encryptPassword(password);
+        }
     }
 
     /**
@@ -122,6 +129,20 @@ public class LoginAction {
      */
     public void setError(String error) {
         this.error = error;
+    }
+
+    /**
+     * @return the isEncrypted
+     */
+    public boolean isIsEncrypted() {
+        return isEncrypted;
+    }
+
+    /**
+     * @param isEncrypted the isEncrypted to set
+     */
+    public void setIsEncrypted(boolean isEncrypted) {
+        this.isEncrypted = isEncrypted;
     }
 
 }

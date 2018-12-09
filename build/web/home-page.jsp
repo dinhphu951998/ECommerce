@@ -96,7 +96,7 @@
         <s:iterator value="%{listCategories}">
             <div class="col-sm-3 col-xs-6">
                 <a href="shop?categoryId=<s:property value="Id" />" class="category-link">
-                    <img src="img/categories/cat01.jpg" alt="Category">
+                    <img src="<s:property value="Image" />" alt="Category">
                     <s:property value="Name"/>
                 </a><!-- .category-link -->
             </div><!-- .col-sm-4 -->
@@ -329,68 +329,6 @@
         </div><!-- .col-lg-9.col-md-8 -->
     </div><!-- .row -->
 </section><!-- .container-fluid -->
-
-<!-- Brands -->
-<section class="container padding-top-2x padding-bottom">
-    <hr>
-    <h3 class="text-center padding-top-2x">More brands</h3>
-    <div class="row padding-top">
-        <!-- Brand -->
-        <div class="col-sm-4 col-xs-6">
-            <a href="#" class="brand">
-                <div class="brand-logo opacity-75">
-                    <img src="img/brands/01.svg" alt="Brand">
-                </div>
-                <p class="brand-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi est corrupti sapiente itaque.</p>
-            </a>
-        </div>
-        <!-- Brand -->
-        <div class="col-sm-4 col-xs-6">
-            <a href="#" class="brand">
-                <div class="brand-logo opacity-75">
-                    <img src="img/brands/02.svg" alt="Brand">
-                </div>
-                <p class="brand-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi est corrupti sapiente itaque.</p>
-            </a>
-        </div>
-        <!-- Brand -->
-        <div class="col-sm-4 col-xs-6">
-            <a href="#" class="brand">
-                <div class="brand-logo opacity-75">
-                    <img src="img/brands/03.svg" alt="Brand">
-                </div>
-                <p class="brand-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi est corrupti sapiente itaque.</p>
-            </a>
-        </div>
-        <!-- Brand -->
-        <div class="col-sm-4 col-xs-6">
-            <a href="#" class="brand">
-                <div class="brand-logo opacity-75">
-                    <img src="img/brands/04.svg" alt="Brand">
-                </div>
-                <p class="brand-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi est corrupti sapiente itaque.</p>
-            </a>
-        </div>
-        <!-- Brand -->
-        <div class="col-sm-4 col-xs-6">
-            <a href="#" class="brand">
-                <div class="brand-logo opacity-75">
-                    <img src="img/brands/05.svg" alt="Brand">
-                </div>
-                <p class="brand-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi est corrupti sapiente itaque.</p>
-            </a>
-        </div>
-        <!-- Brand -->
-        <div class="col-sm-4 col-xs-6">
-            <a href="#" class="brand">
-                <div class="brand-logo opacity-75">
-                    <img src="img/brands/06.svg" alt="Brand">
-                </div>
-                <p class="brand-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi est corrupti sapiente itaque.</p>
-            </a>
-        </div>
-    </div><!-- .row -->
-</section><!-- .container -->
 
 <!-- Video Popup -->
 <div class="fw-section space-top-2x padding-top-3x padding-bottom-3x" style="background-image: url(img/video_bg.jpg);">

@@ -9,6 +9,7 @@ import ecommerce.dbutils.DBConnection;
 import ecommerce.entities.Products;
 import ecommerce.enums.TypeSortEnum;
 import ecommerce.temporary.BaseDAO;
+import java.io.Serializable;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -24,7 +25,7 @@ import javax.naming.NamingException;
  *
  * @author PhuNDSE63159
  */
-public class ProductsDAO extends BaseDAO<Products> {
+public class ProductsDAO extends BaseDAO<Products> implements Serializable {
 
     private Connection conn;
     private PreparedStatement pstm;
@@ -53,7 +54,7 @@ public class ProductsDAO extends BaseDAO<Products> {
                     + "Image3, Image4, Manufacturer, Description, ShortDescription, "
                     + "OtherInfo, Stock, DateArrivals, SaleOff, AttVal1, AttVal2, "
                     + "AttVal3, AttVal4, AttVal5, AttVal6, AttVal7, AttVal8, AttVal9, "
-                    + "AttVal10, RatingScore, NumOfRates from Products where Id = ?";
+                    + "AttVal10, RatingScore, NumOfRates from Products where Id = ? AND IsActive='true'";
             conn = DBConnection.makeConnection();
             pstm = conn.prepareStatement(sql);
             pstm.setString(1, Id);
@@ -103,7 +104,7 @@ public class ProductsDAO extends BaseDAO<Products> {
                     + "Image3, Image4, Manufacturer, Description, ShortDescription, "
                     + "OtherInfo, Stock, DateArrivals, SaleOff, AttVal1, AttVal2, "
                     + "AttVal3, AttVal4, AttVal5, AttVal6, AttVal7, AttVal8, AttVal9, "
-                    + "AttVal10, RatingScore, NumOfRates from Products where CategoryID = ?";
+                    + "AttVal10, RatingScore, NumOfRates from Products where CategoryID = ? AND IsActive = 'true'";
             conn = DBConnection.makeConnection();
             pstm = conn.prepareStatement(sql);
             pstm.setInt(1, categoryId);
@@ -159,7 +160,7 @@ public class ProductsDAO extends BaseDAO<Products> {
             if (conn != null) {
                 String sql = "Select p.Id, p.Name, p.Price, p.SaleOff, b.Image "
                         + "From Products p JOIN Banners b "
-                        + "ON p.Id = b.ProductID";
+                        + "ON p.Id = b.ProductID where p.IsActive = 'true'";
                 pstm = conn.prepareStatement(sql);
                 rs = pstm.executeQuery();
                 list = new ArrayList<>();
@@ -192,7 +193,7 @@ public class ProductsDAO extends BaseDAO<Products> {
             conn = DBConnection.makeConnection();
             if (conn != null) {
                 String sql = "Select Top 8 Id, Name, Price, SaleOff, Image1 From Products "
-                        + "Where SaleOff > 0 "
+                        + "Where SaleOff > 0 AND IsActive = 'true' "
                         + "Order by DateArrivals DESC";
                 pstm = conn.prepareStatement(sql);
                 rs = pstm.executeQuery();
@@ -226,6 +227,7 @@ public class ProductsDAO extends BaseDAO<Products> {
             conn = DBConnection.makeConnection();
             if (conn != null) {
                 String sql = "Select Top 8 Id, Name, Price, SaleOff, Image1 From Products "
+                        + " where IsActive ='true' "
                         + "Order by DateArrivals DESC";
                 pstm = conn.prepareStatement(sql);
                 rs = pstm.executeQuery();
@@ -260,7 +262,7 @@ public class ProductsDAO extends BaseDAO<Products> {
             conn = DBConnection.makeConnection();
             if (conn != null) {
                 String sql = "Select Top 8 Id, Name, Image1, Price, SaleOff, RatingScore/NumOfRates As Rate "
-                        + "From Products "
+                        + "From Products WHERE IsActive='true' "
                         + "Order by RatingScore/NumOfRates DESC";
                 pstm = conn.prepareStatement(sql);
                 rs = pstm.executeQuery();
@@ -296,7 +298,7 @@ public class ProductsDAO extends BaseDAO<Products> {
             conn = DBConnection.makeConnection();
             if (conn != null) {
                 String sql = "Select Top 1 Id, Name, Price, SaleOff, Image1 "
-                        + "From Products "
+                        + "From Products WHERE IsActive='true' "
                         + "Order by SaleOff DESC";
                 pstm = conn.prepareStatement(sql);
                 rs = pstm.executeQuery();
@@ -319,6 +321,7 @@ public class ProductsDAO extends BaseDAO<Products> {
         }
         return product;
     }
+
     public List<Products> searchProductsBySomeConditions(String searchValue, int categoryId, double priceFrom, double priceTo, String manufacture, int numOfPage, String typeSort, int productPerPage) throws SQLException, NamingException {
         List<Products> list = null;
         try {
@@ -327,6 +330,7 @@ public class ProductsDAO extends BaseDAO<Products> {
                 String sql = "select Id,Name,Price,SaleOff,Image1,CategoryID,Manufacturer,DateArrivals  \n"
                         + "from Products \n"
                         + "where Name like ? \n"
+                        + "AND IsActive = 'true' \n"
                         + "AND Price >= ? AND Price <= ? \n";
                 if (categoryId != -1) {
                     sql += "AND CategoryID = ? \n";
@@ -360,21 +364,20 @@ public class ProductsDAO extends BaseDAO<Products> {
                 pstm.setDouble(2, priceFrom);
                 pstm.setDouble(3, priceTo);
                 if (categoryId == -1 && manufacture.equals("")) {
-                    pstm.setInt(4, productPerPage*(numOfPage-1));
+                    pstm.setInt(4, productPerPage * (numOfPage - 1));
                     pstm.setInt(5, productPerPage);
                 } else if (categoryId != -1 && manufacture.equals("")) {
                     pstm.setInt(4, categoryId);
-                    pstm.setInt(5, productPerPage*(numOfPage-1));
+                    pstm.setInt(5, productPerPage * (numOfPage - 1));
                     pstm.setInt(6, productPerPage);
-                } else if (categoryId == -1 && !manufacture.equals("")){
+                } else if (categoryId == -1 && !manufacture.equals("")) {
                     pstm.setString(4, manufacture);
-                    pstm.setInt(5, productPerPage*(numOfPage-1));
+                    pstm.setInt(5, productPerPage * (numOfPage - 1));
                     pstm.setInt(6, productPerPage);
-                }
-                else {
+                } else {
                     pstm.setInt(4, categoryId);
                     pstm.setString(5, manufacture);
-                    pstm.setInt(6, productPerPage*(numOfPage-1));
+                    pstm.setInt(6, productPerPage * (numOfPage - 1));
                     pstm.setInt(7, productPerPage);
                 }
                 rs = pstm.executeQuery();
@@ -406,7 +409,7 @@ public class ProductsDAO extends BaseDAO<Products> {
             if (conn != null) {
                 String sql = "select COUNT(*) as count \n"
                         + "from Products \n"
-                        + "where Name like ? \n"
+                        + "where Name like ? AND IsActive='true' \n"
                         + "AND Price >= ? AND Price <= ? \n";
                 if (categoryId != -1) {
                     sql += "AND CategoryID = ? \n";
@@ -421,11 +424,9 @@ public class ProductsDAO extends BaseDAO<Products> {
                 if (categoryId == -1 && manufacture.equals("")) {
                 } else if (categoryId != -1 && manufacture.equals("")) {
                     pstm.setInt(4, categoryId);
-                }
-                else if(categoryId == -1 && !manufacture.equals("")){
+                } else if (categoryId == -1 && !manufacture.equals("")) {
                     pstm.setString(4, manufacture);
-                }
-                else {
+                } else {
                     pstm.setInt(4, categoryId);
                     pstm.setString(5, manufacture);
                 }
@@ -446,7 +447,7 @@ public class ProductsDAO extends BaseDAO<Products> {
             conn = DBConnection.makeConnection();
             if (conn != null) {
                 String sql = "select DISTINCT Manufacturer\n"
-                        + "from Products";
+                        + "from Products WHERE IsActive='true'";
                 pstm = conn.prepareStatement(sql);
                 rs = pstm.executeQuery();
                 while (rs.next()) {
@@ -456,30 +457,31 @@ public class ProductsDAO extends BaseDAO<Products> {
                     if (rs.getString("Manufacturer") != null) {
                         list.add(rs.getString("Manufacturer"));
                     }
-					 }
+                }
             }
         } finally {
             closeConnection();
         }
         return list;
-    }    
+    }
+
     public List<Products> getWishListByAccountID(String accountID) throws NamingException, SQLException {
         List<Products> list = null;
         String id, name, img;
         float price, saleOff;
         try {
             conn = DBConnection.makeConnection();
-            if(conn != null) {
+            if (conn != null) {
                 String sql = "Select Id, Name, Image1, Price, SaleOff "
                         + "From Products "
                         + "Where Id in ( Select ProductID "
-                                        + "From WishList "
-                                        + "Where AccountID = ? )";
+                        + "From WishList "
+                        + "Where AccountID = ? ) AND IsActive='true'";
                 pstm = conn.prepareStatement(sql);
                 pstm.setString(1, accountID);
                 rs = pstm.executeQuery();
                 list = new ArrayList<>();
-                while(rs.next()) {
+                while (rs.next()) {
                     id = rs.getString("Id");
                     name = rs.getString("Name");
                     img = rs.getString("Image1");
@@ -499,30 +501,32 @@ public class ProductsDAO extends BaseDAO<Products> {
         }
         return list;
     }
-    
+
     public List<Products> getProductByOrderID(String orderID) throws NamingException, SQLException {
         List<Products> list = null;
-        String name, img;
+        String name, img, Id;
         int quantity;
         double price, saleOff;
         try {
             conn = DBConnection.makeConnection();
-            if(conn != null) {
-                String sql = "Select p.Name, p.Image1, o.Price, o.Quantity, o.SaleOff " +
-                             "From Products p JOIN OrderDetails o " +
-                             "ON o.ProductID = p.Id " +
-                             "Where o.OrderID = ?";
+            if (conn != null) {
+                String sql = "Select p.Id, p.Name, p.Image1, o.Price, o.Quantity, o.SaleOff "
+                        + "From Products p JOIN OrderDetails o "
+                        + "ON o.ProductID = p.Id "
+                        + "Where o.OrderID = ? AND p.IsActive='true'";
                 pstm = conn.prepareStatement(sql);
                 pstm.setString(1, orderID);
                 rs = pstm.executeQuery();
                 list = new ArrayList<>();
-                while(rs.next()) {
+                while (rs.next()) {
+                    Id = rs.getString("Id");
                     name = rs.getString("Name");
                     img = rs.getString("Image1");
                     quantity = rs.getInt("Quantity");
                     price = rs.getDouble("Price");
                     saleOff = rs.getDouble("SaleOff");
                     Products p = new Products();
+                    p.setId(Id);
                     p.setName(name);
                     p.setImage1(img);
                     p.setStock(quantity);
@@ -535,5 +539,24 @@ public class ProductsDAO extends BaseDAO<Products> {
             closeConnection();
         }
         return list;
+    }
+
+    public boolean addMoreRating(String productId, int rating) throws NamingException, SQLException {
+        try {
+            conn = DBConnection.makeConnection();
+            if (conn != null) {
+                String sql = "update Products\n"
+                        + "set NumOfRates= NumOfRates+1, RatingScore = RatingScore+?\n"
+                        + "where Id = ? ";
+                pstm = conn.prepareStatement(sql);
+                pstm.setInt(1, rating);
+                pstm.setString(2, productId);
+                int result = pstm.executeUpdate();
+                return result > 0;
+            }
+        } finally {
+            closeConnection();
+        }
+        return false;
     }
 }
